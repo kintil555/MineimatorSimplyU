@@ -1,0 +1,38 @@
+name: Update latest.json
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate latest.json
+        run: |
+          echo "{" > latest.json
+          echo "  \"version\": \"${{ github.event.release.tag_name }}\"," >> latest.json
+          echo "  \"assets\": [" >> latest.json
+
+          first=true
+          for asset in "${{ github.event.release.assets[*].browser_download_url }}"; do
+            if [ "$first" = true ]; then
+              first=false
+            else
+              echo "," >> latest.json
+            fi
+            echo "    { \"url\": \"$asset\" }" >> latest.json
+          done
+
+          echo "  ]" >> latest.json
+          echo "}" >> latest.json
+
+      - name: Commit latest.json
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add latest.json
+          git commit -m "auto: update latest.json"
+          git push
