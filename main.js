@@ -58,6 +58,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Fetch and update version tags from GitHub
+async function updateVersionTags() {
+    try {
+        const response = await fetch('https://api.github.com/repos/YogaindoCR/Mine-imator-2.0.2-Simply-Upscaled-Build/releases/latest');
+        if (!response.ok) throw new Error('Failed to fetch version');
+        const data = await response.json();
+        const latestVersion = data.tag_name;
+        
+        const versionElements = document.querySelectorAll('.current-version-text');
+        versionElements.forEach(el => {
+            el.textContent = latestVersion;
+        });
+    } catch (error) {
+        console.error('Error fetching latest version:', error);
+    }
+}
+
+// Initial version fetch
+updateVersionTags();
+
 // Easter Egg: Double click logo for RGB mode
 const logos = document.querySelectorAll('.logo');
 logos.forEach(logo => {
