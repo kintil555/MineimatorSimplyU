@@ -58,45 +58,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// GitHub API Auto-Update Logic
-async function fetchLatestRelease() {
-    const REPO = 'YogaindoCR/Mine-imator-2.0.2-Simply-Upscaled-Build';
-    const API_URL = `https://api.github.com/repos/${REPO}/releases/latest`;
-
-    try {
-        const response = await fetch(API_URL);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-
-        const version = data.tag_name;
-        const publishDate = new Date(data.published_at).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        
-        // Find the zip file in assets
-        const zipAsset = data.assets.find(asset => asset.name.endsWith('.zip'));
-        const downloadUrl = zipAsset ? zipAsset.browser_download_url : data.html_url;
-
-        // Update UI elements if they exist
-        const heroVersionEl = document.getElementById('latest-version');
-        if (heroVersionEl) heroVersionEl.textContent = version;
-
-        const downloadInfoEl = document.getElementById('download-version-info');
-        if (downloadInfoEl) downloadInfoEl.textContent = `Version ${version} (${publishDate})`;
-
-        const mainDownloadBtn = document.getElementById('main-download-link');
-        if (mainDownloadBtn) mainDownloadBtn.href = downloadUrl;
-
-    } catch (error) {
-        console.error('Error fetching latest release:', error);
-    }
-}
-
-// Initial fetch
-fetchLatestRelease();
-
 // Easter Egg: Double click logo for RGB mode
 const logos = document.querySelectorAll('.logo');
 logos.forEach(logo => {
