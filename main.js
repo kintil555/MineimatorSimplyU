@@ -57,3 +57,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Easter Egg: Double click logo for RGB mode
+const logos = document.querySelectorAll('.logo');
+logos.forEach(logo => {
+    logo.style.cursor = 'pointer';
+    logo.addEventListener('dblclick', () => {
+        document.body.classList.toggle('rgb-mode');
+        
+        // Visual feedback
+        if (document.body.classList.contains('rgb-mode')) {
+            console.log("RGB Mode Activated! 🌈");
+        }
+    });
+});
