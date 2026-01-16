@@ -21,9 +21,12 @@
     <script>
         window.MAINTENANCE_MODE = false;
     </script>
-
+	<div id="stars"></div>
+	<div id="stars2"></div>
+	<div id="stars3"></div>
+	
     <div id="maintenance-screen" style="display: none; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #060b18; position: fixed; top: 0; left: 0; z-index: 9999; padding: 2rem;">
-        <img src="/68747470733a2f2f752e6375626575706c6f61642e636f6d2f596f6761696e646f43522f4d6973752e706e67.png" alt="Logo" style="height: 80px; margin-bottom: 2rem; filter: drop-shadow(0 0 15px rgba(167, 139, 250, 0.5));">
+        <img src="/Misu_Logo.webp" alt="Logo" style="height: 80px; margin-bottom: 2rem; filter: drop-shadow(0 0 15px rgba(140, 200, 250, 0.5));">
         <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #60a5fa;">UNDER MAINTENANCE</h1>
         <p style="color: #a0a0a0; font-size: 1.2rem; max-width: 600px;">We're currently updating the official build of Mine-imator Simply Upscaled. We'll be back shortly!</p>
         <div style="margin-top: 2rem; padding: 1rem 2rem; border: 1px solid rgba(96, 165, 250, 0.3); border-radius: 8px; color: #3b82f6; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
@@ -47,7 +50,7 @@
     <header>
         <nav>
             <div class="logo">
-                <img src="/68747470733a2f2f752e6375626575706c6f61642e636f6d2f596f6761696e646f43522f4d6973752e706e67.png" alt="MISU Logo" class="nav-logo-img">
+                <img src="/Misu_Logo.webp" alt="MISU Logo" class="nav-logo-img">
                 <span>Mine-imator Simply Upscaled</span>
             </div>
             <div class="nav-links">
@@ -76,9 +79,14 @@
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <img src="/68747470733a2f2f752e6375626575706c6f61642e636f6d2f596f6761696e646f43522f53696d706c792e706e67.png" alt="Mine-imator Simply Upscaled" class="floating-img">
+                    <img src="/MisuHeader.webp" alt="Mine-imator Simply Upscaled" class="floating-img">
                 </div>
             </div>
+		  <div class="wave">
+			<span></span>
+			<span></span>
+			<span></span>
+		  </div>
         </section>
 
         <!-- Features Section -->
@@ -96,9 +104,10 @@
                     <div class="feature-details">
                         <div class="badge-list">
                             <span class="badge">AVE-X Engine</span>
+                            <span class="badge">High Quality Renders</span>
                             <span class="badge">Open Sourced</span>
                             <span class="badge">QOL Features</span>
-                            <span class="badge">Low Sample Render</span>
+                            <span class="badge">80% Better Performance</span>
                         </div>
                         <p class="description">
                             This mod was purely based on <strong>Continuation Build</strong>. Originally a private tool for the movie project <em>AVE-X</em>, now released to the public. It's open sourced—anyone can bring their features to this build!
@@ -122,10 +131,24 @@
                 <h2 class="section-title">Community Showcase</h2>
                 <div class="showcase-container">
                     <div class="image-wrapper">
-                        <img src="/Rewind.png" alt="Minecraft Rewind 2025" class="showcase-img">
+                        <img src="/Rewind.webp" alt="Minecraft Rewind 2025" class="showcase-img">
                         <div class="image-overlay">
-                            <h3>"MINECRAFT REWIND INDONESIA 2025"</h3>
+                            <h3>MINECRAFT REWIND INDONESIA 2025</h3>
                             <p>Art by: Aninextion Team</p>
+                        </div>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="/Japan.webp" alt="Japan" class="showcase-img">
+                        <div class="image-overlay">
+                            <h3>JAPAN</h3>
+                            <p>Art by: Aninextion Team</p>
+                        </div>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="/AVE-X.webp" alt="Ave-x" class="showcase-img">
+                        <div class="image-overlay">
+                            <h3>AVE-X</h3>
+                            <p>Art by: WolgaWolviza</p>
                         </div>
                     </div>
                     <p class="showcase-text">Watch what's possible when you push Mine-imator to its absolute limits. Beautiful lighting, complex scenes, and cinematic depth.</p>
@@ -156,24 +179,12 @@
 
     <footer>
         <div class="container">
-            <div style="text-align: center;">
-                <p>© 2026 Mine-imator Simply Upscaled</p>
-                <div style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; padding: 0.25rem 0.75rem; background: rgba(96, 165, 250, 0.1); border-radius: 99px; border: 1px solid rgba(96, 165, 250, 0.2);">
-                    <span style="font-size: 0.7rem; color: #60a5fa; font-weight: 700; text-transform: uppercase;">Verified Official Website</span>
-                </div>
-                <p style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.6;">Official distribution platform.</p>
+            <p>© 2026 Mine-imator Simply Upscaled</p>
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; padding: 0.25rem 0.75rem; background: rgba(96, 165, 250, 0.1); border-radius: 99px; border: 1px solid rgba(96, 165, 250, 0.2);">
+                <span style="font-size: 0.7rem; color: #60a5fa; font-weight: 700; text-transform: uppercase;">Verified Official Website</span>
             </div>
-
-            <div class="footer-credits">
-                <div class="credit-row">
-                    <span>Mod Development <span class="credit-name">Wolviza & CreeZ</span></span>
-                    <a href="https://www.mineimatorforums.com/" target="_blank">Forums</a>
-                </div>
-                <div class="credit-row">
-                    <span>Website Design By <span class="credit-name">VoxelMC</span></span>
-                    <a href="https://youtube.com/@itzyclion?si=SdbJYxqlsCl4mx5n" target="_blank">YouTube</a>
-                </div>
-            </div>
+            <p style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.6;">Official distribution platform.</p>
+            <p style="font-size: 0.7rem; margin-top: 1.5rem; opacity: 0.4;">Website by <a href="https://youtube.com/@itzyclion?si=SdbJYxqlsCl4mx5n" target="_blank" style="color: #60a5fa; text-decoration: none; font-weight: 700;">VoxelMC</a></p>
         </div>
     </footer>
 
