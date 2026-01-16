@@ -21,9 +21,6 @@
     <script>
         window.MAINTENANCE_MODE = false;
     </script>
-	<div id="stars"></div>
-	<div id="stars2"></div>
-	<div id="stars3"></div>
 
     <div id="maintenance-screen" style="display: none; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #060b18; position: fixed; top: 0; left: 0; z-index: 9999; padding: 2rem;">
         <img src="/68747470733a2f2f752e6375626575706c6f61642e636f6d2f596f6761696e646f43522f4d6973752e706e67.png" alt="Logo" style="height: 80px; margin-bottom: 2rem; filter: drop-shadow(0 0 15px rgba(167, 139, 250, 0.5));">
@@ -50,7 +47,7 @@
         <nav>
             <div class="logo">
                 <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
-                    <img src="/Misu_Logo.webp" alt="MISU Logo" class="nav-logo-img">
+                    <img src="/68747470733a2f2f752e6375626575706c6f61642e636f6d2f596f6761696e646f43522f4d6973752e706e67.png" alt="MISU Logo" class="nav-logo-img">
                     <span>Mine-imator Simply Upscaled</span>
                 </a>
             </div>
@@ -91,14 +88,26 @@
                     <!-- UPDATE AREA: Changelog / Release Notes -->
                     <div class="changelog-mini" style="text-align: left; max-width: 400px; margin: 2rem auto 0;">
                         <h5>What's New:</h5>
-                        <span>• Updated to Continuation Build 1.0.12</span>
-                        <span>• Torus Shape (By: Creez)</span>
-                        <span>• Compositing Guide Type (By: Creez)</span>
+                        <span>• AVE-X Engine Optimization</span>
+                        <span>• 10%-80% Better Rendering Performance</span>
+                        <span>• Fixed SSAO artifacts in low samples</span>
+                        <span>• Added Compositing Guides</span>
                     </div>
 
                     <p style="margin-top: 2rem; color: var(--text-dim); font-size: 0.95rem;">Please keep in mind that this mod has not been compiled or tested outside of Windows x64. Enjoy!</p>
                     <p class="disclaimer">Note: If you encounter issues with RTX or RDNA cards, please refer to the included Readme.txt.</p>
-                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">                        
+
+                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                        <h4 style="color: #fbbf24; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 1rem;">Need an Upgrade Key?</h4>
+                        <p style="font-size: 0.85rem; margin-bottom: 1.5rem;">To unlock all features and remove the watermark, get your official upgrade key below.</p>
+                        <a href="https://www.mineimator.com/upgrade" target="_blank" class="btn-outline" style="border-color: #fbbf24; color: #fbbf24;">
+                            <i data-lucide="external-link"></i> Get Upgrade Key
+                        </a>
+                        <div style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.6; font-style: italic;">
+                            Tip: Once you have the key, click the golden star in Mine-imator to enter it.
+                        </div>
+                    </div>
+                </div>
                 
                 <div style="margin-top: 4rem; text-align: center;">
                     <a href="index.html" class="btn-secondary">
@@ -111,11 +120,21 @@
 
     <footer>
         <div class="container">
-            <p>© 2026 Mine-imator Simply Upscaled</p>
-            <div style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; padding: 0.25rem 0.75rem; background: rgba(96, 165, 250, 0.1); border-radius: 99px; border: 1px solid rgba(96, 165, 250, 0.2);">
-                <span style="font-size: 0.7rem; color: #60a5fa; font-weight: 700; text-transform: uppercase;">Verified Official Website</span>
+            <div style="text-align: center;">
+                <p>© 2024 Mine-imator Simply Upscaled</p>
+                <p style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.6;">This is a fan-made website. New software updates may not be reflected here immediately.</p>
             </div>
-            <p style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.6;">Official distribution platform.</p>
+
+            <div class="footer-credits">
+                <div class="credit-row">
+                    <span>Mod Development <span class="credit-name">Wolviza & CreeZ</span></span>
+                    <a href="https://www.mineimatorforums.com/" target="_blank">Forums</a>
+                </div>
+                <div class="credit-row">
+                    <span>Website Design By <span class="credit-name">VoxelMC</span></span>
+                    <a href="https://youtube.com/@itzyclion?si=SdbJYxqlsCl4mx5n" target="_blank">YouTube</a>
+                </div>
+            </div>
         </div>
     </footer>
 
