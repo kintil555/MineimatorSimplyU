@@ -59,6 +59,8 @@ body {
     font-family: var(--font-main);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
 }
 
 .container {
@@ -99,12 +101,13 @@ section .wave {
 section .wave span {
   content: "";
   position: absolute;
-  width: 325vh;
-  height: 325vh;
+  width: 250vw;
+  height: 250vw;
   top: 0;
   left: 50%;
-  transform: translate(-50%, -75%);
+  transform: translate(-50%, -85%);
   background: #000;
+  pointer-events: none;
 }
 
 section .wave span:nth-child(1) {
@@ -655,9 +658,14 @@ footer {
     .nav-links {
         display: none;
     }
+
+    .logo span {
+        font-size: 0.9rem;
+    }
     
     .hero-title {
-        font-size: 3rem;
+        font-size: 2.2rem;
+        word-break: break-word;
     }
 
     .hero {
@@ -679,6 +687,17 @@ footer {
         font-size: 2rem;
     }
 }
+
+  .stars-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
 
   #stars {
     width: 1px;
