@@ -1,67 +1,75 @@
+/* ============================================
+   MINECRAFT CSS FRAMEWORK IMPORT
+   https://unpkg.com/minecraft-framework-css
+   ============================================ */
+@import url("https://unpkg.com/minecraft-framework-css@1.1.9/css/main.css");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* ============================================
+   ROOT VARIABLES - Minecraft palette override
+   ============================================ */
 :root {
-    --bg-color: #060b18;
-    --bg-wave-color: rgba(6, 11 , 24, 0.2);
-    --card-bg: #0c1427;
-    --primary-color: #60a5fa;
-    --primary-dark: #2563eb;
-    --secondary-color: #22d3ee;
+    --bg-color: #1a1a1a;
+    --bg-wave-color: rgba(0, 0, 0, 0.4);
+    --card-bg: #2d2d2d;
+    --primary-color: #55ff55;
+    --primary-dark: #2d8c2d;
+    --secondary-color: #55ffff;
     --text-main: #ffffff;
-    --text-dim: #a0a0a0;
-    --accent-gradient: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
-    --font-main: 'Montserrat', sans-serif;
+    --text-dim: #aaaaaa;
+    --accent-gradient: linear-gradient(135deg, #55ff55 0%, #2d8c2d 100%);
+    --font-main: 'Press Start 2P', monospace;
+
+    /* Minecraft framework colors */
+    --mc-stone: #7f7f7f;
+    --mc-grass: #5d8a2a;
+    --mc-dirt: #866043;
+    --mc-wood: #9c7a3c;
+    --mc-dark: #1a1a1a;
+    --mc-border-light: #ffffff;
+    --mc-border-dark: #555555;
+    --mc-btn-face: #8b8b8b;
+    --mc-btn-hover: #a0a0a0;
 }
 
+/* ============================================
+   GLOBAL RESET & BASE
+   ============================================ */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    image-rendering: pixelated;
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #060b18;
-}
-
+/* Pixel scrollbar */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: #1a1a1a; border-left: 2px solid #555; }
 ::-webkit-scrollbar-thumb {
-    background: #8bb6fa;
-    border-radius: 10px;
-    border: 2px solid #060b18;
+    background: #55ff55;
+    border: 2px solid #2d8c2d;
+    border-radius: 0;
 }
-
-::-webkit-scrollbar-thumb:hover {
-    background: #bde1fd;
-}
-
-/* Firefox support */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: #8bb6fa #060b18;
-}
-
-section {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  min-height: 100vh;
-}
+::-webkit-scrollbar-thumb:hover { background: #88ff88; }
+* { scrollbar-width: thin; scrollbar-color: #55ff55 #1a1a1a; }
 
 body {
     background-color: var(--bg-color);
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(0,0,0,0.15) 31px, rgba(0,0,0,0.15) 32px),
+        repeating-linear-gradient(90deg, transparent, transparent 31px, rgba(0,0,0,0.15) 31px, rgba(0,0,0,0.15) 32px);
     color: var(--text-main);
     font-family: var(--font-main);
-    line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.8;
     overflow-x: hidden;
     width: 100%;
     position: relative;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
 }
 
 .container {
@@ -70,217 +78,269 @@ body {
     padding: 0 2rem;
 }
 
-/* Header & Nav */
+/* ============================================
+   HEADER & NAV — Minecraft inventory bar style
+   ============================================ */
 header {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(10, 10, 12, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: #2d2d2d;
+    border-bottom: 4px solid #555555;
+    box-shadow: 0 4px 0 #000000, inset 0 -2px 0 #888888;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.75rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-section .wave {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0);
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-  transition: 0.5s;
-}
-
-section .wave span {
-  content: "";
-  position: absolute;
-  width: 325vh;
-  height: 325vh;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -75%);
-  background: #000;
-}
-
-section .wave span:nth-child(1) {
-  border-radius: 45%;
-  background: var(--bg-wave-color);
-  animation: animate 5s linear infinite;
-}
-
-section .wave span:nth-child(2) {
-  border-radius: 40%;
-  background: var(--bg-wave-color);
-  animation: animate 10s linear infinite;
-}
-section .wave span:nth-child(3) {
-  border-radius: 42.5%;
-  background: var(--bg-wave-color);
-  animation: animate 15s linear infinite;
-}
-
-@keyframes animate {
-  0% {
-    transform: translate(-50%, -75%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -75%) rotate(360deg);
-  }
-}
-
-
 .logo {
-    font-weight: 800;
-    font-size: 1.25rem;
-    letter-spacing: -0.025em;
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 0;
     display: flex;
     align-items: center;
     gap: 0.75rem;
 }
 
 .logo span {
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    color: #55ff55;
+    text-shadow: 2px 2px 0px #2d8c2d;
 }
 
 .nav-logo-img {
     height: 32px;
     width: auto;
-    filter: drop-shadow(0 0 8px rgba(63, 172, 250, 0.3));
+    image-rendering: pixelated;
+    filter: none;
 }
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
 }
 
 .nav-links a:not(.btn-primary) {
     text-decoration: none;
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.3s;
+    color: #aaaaaa;
+    font-size: 0.65rem;
+    font-weight: 400;
+    transition: color 0.1s;
+    text-shadow: 1px 1px 0 #000;
+    padding: 4px 8px;
 }
 
 .nav-links a:not(.btn-primary):hover {
-    color: var(--text-main);
+    color: #ffffff;
+    background: rgba(255,255,255,0.08);
 }
 
-/* Buttons */
+/* ============================================
+   BUTTONS — Minecraft Java Edition style
+   Uses .button-java from minecraft-framework-css
+   ============================================ */
 .btn-primary {
-    background: var(--primary-color);
-    color: #0c0a0e !important;
-    padding: 0.6rem 1.5rem;
-    border-radius: 4px;
+    /* Override with Minecraft button look */
+    background: #8b8b8b !important;
+    color: #ffffff !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0 !important;
     text-decoration: none;
-    font-weight: 900;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: 400;
+    font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    box-shadow: 0 4px 0 var(--primary-dark);
+    text-shadow: 2px 2px 0 #3f3f3f;
+    /* Minecraft button border (inset) */
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-bottom: 2px solid #373737;
+    border-right: 2px solid #373737;
+    box-shadow: none;
+    transition: all 0.05s;
+    cursor: pointer;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0 var(--primary-dark);
-    filter: brightness(1.1);
+    background: #a0a0a0 !important;
+    transform: none;
+    filter: none;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-bottom: 2px solid #373737;
+    border-right: 2px solid #373737;
+    box-shadow: none;
+    color: #ffffa0 !important;
+    text-shadow: 2px 2px 0 #3f3f00;
 }
 
 .btn-primary:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 var(--primary-dark);
+    transform: none;
+    border-top: 2px solid #373737;
+    border-left: 2px solid #373737;
+    border-bottom: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    background: #737373 !important;
+    box-shadow: none;
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 12px;
+    background: #555555;
+    color: #cccccc;
+    padding: 0.6rem 1.25rem;
+    border-radius: 0;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    font-weight: 600;
-    transition: background 0.3s;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem;
+    font-weight: 400;
+    border-top: 2px solid #888888;
+    border-left: 2px solid #888888;
+    border-bottom: 2px solid #222222;
+    border-right: 2px solid #222222;
+    transition: all 0.05s;
+    text-shadow: 1px 1px 0 #000;
+    cursor: pointer;
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #666666;
+    color: #ffffa0;
 }
 
 .btn-outline {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid #666666;
     color: var(--text-main);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
+    padding: 0.4rem 0.9rem;
+    border-radius: 0;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.6rem;
+    font-family: 'Press Start 2P', monospace;
     display: inline-flex;
     align-items: center;
-    transition: background 0.3s;
+    transition: background 0.1s;
+    text-shadow: 1px 1px 0 #000;
 }
 
 .btn-outline:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255,255,255,0.08);
+    color: #ffffa0;
 }
 
 .btn-large {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
+    padding: 0.85rem 2rem;
+    font-size: 0.75rem;
 }
 
 .btn-giant {
-    padding: 1.25rem 2.5rem;
-    font-size: 1.25rem;
+    padding: 1rem 2.5rem;
+    font-size: 0.85rem;
+    width: 100%;
+    max-width: 480px;
+    justify-content: center;
 }
 
 .btn-red {
-    background: #ef4444;
+    background: #aa0000 !important;
     color: white !important;
-    padding: 0.4rem 1rem;
-    border-radius: 4px;
+    padding: 0.4rem 0.9rem;
+    border-radius: 0;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 0.75rem;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: 400;
+    font-size: 0.6rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    box-shadow: 0 3px 0 #b91c1c;
     margin-top: 1.5rem;
+    border-top: 2px solid #ff5555;
+    border-left: 2px solid #ff5555;
+    border-bottom: 2px solid #550000;
+    border-right: 2px solid #550000;
+    cursor: pointer;
+    text-shadow: 1px 1px 0 #000;
 }
 
 .btn-red:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 0 #b91c1c;
-    filter: brightness(1.1);
+    background: #cc0000 !important;
+    color: #ffffa0 !important;
+    transform: none;
+    filter: none;
 }
 
 .btn-red:active {
-    transform: translateY(1px);
-    box-shadow: 0 1px 0 #b91c1c;
+    border-top: 2px solid #550000;
+    border-left: 2px solid #550000;
+    border-bottom: 2px solid #ff5555;
+    border-right: 2px solid #ff5555;
 }
 
-/* Hero */
+/* ============================================
+   WAVE SECTION (keep original logic)
+   ============================================ */
+section {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+
+section .wave {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+    transition: 0.5s;
+}
+
+section .wave span {
+    content: "";
+    position: absolute;
+    width: 325vh;
+    height: 325vh;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -75%);
+    background: #000;
+}
+
+section .wave span:nth-child(1) { border-radius: 45%; background: var(--bg-wave-color); animation: animate 5s linear infinite; }
+section .wave span:nth-child(2) { border-radius: 40%; background: var(--bg-wave-color); animation: animate 10s linear infinite; }
+section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wave-color); animation: animate 15s linear infinite; }
+
+@keyframes animate {
+    0% { transform: translate(-50%, -75%) rotate(0deg); }
+    100% { transform: translate(-50%, -75%) rotate(360deg); }
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
 .hero {
     padding: 12rem 2rem 8rem;
-    background: radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.15) 0%, transparent 50%);
+    background:
+        linear-gradient(to bottom, rgba(0,100,0,0.15) 0%, transparent 30%),
+        repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(0,0,0,0.08) 31px, rgba(0,0,0,0.08) 32px),
+        repeating-linear-gradient(90deg, transparent, transparent 31px, rgba(0,0,0,0.08) 31px, rgba(0,0,0,0.08) 32px);
 }
 
 .hero-container {
@@ -288,186 +348,257 @@ section .wave span:nth-child(3) {
     align-items: center;
     gap: 4rem;
     max-width: 1400px;
-	z-index: 1;
+    z-index: 1;
 }
 
-.hero-content {
-    flex: 1;
-}
+.hero-content { flex: 1; }
 
 .hero-tag {
-    font-weight: 700;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-main);
+    font-size: 0.7rem;
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
+}
+
+.current-version-text {
+    color: #55ff55;
+    text-shadow: 2px 2px 0 #2d8c2d;
 }
 
 .tag-new {
-    background: #8be1fa;
-    color: #000;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    font-weight: 900;
+    background: #55ffff;
+    color: #000000;
+    font-size: 0.55rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0;
+    font-family: 'Press Start 2P', monospace;
+    border-top: 2px solid #aaffff;
+    border-left: 2px solid #aaffff;
+    border-bottom: 2px solid #007f7f;
+    border-right: 2px solid #007f7f;
+    text-shadow: none;
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 900;
-    line-height: 1.1;
+    font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.5;
     margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 4px 4px 0px #000000, 3px 3px 0px #333333;
 }
 
 .subtitle {
-    font-size: 1.25rem;
+    font-size: 0.6rem;
     color: var(--text-dim);
     max-width: 600px;
     margin-bottom: 2.5rem;
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 2;
 }
 
 .hero-btns {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .hero-visual {
     flex: 1;
     display: flex;
     justify-content: center;
-    perspective: 1000px;
 }
 
+/* Minecraft inventory frame for hero image */
 .floating-img {
     width: 100%;
-    max-width: 600px;
-    border-radius: 12px;
-    transform: rotateY(-15deg) rotateX(5deg);
-    box-shadow: -20px 20px 60px rgba(0,0,0,0.5);
-    transition: transform 0.5s ease;
+    max-width: 560px;
+    border-radius: 0;
+    transform: none;
+    /* Minecraft dialogue box border style */
+    border: 4px solid #aaaaaa;
+    outline: 4px solid #000000;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.8), inset 0 0 0 2px #555555;
+    transition: transform 0.3s ease;
+    image-rendering: auto;
 }
 
 .floating-img:hover {
-    transform: rotateY(-5deg) rotateX(2deg);
+    transform: translateY(-4px);
 }
 
-/* Sections General */
+/* ============================================
+   SECTION TITLE
+   ============================================ */
 .section-title {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 1.2rem;
+    font-weight: 400;
     margin-bottom: 3rem;
     text-align: center;
+    color: #ffffff;
+    text-shadow: 3px 3px 0 #000;
+    position: relative;
 }
 
-/* Features */
+.section-title::before {
+    content: ">>> ";
+    color: #55ff55;
+}
+
+.section-title::after {
+    content: " <<<";
+    color: #55ff55;
+}
+
+/* ============================================
+   FEATURES SECTION
+   ============================================ */
 .features {
     padding: 6rem 0;
+    background: rgba(0,0,0,0.2);
 }
 
 .feature-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
     align-items: center;
 }
 
+/* Minecraft dialogue/inventory box */
 .feature-card {
-    background: var(--card-bg);
-    border-radius: 24px;
+    background: #2d2d2d;
+    border-radius: 0;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 4px solid #aaaaaa;
+    outline: 4px solid #000;
+    box-shadow: 6px 6px 0 #000;
 }
 
 .feature-img {
     width: 100%;
     height: auto;
     display: block;
+    border-bottom: 4px solid #555555;
 }
 
 .feature-info {
-    padding: 2rem;
+    padding: 1.5rem;
+    background: #2d2d2d;
 }
 
 .feature-info h3 {
-    font-size: 1.5rem;
+    font-size: 0.75rem;
     margin-bottom: 1rem;
+    color: #55ffff;
+    text-shadow: 2px 2px 0 #007f7f;
 }
 
+/* Badge — like Minecraft enchantment labels */
 .badge-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .badge {
-    background: rgba(59, 130, 246, 0.1);
-    color: #60a5fa;
-    padding: 0.4rem 1rem;
-    border-radius: 99px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    background: #1a3a1a;
+    color: #55ff55;
+    padding: 0.25rem 0.6rem;
+    border-radius: 0;
+    font-size: 0.5rem;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: 400;
+    border: 2px solid #2d8c2d;
+    text-shadow: 1px 1px 0 #000;
 }
 
 .description {
     color: var(--text-dim);
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: 0.55rem;
+    margin-bottom: 1.5rem;
+    line-height: 2;
 }
 
+/* Minecraft specs box — like in-game item info */
 .specs-box {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 1.5rem;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #1a1a2d;
+    padding: 1rem 1.25rem;
+    border-radius: 0;
+    border: 3px solid #5555aa;
+    box-shadow: inset 0 0 0 1px #000;
 }
 
 .specs-box h4 {
-    font-size: 0.9rem;
-    color: var(--primary-color);
+    font-size: 0.55rem;
+    color: #55ffff;
     margin-bottom: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    text-shadow: 1px 1px 0 #007f7f;
 }
 
 .specs-box ul {
     list-style: none;
-    font-size: 0.85rem;
+    font-size: 0.5rem;
     color: var(--text-dim);
 }
 
 .specs-box li {
     margin-bottom: 0.4rem;
+    padding-left: 0.75rem;
+    position: relative;
 }
 
-.specs-box strong {
-    color: var(--text-main);
+.specs-box li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: #55ff55;
 }
 
+.specs-box strong { color: #ffffff; }
+
+/* Changelog — like Minecraft update notes */
 .changelog-mini {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
     color: var(--text-dim);
-    font-size: 0.85rem;
+    font-size: 0.5rem;
+    background: #1a1a1a;
+    padding: 1rem;
+    border: 2px solid #444;
+    box-shadow: inset 0 0 0 1px #000;
 }
 
 .changelog-mini h5 {
-    color: var(--secondary-color);
-    margin-bottom: 0.25rem;
+    color: #55ffff;
+    margin-bottom: 0.5rem;
+    font-size: 0.6rem;
+    text-shadow: 1px 1px 0 #007f7f;
 }
 
-/* Showcase */
+.changelog-mini span {
+    color: #aaaaaa;
+    padding-left: 0.5rem;
+}
+
+.changelog-mini span::before {
+    content: "+ ";
+    color: #55ff55;
+}
+
+/* ============================================
+   SHOWCASE SECTION
+   ============================================ */
 .showcase {
     padding: 6rem 0;
-    background: rgba(255, 255, 255, 0.02);
+    background: #1a1a1a;
 }
 
 .showcase-container {
@@ -478,16 +609,22 @@ section .wave span:nth-child(3) {
 
 .image-wrapper {
     position: relative;
-    border-radius: 24px;
+    border-radius: 0;
     overflow: hidden;
     margin-bottom: 2rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 4px solid #aaaaaa;
+    outline: 4px solid #000;
+    box-shadow: 8px 8px 0 #000;
+}
+
+.image-wrapper:hover .showcase-img {
+    transform: scale(1.02);
 }
 
 .showcase-img {
     width: 100%;
     display: block;
-    transition: transform 0.5s;
+    transition: transform 0.3s;
 }
 
 .image-overlay {
@@ -495,272 +632,254 @@ section .wave span:nth-child(3) {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 2rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     text-align: left;
+    border-top: 3px solid #555555;
 }
 
 .image-overlay h3 {
-    font-size: 1.2rem;
-    color: var(--secondary-color);
+    font-size: 0.65rem;
+    color: #55ffff;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.image-overlay p {
+    font-size: 0.5rem;
+    color: #aaaaaa;
+    margin-top: 0.25rem;
 }
 
 .showcase-text {
-    font-size: 1.1rem;
+    font-size: 0.55rem;
     color: var(--text-dim);
+    line-height: 2;
+    margin-top: 1rem;
 }
 
-/* Creator */
-.creator {
-    padding: 6rem 0;
-}
+/* ============================================
+   CREATOR SECTION
+   ============================================ */
+.creator { padding: 6rem 0; }
 
+/* Minecraft player card style */
 .creator-card {
-    background: var(--card-bg);
-    border-radius: 24px;
-    padding: 3rem;
+    background: #2d2d2d;
+    border-radius: 0;
+    padding: 2.5rem;
     display: flex;
-    gap: 3rem;
+    gap: 2.5rem;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 4px solid #aaaaaa;
+    outline: 4px solid #000;
+    box-shadow: 8px 8px 0 #000;
 }
 
 .creator-avatar img {
     width: 120px;
     height: 120px;
-    border-radius: 50%;
-    border: 4px solid var(--primary-color);
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    border-radius: 0;
+    border: 4px solid #55ff55;
+    outline: 3px solid #000;
+    image-rendering: pixelated;
+    box-shadow: 4px 4px 0 #000;
 }
 
 .creator-info .label {
     text-transform: uppercase;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--primary-color);
+    font-size: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: #55ff55;
+    text-shadow: 1px 1px 0 #2d8c2d;
 }
 
 .creator-info h3 {
-    font-size: 2rem;
-    margin: 0.5rem 0 1rem;
+    font-size: 1rem;
+    margin: 0.75rem 0 1rem;
+    color: #ffffff;
+    text-shadow: 3px 3px 0 #000;
 }
 
 .creator-info p {
     color: var(--text-dim);
     margin-bottom: 1.5rem;
+    font-size: 0.55rem;
+    line-height: 2;
 }
 
-/* Download Section */
+.socials { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* ============================================
+   DOWNLOAD SECTION
+   ============================================ */
 .download-section {
     padding: 8rem 0;
     text-align: center;
 }
 
+/* Minecraft server screen / main menu style */
 .download-box {
-    background: linear-gradient(135deg, #1e1e24ba 0%, #151518ba 100%);
-    padding: 5rem 2rem;
-    border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(180deg, #3a3a3a 0%, #2d2d2d 100%);
+    padding: 4rem 2rem;
+    border-radius: 0;
+    border: 4px solid #aaaaaa;
+    outline: 4px solid #000;
+    box-shadow: 10px 10px 0 #000, inset 0 0 60px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+/* Pixel corner decorations */
+.download-box::before {
+    content: "";
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border: 2px solid rgba(255,255,255,0.06);
+    pointer-events: none;
 }
 
 .download-box h2 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
+    text-shadow: 4px 4px 0 #000, 3px 3px 0 #333;
 }
 
 .download-box p {
     color: var(--text-dim);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.55rem;
+    line-height: 2;
 }
 
 .disclaimer {
     margin-top: 1.5rem;
-    font-size: 0.85rem;
+    font-size: 0.45rem;
     opacity: 0.5;
+    line-height: 2;
 }
 
-.checksum-container {
-    margin: 1.5rem auto 0;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    max-width: 90%;
+/* ============================================
+   BADGE (download page)
+   ============================================ */
+.badge[style*="cyan"], .badge[style*="22d3ee"] {
+    background: #001a2d;
+    color: #55ffff;
+    border: 2px solid #007f7f;
 }
 
-.checksum-label {
-    font-size: 0.7rem;
-    font-weight: 800;
-    color: var(--secondary-color);
-    letter-spacing: 0.05em;
-}
-
-.checksum-value {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    word-break: break-all;
-    user-select: all;
-}
-
-/* Footer */
+/* ============================================
+   FOOTER
+   ============================================ */
 footer {
-    padding: 4rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 3rem 0;
+    border-top: 4px solid #555555;
     text-align: center;
     color: var(--text-dim);
-    font-size: 0.9rem;
+    font-size: 0.5rem;
+    background: #1a1a1a;
+    line-height: 2.5;
 }
 
-/* RGB Easter Egg Effect */
+footer a { color: #55ff55; text-decoration: none; text-shadow: 1px 1px 0 #2d8c2d; }
+footer a:hover { color: #88ff88; }
+
+/* ============================================
+   RGB EASTER EGG
+   ============================================ */
 @keyframes rgb-cycle {
-    0% { --primary-color: #ff0000; --primary-dark: #cc0000; --secondary-color: #ff8800; }
-    20% { --primary-color: #ffff00; --primary-dark: #cccc00; --secondary-color: #00ff00; }
-    40% { --primary-color: #00ff00; --primary-dark: #00cc00; --secondary-color: #00ffff; }
-    60% { --primary-color: #00ffff; --primary-dark: #00cccc; --secondary-color: #0000ff; }
-    80% { --primary-color: #0000ff; --primary-dark: #0000cc; --secondary-color: #ff00ff; }
-    100% { --primary-color: #ff0000; --primary-dark: #cc0000; --secondary-color: #ff8800; }
+    0%   { --primary-color: #ff5555; }
+    25%  { --primary-color: #ffff55; }
+    50%  { --primary-color: #55ff55; }
+    75%  { --primary-color: #55ffff; }
+    100% { --primary-color: #ff5555; }
 }
 
-.rgb-mode {
-    animation: rgb-cycle 5s linear infinite;
-}
-
-.rgb-mode .nav-logo-img {
-    filter: drop-shadow(0 0 15px var(--primary-color)) hue-rotate(360deg);
-    animation: logo-hue 5s linear infinite;
-}
+.rgb-mode { animation: rgb-cycle 5s linear infinite; }
+.rgb-mode .nav-logo-img { animation: logo-hue 5s linear infinite; }
 
 @keyframes logo-hue {
-    from { filter: drop-shadow(0 0 15px var(--primary-color)) hue-rotate(0deg); }
-    to { filter: drop-shadow(0 0 15px var(--primary-color)) hue-rotate(360deg); }
+    from { filter: hue-rotate(0deg); }
+    to   { filter: hue-rotate(360deg); }
 }
 
-/* Mobile Optimizations */
-@media (max-width: 968px) {
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-tag, .hero-btns {
-        justify-content: center;
-    }
-
-    .hero-visual {
-        order: -1;
-    }
-
-    .floating-img {
-        transform: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
-    .logo span {
-        font-size: 0.9rem;
-    }
-    
-    .hero-title {
-        font-size: 2.2rem;
-        word-break: break-word;
-    }
-
-    .hero {
-        padding-top: 8rem;
-    }
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .creator-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem;
-    }
-
-    .download-box h2 {
-        font-size: 2rem;
-    }
-}
-
-  .stars-wrapper {
+/* ============================================
+   STARS (keep original)
+   ============================================ */
+.stars-wrapper {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     z-index: -1;
     overflow: hidden;
     pointer-events: none;
-  }
+}
 
-  #stars {
-    width: 1px;
-    height: 1px;
+#stars {
+    width: 1px; height: 1px;
     background: transparent;
-    box-shadow: 1602px 661px rgba(255, 255, 255, 0.25555555) , 1779px 795px rgba(255, 255, 255, 0.25555555) , 1154px 812px rgba(255, 255, 255, 0.25555555) , 1328px 800px rgba(255, 255, 255, 0.25555555) , 1262px 1251px rgba(255, 255, 255, 0.25555555) , 1976px 432px rgba(255, 255, 255, 0.25555555) , 1650px 1853px rgba(255, 255, 255, 0.25555555) , 1001px 468px rgba(255, 255, 255, 0.25555555) , 609px 405px rgba(255, 255, 255, 0.25555555) , 1842px 1576px rgba(255, 255, 255, 0.25555555) , 742px 1365px rgba(255, 255, 255, 0.25555555) , 321px 1286px rgba(255, 255, 255, 0.25555555) , 462px 926px rgba(255, 255, 255, 0.25555555) , 481px 458px rgba(255, 255, 255, 0.25555555) , 484px 1952px rgba(255, 255, 255, 0.25555555) , 380px 1267px rgba(255, 255, 255, 0.25555555) , 1122px 820px rgba(255, 255, 255, 0.25555555) , 1626px 1217px rgba(255, 255, 255, 0.25555555) , 1953px 1255px rgba(255, 255, 255, 0.25555555) , 1728px 140px rgba(255, 255, 255, 0.25555555) , 1430px 1262px rgba(255, 255, 255, 0.25555555) , 7px 463px rgba(255, 255, 255, 0.25555555) , 1664px 338px rgba(255, 255, 255, 0.25555555) , 63px 11px rgba(255, 255, 255, 0.25555555) , 552px 438px rgba(255, 255, 255, 0.25555555) , 3px 783px rgba(255, 255, 255, 0.25555555) , 1247px 361px rgba(255, 255, 255, 0.25555555) , 803px 121px rgba(255, 255, 255, 0.25555555) , 755px 1435px rgba(255, 255, 255, 0.25555555) , 659px 1572px rgba(255, 255, 255, 0.25555555) , 462px 256px rgba(255, 255, 255, 0.25555555) , 654px 1979px rgba(255, 255, 255, 0.25555555) , 1747px 1521px rgba(255, 255, 255, 0.25555555) , 1222px 1922px rgba(255, 255, 255, 0.25555555) , 1615px 1672px rgba(255, 255, 255, 0.25555555) , 980px 918px rgba(255, 255, 255, 0.25555555) , 1477px 1509px rgba(255, 255, 255, 0.25555555) , 1311px 365px rgba(255, 255, 255, 0.25555555) , 286px 1255px rgba(255, 255, 255, 0.25555555) , 897px 1108px rgba(255, 255, 255, 0.25555555) , 770px 330px rgba(255, 255, 255, 0.25555555) , 337px 598px rgba(255, 255, 255, 0.25555555) , 1192px 711px rgba(255, 255, 255, 0.25555555) , 1656px 1284px rgba(255, 255, 255, 0.25555555) , 1808px 543px rgba(255, 255, 255, 0.25555555) , 1099px 608px rgba(255, 255, 255, 0.25555555) , 1215px 157px rgba(255, 255, 255, 0.25555555) , 1670px 748px rgba(255, 255, 255, 0.25555555) , 110px 734px rgba(255, 255, 255, 0.25555555) , 1513px 1678px rgba(255, 255, 255, 0.25555555) , 137px 1969px rgba(255, 255, 255, 0.25555555) , 242px 1029px rgba(255, 255, 255, 0.25555555) , 670px 606px rgba(255, 255, 255, 0.25555555) , 1173px 1915px rgba(255, 255, 255, 0.25555555) , 1730px 1946px rgba(255, 255, 255, 0.25555555) , 1617px 1395px rgba(255, 255, 255, 0.25555555) , 294px 1214px rgba(255, 255, 255, 0.25555555) , 942px 1551px rgba(255, 255, 255, 0.25555555) , 327px 885px rgba(255, 255, 255, 0.25555555) , 1961px 128px rgba(255, 255, 255, 0.25555555) , 314px 333px rgba(255, 255, 255, 0.25555555) , 845px 1457px rgba(255, 255, 255, 0.25555555) , 1293px 408px rgba(255, 255, 255, 0.25555555) , 1058px 582px rgba(255, 255, 255, 0.25555555) , 1981px 1771px rgba(255, 255, 255, 0.25555555) , 1473px 311px rgba(255, 255, 255, 0.25555555) , 1227px 955px rgba(255, 255, 255, 0.25555555) , 1937px 1262px rgba(255, 255, 255, 0.25555555) , 754px 624px rgba(255, 255, 255, 0.25555555) , 266px 619px rgba(255, 255, 255, 0.25555555) , 182px 1621px rgba(255, 255, 255, 0.25555555) , 29px 802px rgba(255, 255, 255, 0.25555555) , 1075px 298px rgba(255, 255, 255, 0.25555555) , 1986px 1900px rgba(255, 255, 255, 0.25555555) , 1770px 447px rgba(255, 255, 255, 0.25555555) , 1291px 57px rgba(255, 255, 255, 0.25555555) , 782px 1535px rgba(255, 255, 255, 0.25555555) , 1312px 111px rgba(255, 255, 255, 0.25555555) , 1194px 651px rgba(255, 255, 255, 0.25555555) , 899px 193px rgba(255, 255, 255, 0.25555555) , 282px 163px rgba(255, 255, 255, 0.25555555) , 1341px 998px rgba(255, 255, 255, 0.25555555) , 379px 1540px rgba(255, 255, 255, 0.25555555) , 406px 1584px rgba(255, 255, 255, 0.25555555) , 1227px 223px rgba(255, 255, 255, 0.25555555) , 1525px 402px rgba(255, 255, 255, 0.25555555) , 66px 1842px rgba(255, 255, 255, 0.25555555) , 1531px 1873px rgba(255, 255, 255, 0.25555555) , 1303px 376px rgba(255, 255, 255, 0.25555555) , 1949px 1797px rgba(255, 255, 255, 0.25555555) , 1093px 1018px rgba(255, 255, 255, 0.25555555) , 937px 886px rgba(255, 255, 255, 0.25555555) , 1954px 1675px rgba(255, 255, 255, 0.25555555) , 1957px 304px rgba(255, 255, 255, 0.25555555) , 74px 400px rgba(255, 255, 255, 0.25555555) , 556px 1123px rgba(255, 255, 255, 0.25555555) , 1659px 1330px rgba(255, 255, 255, 0.25555555) , 1110px 916px rgba(255, 255, 255, 0.25555555) , 503px 271px rgba(255, 255, 255, 0.25555555) , 1574px 1851px rgba(255, 255, 255, 0.25555555) , 436px 1833px rgba(255, 255, 255, 0.25555555) , 175px 1150px rgba(255, 255, 255, 0.25555555) , 43px 1691px rgba(255, 255, 255, 0.25555555) , 1758px 1857px rgba(255, 255, 255, 0.25555555) , 413px 257px rgba(255, 255, 255, 0.25555555) , 596px 336px rgba(255, 255, 255, 0.25555555) , 1608px 338px rgba(255, 255, 255, 0.25555555) , 333px 108px rgba(255, 255, 255, 0.25555555) , 794px 1318px rgba(255, 255, 255, 0.25555555) , 1150px 73px rgba(255, 255, 255, 0.25555555) , 891px 1149px rgba(255, 255, 255, 0.25555555) , 1614px 387px rgba(255, 255, 255, 0.25555555) , 1930px 1770px rgba(255, 255, 255, 0.25555555) , 465px 591px rgba(255, 255, 255, 0.25555555) , 394px 472px rgba(255, 255, 255, 0.25555555) , 438px 1877px rgba(255, 255, 255, 0.25555555) , 537px 1345px rgba(255, 255, 255, 0.25555555) , 583px 470px rgba(255, 255, 255, 0.25555555) , 1493px 1112px rgba(255, 255, 255, 0.25555555) , 1437px 1380px rgba(255, 255, 255, 0.25555555) , 494px 1304px rgba(255, 255, 255, 0.25555555) , 17px 1388px rgba(255, 255, 255, 0.25555555) , 1001px 1558px rgba(255, 255, 255, 0.25555555) , 10px 978px rgba(255, 255, 255, 0.25555555) , 25px 1053px rgba(255, 255, 255, 0.25555555) , 732px 576px rgba(255, 255, 255, 0.25555555) , 1169px 297px rgba(255, 255, 255, 0.25555555) , 915px 1519px rgba(255, 255, 255, 0.25555555) , 280px 1149px rgba(255, 255, 255, 0.25555555) , 1430px 761px rgba(255, 255, 255, 0.25555555) , 45px 208px rgba(255, 255, 255, 0.25555555) , 1790px 1104px rgba(255, 255, 255, 0.25555555) , 953px 296px rgba(255, 255, 255, 0.25555555) , 1480px 733px rgba(255, 255, 255, 0.25555555) , 1024px 1171px rgba(255, 255, 255, 0.25555555) , 1473px 1335px rgba(255, 255, 255, 0.25555555) , 631px 329px rgba(255, 255, 255, 0.25555555) , 1498px 1792px rgba(255, 255, 255, 0.25555555) , 385px 1825px rgba(255, 255, 255, 0.25555555) , 483px 781px rgba(255, 255, 255, 0.25555555) , 1888px 85px rgba(255, 255, 255, 0.25555555) , 1659px 715px rgba(255, 255, 255, 0.25555555) , 192px 177px rgba(255, 255, 255, 0.25555555) , 275px 1243px rgba(255, 255, 255, 0.25555555) , 1203px 1087px rgba(255, 255, 255, 0.25555555) , 412px 857px rgba(255, 255, 255, 0.25555555) , 1302px 1270px rgba(255, 255, 255, 0.25555555) , 787px 389px rgba(255, 255, 255, 0.25555555) , 751px 1838px rgba(255, 255, 255, 0.25555555) , 1381px 1377px rgba(255, 255, 255, 0.25555555) , 196px 878px rgba(255, 255, 255, 0.25555555) , 134px 277px rgba(255, 255, 255, 0.25555555) , 145px 549px rgba(255, 255, 255, 0.25555555) , 1957px 1961px rgba(255, 255, 255, 0.25555555) , 1120px 1050px rgba(255, 255, 255, 0.25555555) , 1354px 972px rgba(255, 255, 255, 0.25555555) , 1158px 1771px rgba(255, 255, 255, 0.25555555) , 47px 352px rgba(255, 255, 255, 0.25555555) , 1112px 584px rgba(255, 255, 255, 0.25555555) , 164px 1386px rgba(255, 255, 255, 0.25555555) , 1273px 1782px rgba(255, 255, 255, 0.25555555) , 110px 780px rgba(255, 255, 255, 0.25555555) , 502px 299px rgba(255, 255, 255, 0.25555555) , 1768px 933px rgba(255, 255, 255, 0.25555555) , 886px 1287px rgba(255, 255, 255, 0.25555555) , 1309px 1130px rgba(255, 255, 255, 0.25555555) , 847px 776px rgba(255, 255, 255, 0.25555555) , 1713px 269px rgba(255, 255, 255, 0.25555555) , 1718px 795px rgba(255, 255, 255, 0.25555555) , 1984px 717px rgba(255, 255, 255, 0.25555555) , 985px 341px rgba(255, 255, 255, 0.25555555) , 1462px 1078px rgba(255, 255, 255, 0.25555555) , 1702px 1461px rgba(255, 255, 255, 0.25555555) , 167px 1873px rgba(255, 255, 255, 0.25555555) , 862px 1117px rgba(255, 255, 255, 0.25555555) , 1968px 932px rgba(255, 255, 255, 0.25555555) , 814px 91px rgba(255, 255, 255, 0.25555555) , 1530px 607px rgba(255, 255, 255, 0.25555555) , 1799px 1571px rgba(255, 255, 255, 0.25555555) , 1868px 1734px rgba(255, 255, 255, 0.25555555) , 1800px 1137px rgba(255, 255, 255, 0.25555555) , 52px 178px rgba(255, 255, 255, 0.25555555) , 901px 853px rgba(255, 255, 255, 0.25555555) , 1181px 1232px rgba(255, 255, 255, 0.25555555) , 209px 650px rgba(255, 255, 255, 0.25555555) , 1165px 1321px rgba(255, 255, 255, 0.25555555) , 1046px 159px rgba(255, 255, 255, 0.25555555) , 578px 1748px rgba(255, 255, 255, 0.25555555) , 18px 337px rgba(255, 255, 255, 0.25555555) , 70px 1062px rgba(255, 255, 255, 0.25555555) , 1670px 270px rgba(255, 255, 255, 0.25555555) , 1828px 1321px rgba(255, 255, 255, 0.25555555) , 1817px 336px rgba(255, 255, 255, 0.25555555) , 124px 1935px rgba(255, 255, 255, 0.25555555) , 1840px 594px rgba(255, 255, 255, 0.25555555) , 836px 1194px rgba(255, 255, 255, 0.25555555) , 1292px 1801px rgba(255, 255, 255, 0.25555555) , 1547px 945px rgba(255, 255, 255, 0.25555555) , 500px 1563px rgba(255, 255, 255, 0.25555555) , 569px 376px rgba(255, 255, 255, 0.25555555) , 1107px 1627px rgba(255, 255, 255, 0.25555555) , 662px 717px rgba(255, 255, 255, 0.25555555) , 1352px 762px rgba(255, 255, 255, 0.25555555) , 771px 1694px rgba(255, 255, 255, 0.25555555) , 1529px 484px rgba(255, 255, 255, 0.25555555) , 1609px 798px rgba(255, 255, 255, 0.25555555) , 652px 627px rgba(255, 255, 255, 0.25555555) , 498px 20px rgba(255, 255, 255, 0.25555555) , 1308px 164px rgba(255, 255, 255, 0.25555555) , 245px 1239px rgba(255, 255, 255, 0.25555555) , 1131px 860px rgba(255, 255, 255, 0.25555555) , 1028px 333px rgba(255, 255, 255, 0.25555555) , 765px 1760px rgba(255, 255, 255, 0.25555555) , 1627px 684px rgba(255, 255, 255, 0.25555555) , 70px 1586px rgba(255, 255, 255, 0.25555555) , 63px 1230px rgba(255, 255, 255, 0.25555555) , 1727px 465px rgba(255, 255, 255, 0.25555555) , 1946px 1862px rgba(255, 255, 255, 0.25555555) , 169px 956px rgba(255, 255, 255, 0.25555555) , 121px 1826px rgba(255, 255, 255, 0.25555555) , 1615px 725px rgba(255, 255, 255, 0.25555555) , 1225px 1925px rgba(255, 255, 255, 0.25555555) , 1678px 323px rgba(255, 255, 255, 0.25555555) , 606px 371px rgba(255, 255, 255, 0.25555555) , 616px 985px rgba(255, 255, 255, 0.25555555) , 490px 1898px rgba(255, 255, 255, 0.25555555) , 516px 1019px rgba(255, 255, 255, 0.25555555) , 878px 1448px rgba(255, 255, 255, 0.25555555) , 1533px 98px rgba(255, 255, 255, 0.25555555) , 625px 1152px rgba(255, 255, 255, 0.25555555) , 224px 522px rgba(255, 255, 255, 0.25555555) , 215px 245px rgba(255, 255, 255, 0.25555555) , 153px 669px rgba(255, 255, 255, 0.25555555) , 1530px 1652px rgba(255, 255, 255, 0.25555555) , 1796px 1697px rgba(255, 255, 255, 0.25555555) , 908px 1456px rgba(255, 255, 255, 0.25555555) , 1326px 1947px rgba(255, 255, 255, 0.25555555) , 1294px 872px rgba(255, 255, 255, 0.25555555) , 806px 1296px rgba(255, 255, 255, 0.25555555) , 783px 556px rgba(255, 255, 255, 0.25555555) , 1075px 973px rgba(255, 255, 255, 0.25555555) , 613px 505px rgba(255, 255, 255, 0.25555555) , 1160px 833px rgba(255, 255, 255, 0.25555555) , 1053px 1793px rgba(255, 255, 255, 0.25555555) , 1343px 1990px rgba(255, 255, 255, 0.25555555) , 937px 254px rgba(255, 255, 255, 0.25555555) , 1084px 234px rgba(255, 255, 255, 0.25555555) , 575px 374px rgba(255, 255, 255, 0.25555555) , 367px 1656px rgba(255, 255, 255, 0.25555555) , 494px 510px rgba(255, 255, 255, 0.25555555) , 1403px 1242px rgba(255, 255, 255, 0.25555555) , 1827px 1741px rgba(255, 255, 255, 0.25555555) , 1239px 616px rgba(255, 255, 255, 0.25555555) , 579px 1670px rgba(255, 255, 255, 0.25555555) , 971px 836px rgba(255, 255, 255, 0.25555555) , 1025px 813px rgba(255, 255, 255, 0.25555555) , 707px 1407px rgba(255, 255, 255, 0.25555555) , 188px 1777px rgba(255, 255, 255, 0.25555555) , 1576px 18px rgba(255, 255, 255, 0.25555555) , 1px 533px rgba(255, 255, 255, 0.25555555) , 1123px 589px rgba(255, 255, 255, 0.25555555) , 88px 705px rgba(255, 255, 255, 0.25555555) , 1844px 679px rgba(255, 255, 255, 0.25555555) , 121px 350px rgba(255, 255, 255, 0.25555555) , 1853px 470px rgba(255, 255, 255, 0.25555555) , 1333px 263px rgba(255, 255, 255, 0.25555555) , 1702px 957px rgba(255, 255, 255, 0.25555555) , 475px 725px rgba(255, 255, 255, 0.25555555) , 1650px 75px rgba(255, 255, 255, 0.25555555) , 1372px 11px rgba(255, 255, 255, 0.25555555) , 714px 353px rgba(255, 255, 255, 0.25555555) , 968px 461px rgba(255, 255, 255, 0.25555555) , 1413px 1400px rgba(255, 255, 255, 0.25555555) , 1856px 1724px rgba(255, 255, 255, 0.25555555) , 793px 1524px rgba(255, 255, 255, 0.25555555) , 1717px 962px rgba(255, 255, 255, 0.25555555) , 1263px 1567px rgba(255, 255, 255, 0.25555555) , 1621px 1961px rgba(255, 255, 255, 0.25555555) , 537px 243px rgba(255, 255, 255, 0.25555555) , 912px 1140px rgba(255, 255, 255, 0.25555555) , 659px 1300px rgba(255, 255, 255, 0.25555555) , 113px 516px rgba(255, 255, 255, 0.25555555) , 1111px 1738px rgba(255, 255, 255, 0.25555555) , 336px 953px rgba(255, 255, 255, 0.25555555) , 1038px 248px rgba(255, 255, 255, 0.25555555) , 692px 935px rgba(255, 255, 255, 0.25555555) , 516px 1451px rgba(255, 255, 255, 0.25555555) , 1057px 401px rgba(255, 255, 255, 0.25555555) , 1014px 388px rgba(255, 255, 255, 0.25555555) , 1363px 1764px rgba(255, 255, 255, 0.25555555) , 855px 745px rgba(255, 255, 255, 0.25555555) , 57px 767px rgba(255, 255, 255, 0.25555555) , 779px 1263px rgba(255, 255, 255, 0.25555555) , 1746px 1797px rgba(255, 255, 255, 0.25555555) , 1975px 848px rgba(255, 255, 255, 0.25555555) , 1051px 941px rgba(255, 255, 255, 0.25555555) , 79px 1146px rgba(255, 255, 255, 0.25555555) , 1945px 1015px rgba(255, 255, 255, 0.25555555) , 1506px 1855px rgba(255, 255, 255, 0.25555555) , 955px 730px rgba(255, 255, 255, 0.25555555) , 27px 1865px rgba(255, 255, 255, 0.25555555) , 1378px 1691px rgba(255, 255, 255, 0.25555555) , 969px 1738px rgba(255, 255, 255, 0.25555555) , 206px 842px rgba(255, 255, 255, 0.25555555) , 1068px 91px rgba(255, 255, 255, 0.25555555) , 1466px 1725px rgba(255, 255, 255, 0.25555555) , 533px 1091px rgba(255, 255, 255, 0.25555555) , 1205px 748px rgba(255, 255, 255, 0.25555555) , 324px 398px rgba(255, 255, 255, 0.25555555) , 1417px 1048px rgba(255, 255, 255, 0.25555555) , 349px 1827px rgba(255, 255, 255, 0.25555555) , 730px 1048px rgba(255, 255, 255, 0.25555555) , 1671px 690px rgba(255, 255, 255, 0.25555555) , 1441px 1068px rgba(255, 255, 255, 0.25555555) , 251px 925px rgba(255, 255, 255, 0.25555555) , 144px 1631px rgba(255, 255, 255, 0.25555555) , 108px 1524px rgba(255, 255, 255, 0.25555555) , 187px 1172px rgba(255, 255, 255, 0.25555555) , 183px 403px rgba(255, 255, 255, 0.25555555) , 907px 1873px rgba(255, 255, 255, 0.25555555) , 973px 104px rgba(255, 255, 255, 0.25555555) , 65px 1390px rgba(255, 255, 255, 0.25555555) , 372px 1486px rgba(255, 255, 255, 0.25555555) , 424px 765px rgba(255, 255, 255, 0.25555555) , 1410px 350px rgba(255, 255, 255, 0.25555555) , 760px 827px rgba(255, 255, 255, 0.25555555) , 1179px 612px rgba(255, 255, 255, 0.25555555) , 251px 1106px rgba(255, 255, 255, 0.25555555) , 657px 851px rgba(255, 255, 255, 0.25555555) , 63px 925px rgba(255, 255, 255, 0.25555555) , 1272px 1791px rgba(255, 255, 255, 0.25555555) , 1361px 1189px rgba(255, 255, 255, 0.25555555) , 778px 1101px rgba(255, 255, 255, 0.25555555) , 817px 1436px rgba(255, 255, 255, 0.25555555) , 1884px 1440px rgba(255, 255, 255, 0.25555555) , 1662px 1781px rgba(255, 255, 255, 0.25555555) , 276px 990px rgba(255, 255, 255, 0.25555555) , 1835px 1617px rgba(255, 255, 255, 0.25555555) , 1516px 246px rgba(255, 255, 255, 0.25555555) , 544px 1792px rgba(255, 255, 255, 0.25555555) , 667px 1652px rgba(255, 255, 255, 0.25555555) , 1142px 1221px rgba(255, 255, 255, 0.25555555) , 1417px 38px rgba(255, 255, 255, 0.25555555) , 33px 1467px rgba(255, 255, 255, 0.25555555) , 1087px 1608px rgba(255, 255, 255, 0.25555555) , 1406px 1323px rgba(255, 255, 255, 0.25555555) , 440px 1564px rgba(255, 255, 255, 0.25555555) , 1697px 758px rgba(255, 255, 255, 0.25555555) , 743px 340px rgba(255, 255, 255, 0.25555555) , 1244px 218px rgba(255, 255, 255, 0.25555555) , 1382px 1783px rgba(255, 255, 255, 0.25555555) , 539px 1285px rgba(255, 255, 255, 0.25555555) , 273px 592px rgba(255, 255, 255, 0.25555555) , 1268px 444px rgba(255, 255, 255, 0.25555555) , 1302px 70px rgba(255, 255, 255, 0.25555555) , 989px 478px rgba(255, 255, 255, 0.25555555) , 1044px 1477px rgba(255, 255, 255, 0.25555555) , 395px 803px rgba(255, 255, 255, 0.25555555) , 1609px 1799px rgba(255, 255, 255, 0.25555555) , 999px 100px rgba(255, 255, 255, 0.25555555) , 1444px 2000px rgba(255, 255, 255, 0.25555555) , 1966px 1675px rgba(255, 255, 255, 0.25555555) , 51px 822px rgba(255, 255, 255, 0.25555555) , 1387px 825px rgba(255, 255, 255, 0.25555555) , 983px 440px rgba(255, 255, 255, 0.25555555) , 1269px 624px rgba(255, 255, 255, 0.25555555) , 1303px 1455px rgba(255, 255, 255, 0.25555555) , 666px 313px rgba(255, 255, 255, 0.25555555) , 1776px 132px rgba(255, 255, 255, 0.25555555) , 1041px 1523px rgba(255, 255, 255, 0.25555555) , 168px 1599px rgba(255, 255, 255, 0.25555555) , 1714px 604px rgba(255, 255, 255, 0.25555555) , 657px 594px rgba(255, 255, 255, 0.25555555) , 1301px 1318px rgba(255, 255, 255, 0.25555555) , 961px 541px rgba(255, 255, 255, 0.25555555) , 310px 422px rgba(255, 255, 255, 0.25555555) , 636px 1847px rgba(255, 255, 255, 0.25555555) , 814px 1005px rgba(255, 255, 255, 0.25555555) , 444px 1093px rgba(255, 255, 255, 0.25555555) , 583px 1551px rgba(255, 255, 255, 0.25555555) , 1746px 1807px rgba(255, 255, 255, 0.25555555) , 1550px 1359px rgba(255, 255, 255, 0.25555555) , 283px 1837px rgba(255, 255, 255, 0.25555555) , 1257px 1772px rgba(255, 255, 255, 0.25555555) , 1620px 1691px rgba(255, 255, 255, 0.25555555) , 727px 1180px rgba(255, 255, 255, 0.25555555) , 798px 1744px rgba(255, 255, 255, 0.25555555) , 754px 1707px rgba(255, 255, 255, 0.25555555) , 1871px 189px rgba(255, 255, 255, 0.25555555) , 1355px 1000px rgba(255, 255, 255, 0.25555555) , 1839px 599px rgba(255, 255, 255, 0.25555555) , 7px 1689px rgba(255, 255, 255, 0.25555555) , 775px 966px rgba(255, 255, 255, 0.25555555) , 231px 1980px rgba(255, 255, 255, 0.25555555) , 1231px 717px rgba(255, 255, 255, 0.25555555) , 1748px 1658px rgba(255, 255, 255, 0.25555555) , 385px 1352px rgba(255, 255, 255, 0.25555555) , 1168px 182px rgba(255, 255, 255, 0.25555555) , 576px 997px rgba(255, 255, 255, 0.25555555) , 1955px 279px rgba(255, 255, 255, 0.25555555) , 314px 1162px rgba(255, 255, 255, 0.25555555) , 626px 1525px rgba(255, 255, 255, 0.25555555) , 1372px 597px rgba(255, 255, 255, 0.25555555) , 168px 809px rgba(255, 255, 255, 0.25555555) , 1559px 1646px rgba(255, 255, 255, 0.25555555) , 1316px 600px rgba(255, 255, 255, 0.25555555) , 1903px 1615px rgba(255, 255, 255, 0.25555555) , 1899px 173px rgba(255, 255, 255, 0.25555555) , 1936px 1042px rgba(255, 255, 255, 0.25555555) , 977px 180px rgba(255, 255, 255, 0.25555555) , 80px 1132px rgba(255, 255, 255, 0.25555555) , 1258px 287px rgba(255, 255, 255, 0.25555555) , 1944px 1624px rgba(255, 255, 255, 0.25555555) , 1710px 1271px rgba(255, 255, 255, 0.25555555) , 859px 315px rgba(255, 255, 255, 0.25555555) , 658px 601px rgba(255, 255, 255, 0.25555555) , 444px 516px rgba(255, 255, 255, 0.25555555) , 1443px 70px rgba(255, 255, 255, 0.25555555) , 61px 1468px rgba(255, 255, 255, 0.25555555) , 67px 338px rgba(255, 255, 255, 0.25555555) , 1888px 711px rgba(255, 255, 255, 0.25555555) , 1838px 1848px rgba(255, 255, 255, 0.25555555) , 1252px 774px rgba(255, 255, 255, 0.25555555) , 1986px 1392px rgba(255, 255, 255, 0.25555555) , 1734px 213px rgba(255, 255, 255, 0.25555555) , 1904px 76px rgba(255, 255, 255, 0.25555555) , 1503px 1882px rgba(255, 255, 255, 0.25555555) , 268px 113px rgba(255, 255, 255, 0.25555555) , 1124px 387px rgba(255, 255, 255, 0.25555555) , 565px 1591px rgba(255, 255, 255, 0.25555555) , 446px 1116px rgba(255, 255, 255, 0.25555555) , 1861px 661px rgba(255, 255, 255, 0.25555555) , 55px 1090px rgba(255, 255, 255, 0.25555555) , 328px 837px rgba(255, 255, 255, 0.25555555) , 775px 85px rgba(255, 255, 255, 0.25555555) , 436px 632px rgba(255, 255, 255, 0.25555555) , 1704px 904px rgba(255, 255, 255, 0.25555555) , 406px 1068px rgba(255, 255, 255, 0.25555555) , 1077px 719px rgba(255, 255, 255, 0.25555555) , 125px 722px rgba(255, 255, 255, 0.25555555) , 1735px 174px rgba(255, 255, 255, 0.25555555) , 1541px 1590px rgba(255, 255, 255, 0.25555555) , 1883px 498px rgba(255, 255, 255, 0.25555555) , 733px 1195px rgba(255, 255, 255, 0.25555555) , 1178px 1793px rgba(255, 255, 255, 0.25555555) , 254px 719px rgba(255, 255, 255, 0.25555555) , 1790px 545px rgba(255, 255, 255, 0.25555555) , 799px 454px rgba(255, 255, 255, 0.25555555) , 1076px 1737px rgba(255, 255, 255, 0.25555555) , 360px 95px rgba(255, 255, 255, 0.25555555) , 516px 1367px rgba(255, 255, 255, 0.25555555) , 1016px 493px rgba(255, 255, 255, 0.25555555) , 1340px 15px rgba(255, 255, 255, 0.25555555) , 1843px 355px rgba(255, 255, 255, 0.25555555) , 416px 1857px rgba(255, 255, 255, 0.25555555) , 1745px 1967px rgba(255, 255, 255, 0.25555555) , 1768px 1266px rgba(255, 255, 255, 0.25555555) , 778px 1437px rgba(255, 255, 255, 0.25555555) , 1892px 1480px rgba(255, 255, 255, 0.25555555) , 1861px 1700px rgba(255, 255, 255, 0.25555555) , 1973px 832px rgba(255, 255, 255, 0.25555555) , 132px 1773px rgba(255, 255, 255, 0.25555555) , 1928px 1974px rgba(255, 255, 255, 0.25555555) , 470px 1852px rgba(255, 255, 255, 0.25555555) , 1855px 463px rgba(255, 255, 255, 0.25555555) , 892px 1018px rgba(255, 255, 255, 0.25555555) , 374px 1670px rgba(255, 255, 255, 0.25555555) , 140px 391px rgba(255, 255, 255, 0.25555555) , 1868px 1945px rgba(255, 255, 255, 0.25555555) , 505px 1988px rgba(255, 255, 255, 0.25555555) , 1798px 1514px rgba(255, 255, 255, 0.25555555) , 134px 873px rgba(255, 255, 255, 0.25555555) , 1319px 1278px rgba(255, 255, 255, 0.25555555) , 1796px 1403px rgba(255, 255, 255, 0.25555555) , 1400px 503px rgba(255, 255, 255, 0.25555555) , 480px 1004px rgba(255, 255, 255, 0.25555555) , 53px 434px rgba(255, 255, 255, 0.25555555) , 1075px 507px rgba(255, 255, 255, 0.25555555) , 1376px 13px rgba(255, 255, 255, 0.25555555) , 150px 623px rgba(255, 255, 255, 0.25555555) , 563px 1355px rgba(255, 255, 255, 0.25555555) , 1464px 858px rgba(255, 255, 255, 0.25555555) , 1123px 967px rgba(255, 255, 255, 0.25555555) , 1273px 1412px rgba(255, 255, 255, 0.25555555) , 1378px 1689px rgba(255, 255, 255, 0.25555555) , 1390px 1248px rgba(255, 255, 255, 0.25555555) , 273px 191px rgba(255, 255, 255, 0.25555555) , 471px 46px rgba(255, 255, 255, 0.25555555) , 1520px 780px rgba(255, 255, 255, 0.25555555) , 830px 530px rgba(255, 255, 255, 0.25555555) , 1369px 1915px rgba(255, 255, 255, 0.25555555) , 434px 1541px rgba(255, 255, 255, 0.25555555) , 1658px 753px rgba(255, 255, 255, 0.25555555) , 1955px 1908px rgba(255, 255, 255, 0.25555555) , 409px 1106px rgba(255, 255, 255, 0.25555555) , 1609px 597px rgba(255, 255, 255, 0.25555555) , 637px 1671px rgba(255, 255, 255, 0.25555555) , 1957px 475px rgba(255, 255, 255, 0.25555555) , 1595px 1496px rgba(255, 255, 255, 0.25555555) , 1979px 1958px rgba(255, 255, 255, 0.25555555) , 1364px 1658px rgba(255, 255, 255, 0.25555555) , 929px 425px rgba(255, 255, 255, 0.25555555) , 1197px 967px rgba(255, 255, 255, 0.25555555) , 82px 1164px rgba(255, 255, 255, 0.25555555) , 310px 176px rgba(255, 255, 255, 0.25555555) , 1242px 1822px rgba(255, 255, 255, 0.25555555) , 1081px 484px rgba(255, 255, 255, 0.25555555) , 1436px 1211px rgba(255, 255, 255, 0.25555555) , 992px 1826px rgba(255, 255, 255, 0.25555555) , 1801px 714px rgba(255, 255, 255, 0.25555555) , 1034px 16px rgba(255, 255, 255, 0.25555555) , 1241px 145px rgba(255, 255, 255, 0.25555555) , 1815px 811px rgba(255, 255, 255, 0.25555555) , 517px 111px rgba(255, 255, 255, 0.25555555) , 512px 1871px rgba(255, 255, 255, 0.25555555) , 185px 1024px rgba(255, 255, 255, 0.25555555) , 869px 1606px rgba(255, 255, 255, 0.25555555) , 904px 1418px rgba(255, 255, 255, 0.25555555) , 271px 807px rgba(255, 255, 255, 0.25555555) , 1627px 1971px rgba(255, 255, 255, 0.25555555) , 1048px 200px rgba(255, 255, 255, 0.25555555) , 1543px 152px rgba(255, 255, 255, 0.25555555) , 1559px 924px rgba(255, 255, 255, 0.25555555) , 1205px 1281px rgba(255, 255, 255, 0.25555555) , 1073px 697px rgba(255, 255, 255, 0.25555555) , 1614px 426px rgba(255, 255, 255, 0.25555555) , 1064px 1329px rgba(255, 255, 255, 0.25555555) , 1963px 1252px rgba(255, 255, 255, 0.25555555) , 444px 992px rgba(255, 255, 255, 0.25555555) , 553px 1688px rgba(255, 255, 255, 0.25555555) , 298px 578px rgba(255, 255, 255, 0.25555555) , 772px 636px rgba(255, 255, 255, 0.25555555) , 1755px 1446px rgba(255, 255, 255, 0.25555555) , 1503px 450px rgba(255, 255, 255, 0.25555555) , 504px 135px rgba(255, 255, 255, 0.25555555) , 1714px 314px rgba(255, 255, 255, 0.25555555) , 447px 1165px rgba(255, 255, 255, 0.25555555) , 1903px 1258px rgba(255, 255, 255, 0.25555555) , 1916px 434px rgba(255, 255, 255, 0.25555555) , 1468px 1851px rgba(255, 255, 255, 0.25555555) , 631px 244px rgba(255, 255, 255, 0.25555555) , 201px 1060px rgba(255, 255, 255, 0.25555555) , 88px 340px rgba(255, 255, 255, 0.25555555) , 342px 1039px rgba(255, 255, 255, 0.25555555) , 699px 488px rgba(255, 255, 255, 0.25555555) , 1284px 1794px rgba(255, 255, 255, 0.25555555) , 1458px 759px rgba(255, 255, 255, 0.25555555) , 1335px 1629px rgba(255, 255, 255, 0.25555555) , 1367px 1363px rgba(255, 255, 255, 0.25555555) , 185px 235px rgba(255, 255, 255, 0.25555555) , 76px 1315px rgba(255, 255, 255, 0.25555555) , 1528px 198px rgba(255, 255, 255, 0.25555555) , 471px 1165px rgba(255, 255, 255, 0.25555555) , 1160px 1077px rgba(255, 255, 255, 0.25555555) , 79px 473px rgba(255, 255, 255, 0.25555555) , 114px 654px rgba(255, 255, 255, 0.25555555) , 1400px 722px rgba(255, 255, 255, 0.25555555) , 829px 1532px rgba(255, 255, 255, 0.25555555) , 448px 941px rgba(255, 255, 255, 0.25555555) , 627px 1987px rgba(255, 255, 255, 0.25555555) , 820px 919px rgba(255, 255, 255, 0.25555555) , 1506px 217px rgba(255, 255, 255, 0.25555555) , 1946px 1562px rgba(255, 255, 255, 0.25555555) , 142px 1489px rgba(255, 255, 255, 0.25555555) , 793px 602px rgba(255, 255, 255, 0.25555555) , 441px 91px rgba(255, 255, 255, 0.25555555) , 259px 453px rgba(255, 255, 255, 0.25555555) , 1538px 1732px rgba(255, 255, 255, 0.25555555) , 1498px 1501px rgba(255, 255, 255, 0.25555555) , 656px 805px rgba(255, 255, 255, 0.25555555) , 1808px 1178px rgba(255, 255, 255, 0.25555555) , 1954px 890px rgba(255, 255, 255, 0.25555555) , 656px 1605px rgba(255, 255, 255, 0.25555555) , 1177px 350px rgba(255, 255, 255, 0.25555555) , 666px 992px rgba(255, 255, 255, 0.25555555) , 1486px 305px rgba(255, 255, 255, 0.25555555) , 661px 1647px rgba(255, 255, 255, 0.25555555) , 1209px 1168px rgba(255, 255, 255, 0.25555555) , 1499px 1450px rgba(255, 255, 255, 0.25555555) , 554px 98px rgba(255, 255, 255, 0.25555555) , 744px 1047px rgba(255, 255, 255, 0.25555555) , 2px 524px rgba(255, 255, 255, 0.25555555) , 383px 1086px rgba(255, 255, 255, 0.25555555) , 1822px 244px rgba(255, 255, 255, 0.25555555) , 1704px 1714px rgba(255, 255, 255, 0.25555555) , 797px 1527px rgba(255, 255, 255, 0.25555555) , 1916px 1610px rgba(255, 255, 255, 0.25555555) , 1865px 860px rgba(255, 255, 255, 0.25555555) , 1567px 1823px rgba(255, 255, 255, 0.25555555) , 1340px 273px rgba(255, 255, 255, 0.25555555) , 1133px 168px rgba(255, 255, 255, 0.25555555) , 557px 1978px rgba(255, 255, 255, 0.25555555) , 1419px 1724px rgba(255, 255, 255, 0.25555555) , 668px 538px rgba(255, 255, 255, 0.25555555) , 1411px 1026px rgba(255, 255, 255, 0.25555555) , 1194px 1431px rgba(255, 255, 255, 0.25555555) , 267px 1899px rgba(255, 255, 255, 0.25555555) , 556px 950px rgba(255, 255, 255, 0.25555555) , 1847px 1514px rgba(255, 255, 255, 0.25555555) , 255px 131px rgba(255, 255, 255, 0.25555555) , 442px 441px rgba(255, 255, 255, 0.25555555) , 1089px 1011px rgba(255, 255, 255, 0.25555555) , 1931px 1781px rgba(255, 255, 255, 0.25555555) , 187px 119px rgba(255, 255, 255, 0.25555555) , 1317px 1797px rgba(255, 255, 255, 0.25555555) , 15px 971px rgba(255, 255, 255, 0.25555555) , 1542px 618px rgba(255, 255, 255, 0.25555555) , 594px 1216px rgba(255, 255, 255, 0.25555555) , 523px 1980px rgba(255, 255, 255, 0.25555555) , 682px 1977px rgba(255, 255, 255, 0.25555555) , 1840px 1934px rgba(255, 255, 255, 0.25555555) , 73px 1975px rgba(255, 255, 255, 0.25555555) , 192px 37px rgba(255, 255, 255, 0.25555555) , 1796px 1491px rgba(255, 255, 255, 0.25555555) , 237px 418px rgba(255, 255, 255, 0.25555555) , 635px 1936px rgba(255, 255, 255, 0.25555555) , 735px 421px rgba(255, 255, 255, 0.25555555) , 1785px 1564px rgba(255, 255, 255, 0.25555555) , 85px 1401px rgba(255, 255, 255, 0.25555555) , 288px 1436px rgba(255, 255, 255, 0.25555555) , 972px 1682px rgba(255, 255, 255, 0.25555555) , 986px 206px rgba(255, 255, 255, 0.25555555) , 730px 1225px rgba(255, 255, 255, 0.25555555) , 569px 557px rgba(255, 255, 255, 0.25555555) , 1805px 1898px rgba(255, 255, 255, 0.25555555) , 488px 1963px rgba(255, 255, 255, 0.25555555) , 877px 997px rgba(255, 255, 255, 0.25555555) , 545px 1029px rgba(255, 255, 255, 0.25555555) , 1725px 1017px rgba(255, 255, 255, 0.25555555) , 1320px 1855px rgba(255, 255, 255, 0.25555555) , 1220px 409px rgba(255, 255, 255, 0.25555555) , 1911px 453px rgba(255, 255, 255, 0.25555555) , 784px 636px rgba(255, 255, 255, 0.25555555) , 570px 862px rgba(255, 255, 255, 0.25555555) , 1009px 7px rgba(255, 255, 255, 0.25555555) , 432px 1640px rgba(255, 255, 255, 0.25555555) , 1941px 1197px rgba(255, 255, 255, 0.25555555) , 422px 994px rgba(255, 255, 255, 0.25555555) , 465px 1879px rgba(255, 255, 255, 0.25555555) , 918px 200px rgba(255, 255, 255, 0.25555555) , 1978px 1313px rgba(255, 255, 255, 0.25555555) , 520px 954px rgba(255, 255, 255, 0.25555555) , 1270px 1594px rgba(255, 255, 255, 0.25555555) , 1087px 578px rgba(255, 255, 255, 0.25555555) , 1597px 58px rgba(255, 255, 255, 0.25555555) , 1782px 550px rgba(255, 255, 255, 0.25555555) , 274px 204px rgba(255, 255, 255, 0.25555555) , 1743px 1662px rgba(255, 255, 255, 0.25555555) , 441px 1338px rgba(255, 255, 255, 0.25555555) , 545px 1844px rgba(255, 255, 255, 0.25555555) , 1702px 894px rgba(255, 255, 255, 0.25555555) , 1760px 1426px rgba(255, 255, 255, 0.25555555) , 795px 1068px rgba(255, 255, 255, 0.25555555) , 1076px 373px rgba(255, 255, 255, 0.25555555) , 1666px 1594px rgba(255, 255, 255, 0.25555555) , 1490px 1257px rgba(255, 255, 255, 0.25555555) , 7px 1967px rgba(255, 255, 255, 0.25555555) , 357px 1354px rgba(255, 255, 255, 0.25555555) , 1740px 1071px rgba(255, 255, 255, 0.25555555) , 1876px 1981px rgba(255, 255, 255, 0.25555555) , 421px 1758px rgba(255, 255, 255, 0.25555555) , 750px 1071px rgba(255, 255, 255, 0.25555555) , 963px 266px rgba(255, 255, 255, 0.25555555) , 918px 1422px rgba(255, 255, 255, 0.25555555) , 811px 463px rgba(255, 255, 255, 0.25555555) , 1084px 1186px rgba(255, 255, 255, 0.25555555) , 950px 1852px rgba(255, 255, 255, 0.25555555) , 709px 916px rgba(255, 255, 255, 0.25555555) , 37px 1612px rgba(255, 255, 255, 0.25555555) , 777px 747px rgba(255, 255, 255, 0.25555555) , 749px 1663px rgba(255, 255, 255, 0.25555555) , 1036px 600px rgba(255, 255, 255, 0.25555555) , 1951px 1697px rgba(255, 255, 255, 0.25555555) , 1208px 1139px rgba(255, 255, 255, 0.25555555) , 549px 400px rgba(255, 255, 255, 0.25555555) , 1144px 584px rgba(255, 255, 255, 0.25555555) , 1466px 1315px rgba(255, 255, 255, 0.25555555) , 131px 826px rgba(255, 255, 255, 0.25555555) , 172px 1097px rgba(255, 255, 255, 0.25555555) , 253px 97px rgba(255, 255, 255, 0.25555555) , 197px 422px rgba(255, 255, 255, 0.25555555) , 792px 25px rgba(255, 255, 255, 0.25555555) , 957px 1632px rgba(255, 255, 255, 0.25555555) , 1209px 889px rgba(255, 255, 255, 0.25555555) , 826px 638px rgba(255, 255, 255, 0.25555555) , 1464px 1137px rgba(255, 255, 255, 0.25555555) , 1189px 2px rgba(255, 255, 255, 0.25555555) , 1737px 1514px rgba(255, 255, 255, 0.25555555) , 142px 954px rgba(255, 255, 255, 0.25555555) , 1831px 544px rgba(255, 255, 255, 0.25555555) , 1008px 779px rgba(255, 255, 255, 0.25555555) , 1889px 257px rgba(255, 255, 255, 0.25555555) , 1006px 1085px rgba(255, 255, 255, 0.25555555) , 428px 1043px rgba(255, 255, 255, 0.25555555) , 1915px 1585px rgba(255, 255, 255, 0.25555555) , 232px 1935px rgba(255, 255, 255, 0.25555555) , 767px 706px rgba(255, 255, 255, 0.25555555) , 431px 334px rgba(255, 255, 255, 0.25555555) , 897px 15px rgba(255, 255, 255, 0.25555555) , 705px 146px rgba(255, 255, 255, 0.25555555);
+    box-shadow: 1602px 661px rgba(255,255,255,0.25) , 1779px 795px rgba(255,255,255,0.25) , 1154px 812px rgba(255,255,255,0.25) , 1328px 800px rgba(255,255,255,0.25) , 1262px 1251px rgba(255,255,255,0.25) , 1976px 432px rgba(255,255,255,0.25) , 1650px 1853px rgba(255,255,255,0.25) , 1001px 468px rgba(255,255,255,0.25) , 609px 405px rgba(255,255,255,0.25) , 1842px 1576px rgba(255,255,255,0.25) , 742px 1365px rgba(255,255,255,0.25) , 321px 1286px rgba(255,255,255,0.25) , 462px 926px rgba(255,255,255,0.25) , 481px 458px rgba(255,255,255,0.25) , 484px 1952px rgba(255,255,255,0.25) , 380px 1267px rgba(255,255,255,0.25) , 1122px 820px rgba(255,255,255,0.25) , 1626px 1217px rgba(255,255,255,0.25) , 1953px 1255px rgba(255,255,255,0.25) , 1728px 140px rgba(255,255,255,0.25);
     animation: animStar 50s linear infinite;
-  }
-  #stars:after {
-    content: " ";
-    position: absolute;
-    top: 2000px;
-    width: 1px;
-    height: 1px;
-    background: transparent;
-    box-shadow: 1602px 661px rgba(255, 255, 255, 0.25555555) , 1779px 795px rgba(255, 255, 255, 0.25555555) , 1154px 812px rgba(255, 255, 255, 0.25555555) , 1328px 800px rgba(255, 255, 255, 0.25555555) , 1262px 1251px rgba(255, 255, 255, 0.25555555) , 1976px 432px rgba(255, 255, 255, 0.25555555) , 1650px 1853px rgba(255, 255, 255, 0.25555555) , 1001px 468px rgba(255, 255, 255, 0.25555555) , 609px 405px rgba(255, 255, 255, 0.25555555) , 1842px 1576px rgba(255, 255, 255, 0.25555555) , 742px 1365px rgba(255, 255, 255, 0.25555555) , 321px 1286px rgba(255, 255, 255, 0.25555555) , 462px 926px rgba(255, 255, 255, 0.25555555) , 481px 458px rgba(255, 255, 255, 0.25555555) , 484px 1952px rgba(255, 255, 255, 0.25555555) , 380px 1267px rgba(255, 255, 255, 0.25555555) , 1122px 820px rgba(255, 255, 255, 0.25555555) , 1626px 1217px rgba(255, 255, 255, 0.25555555) , 1953px 1255px rgba(255, 255, 255, 0.25555555) , 1728px 140px rgba(255, 255, 255, 0.25555555) , 1430px 1262px rgba(255, 255, 255, 0.25555555) , 7px 463px rgba(255, 255, 255, 0.25555555) , 1664px 338px rgba(255, 255, 255, 0.25555555) , 63px 11px rgba(255, 255, 255, 0.25555555) , 552px 438px rgba(255, 255, 255, 0.25555555) , 3px 783px rgba(255, 255, 255, 0.25555555) , 1247px 361px rgba(255, 255, 255, 0.25555555) , 803px 121px rgba(255, 255, 255, 0.25555555) , 755px 1435px rgba(255, 255, 255, 0.25555555) , 659px 1572px rgba(255, 255, 255, 0.25555555) , 462px 256px rgba(255, 255, 255, 0.25555555) , 654px 1979px rgba(255, 255, 255, 0.25555555) , 1747px 1521px rgba(255, 255, 255, 0.25555555) , 1222px 1922px rgba(255, 255, 255, 0.25555555) , 1615px 1672px rgba(255, 255, 255, 0.25555555) , 980px 918px rgba(255, 255, 255, 0.25555555) , 1477px 1509px rgba(255, 255, 255, 0.25555555) , 1311px 365px rgba(255, 255, 255, 0.25555555) , 286px 1255px rgba(255, 255, 255, 0.25555555) , 897px 1108px rgba(255, 255, 255, 0.25555555) , 770px 330px rgba(255, 255, 255, 0.25555555) , 337px 598px rgba(255, 255, 255, 0.25555555) , 1192px 711px rgba(255, 255, 255, 0.25555555) , 1656px 1284px rgba(255, 255, 255, 0.25555555) , 1808px 543px rgba(255, 255, 255, 0.25555555) , 1099px 608px rgba(255, 255, 255, 0.25555555) , 1215px 157px rgba(255, 255, 255, 0.25555555) , 1670px 748px rgba(255, 255, 255, 0.25555555) , 110px 734px rgba(255, 255, 255, 0.25555555) , 1513px 1678px rgba(255, 255, 255, 0.25555555) , 137px 1969px rgba(255, 255, 255, 0.25555555) , 242px 1029px rgba(255, 255, 255, 0.25555555) , 670px 606px rgba(255, 255, 255, 0.25555555) , 1173px 1915px rgba(255, 255, 255, 0.25555555) , 1730px 1946px rgba(255, 255, 255, 0.25555555) , 1617px 1395px rgba(255, 255, 255, 0.25555555) , 294px 1214px rgba(255, 255, 255, 0.25555555) , 942px 1551px rgba(255, 255, 255, 0.25555555) , 327px 885px rgba(255, 255, 255, 0.25555555) , 1961px 128px rgba(255, 255, 255, 0.25555555) , 314px 333px rgba(255, 255, 255, 0.25555555) , 845px 1457px rgba(255, 255, 255, 0.25555555) , 1293px 408px rgba(255, 255, 255, 0.25555555) , 1058px 582px rgba(255, 255, 255, 0.25555555) , 1981px 1771px rgba(255, 255, 255, 0.25555555) , 1473px 311px rgba(255, 255, 255, 0.25555555) , 1227px 955px rgba(255, 255, 255, 0.25555555) , 1937px 1262px rgba(255, 255, 255, 0.25555555) , 754px 624px rgba(255, 255, 255, 0.25555555) , 266px 619px rgba(255, 255, 255, 0.25555555) , 182px 1621px rgba(255, 255, 255, 0.25555555) , 29px 802px rgba(255, 255, 255, 0.25555555) , 1075px 298px rgba(255, 255, 255, 0.25555555) , 1986px 1900px rgba(255, 255, 255, 0.25555555) , 1770px 447px rgba(255, 255, 255, 0.25555555) , 1291px 57px rgba(255, 255, 255, 0.25555555) , 782px 1535px rgba(255, 255, 255, 0.25555555) , 1312px 111px rgba(255, 255, 255, 0.25555555) , 1194px 651px rgba(255, 255, 255, 0.25555555) , 899px 193px rgba(255, 255, 255, 0.25555555) , 282px 163px rgba(255, 255, 255, 0.25555555) , 1341px 998px rgba(255, 255, 255, 0.25555555) , 379px 1540px rgba(255, 255, 255, 0.25555555) , 406px 1584px rgba(255, 255, 255, 0.25555555) , 1227px 223px rgba(255, 255, 255, 0.25555555) , 1525px 402px rgba(255, 255, 255, 0.25555555) , 66px 1842px rgba(255, 255, 255, 0.25555555) , 1531px 1873px rgba(255, 255, 255, 0.25555555) , 1303px 376px rgba(255, 255, 255, 0.25555555) , 1949px 1797px rgba(255, 255, 255, 0.25555555) , 1093px 1018px rgba(255, 255, 255, 0.25555555) , 937px 886px rgba(255, 255, 255, 0.25555555) , 1954px 1675px rgba(255, 255, 255, 0.25555555) , 1957px 304px rgba(255, 255, 255, 0.25555555) , 74px 400px rgba(255, 255, 255, 0.25555555) , 556px 1123px rgba(255, 255, 255, 0.25555555) , 1659px 1330px rgba(255, 255, 255, 0.25555555) , 1110px 916px rgba(255, 255, 255, 0.25555555) , 503px 271px rgba(255, 255, 255, 0.25555555) , 1574px 1851px rgba(255, 255, 255, 0.25555555) , 436px 1833px rgba(255, 255, 255, 0.25555555) , 175px 1150px rgba(255, 255, 255, 0.25555555) , 43px 1691px rgba(255, 255, 255, 0.25555555) , 1758px 1857px rgba(255, 255, 255, 0.25555555) , 413px 257px rgba(255, 255, 255, 0.25555555) , 596px 336px rgba(255, 255, 255, 0.25555555) , 1608px 338px rgba(255, 255, 255, 0.25555555) , 333px 108px rgba(255, 255, 255, 0.25555555) , 794px 1318px rgba(255, 255, 255, 0.25555555) , 1150px 73px rgba(255, 255, 255, 0.25555555) , 891px 1149px rgba(255, 255, 255, 0.25555555) , 1614px 387px rgba(255, 255, 255, 0.25555555) , 1930px 1770px rgba(255, 255, 255, 0.25555555) , 465px 591px rgba(255, 255, 255, 0.25555555) , 394px 472px rgba(255, 255, 255, 0.25555555) , 438px 1877px rgba(255, 255, 255, 0.25555555) , 537px 1345px rgba(255, 255, 255, 0.25555555) , 583px 470px rgba(255, 255, 255, 0.25555555) , 1493px 1112px rgba(255, 255, 255, 0.25555555) , 1437px 1380px rgba(255, 255, 255, 0.25555555) , 494px 1304px rgba(255, 255, 255, 0.25555555) , 17px 1388px rgba(255, 255, 255, 0.25555555) , 1001px 1558px rgba(255, 255, 255, 0.25555555) , 10px 978px rgba(255, 255, 255, 0.25555555) , 25px 1053px rgba(255, 255, 255, 0.25555555) , 732px 576px rgba(255, 255, 255, 0.25555555) , 1169px 297px rgba(255, 255, 255, 0.25555555) , 915px 1519px rgba(255, 255, 255, 0.25555555) , 280px 1149px rgba(255, 255, 255, 0.25555555) , 1430px 761px rgba(255, 255, 255, 0.25555555) , 45px 208px rgba(255, 255, 255, 0.25555555) , 1790px 1104px rgba(255, 255, 255, 0.25555555) , 953px 296px rgba(255, 255, 255, 0.25555555) , 1480px 733px rgba(255, 255, 255, 0.25555555) , 1024px 1171px rgba(255, 255, 255, 0.25555555) , 1473px 1335px rgba(255, 255, 255, 0.25555555) , 631px 329px rgba(255, 255, 255, 0.25555555) , 1498px 1792px rgba(255, 255, 255, 0.25555555) , 385px 1825px rgba(255, 255, 255, 0.25555555) , 483px 781px rgba(255, 255, 255, 0.25555555) , 1888px 85px rgba(255, 255, 255, 0.25555555) , 1659px 715px rgba(255, 255, 255, 0.25555555) , 192px 177px rgba(255, 255, 255, 0.25555555) , 275px 1243px rgba(255, 255, 255, 0.25555555) , 1203px 1087px rgba(255, 255, 255, 0.25555555) , 412px 857px rgba(255, 255, 255, 0.25555555) , 1302px 1270px rgba(255, 255, 255, 0.25555555) , 787px 389px rgba(255, 255, 255, 0.25555555) , 751px 1838px rgba(255, 255, 255, 0.25555555) , 1381px 1377px rgba(255, 255, 255, 0.25555555) , 196px 878px rgba(255, 255, 255, 0.25555555) , 134px 277px rgba(255, 255, 255, 0.25555555) , 145px 549px rgba(255, 255, 255, 0.25555555) , 1957px 1961px rgba(255, 255, 255, 0.25555555) , 1120px 1050px rgba(255, 255, 255, 0.25555555) , 1354px 972px rgba(255, 255, 255, 0.25555555) , 1158px 1771px rgba(255, 255, 255, 0.25555555) , 47px 352px rgba(255, 255, 255, 0.25555555) , 1112px 584px rgba(255, 255, 255, 0.25555555) , 164px 1386px rgba(255, 255, 255, 0.25555555) , 1273px 1782px rgba(255, 255, 255, 0.25555555) , 110px 780px rgba(255, 255, 255, 0.25555555) , 502px 299px rgba(255, 255, 255, 0.25555555) , 1768px 933px rgba(255, 255, 255, 0.25555555) , 886px 1287px rgba(255, 255, 255, 0.25555555) , 1309px 1130px rgba(255, 255, 255, 0.25555555) , 847px 776px rgba(255, 255, 255, 0.25555555) , 1713px 269px rgba(255, 255, 255, 0.25555555) , 1718px 795px rgba(255, 255, 255, 0.25555555) , 1984px 717px rgba(255, 255, 255, 0.25555555) , 985px 341px rgba(255, 255, 255, 0.25555555) , 1462px 1078px rgba(255, 255, 255, 0.25555555) , 1702px 1461px rgba(255, 255, 255, 0.25555555) , 167px 1873px rgba(255, 255, 255, 0.25555555) , 862px 1117px rgba(255, 255, 255, 0.25555555) , 1968px 932px rgba(255, 255, 255, 0.25555555) , 814px 91px rgba(255, 255, 255, 0.25555555) , 1530px 607px rgba(255, 255, 255, 0.25555555) , 1799px 1571px rgba(255, 255, 255, 0.25555555) , 1868px 1734px rgba(255, 255, 255, 0.25555555) , 1800px 1137px rgba(255, 255, 255, 0.25555555) , 52px 178px rgba(255, 255, 255, 0.25555555) , 901px 853px rgba(255, 255, 255, 0.25555555) , 1181px 1232px rgba(255, 255, 255, 0.25555555) , 209px 650px rgba(255, 255, 255, 0.25555555) , 1165px 1321px rgba(255, 255, 255, 0.25555555) , 1046px 159px rgba(255, 255, 255, 0.25555555) , 578px 1748px rgba(255, 255, 255, 0.25555555) , 18px 337px rgba(255, 255, 255, 0.25555555) , 70px 1062px rgba(255, 255, 255, 0.25555555) , 1670px 270px rgba(255, 255, 255, 0.25555555) , 1828px 1321px rgba(255, 255, 255, 0.25555555) , 1817px 336px rgba(255, 255, 255, 0.25555555) , 124px 1935px rgba(255, 255, 255, 0.25555555) , 1840px 594px rgba(255, 255, 255, 0.25555555) , 836px 1194px rgba(255, 255, 255, 0.25555555) , 1292px 1801px rgba(255, 255, 255, 0.25555555) , 1547px 945px rgba(255, 255, 255, 0.25555555) , 500px 1563px rgba(255, 255, 255, 0.25555555) , 569px 376px rgba(255, 255, 255, 0.25555555) , 1107px 1627px rgba(255, 255, 255, 0.25555555) , 662px 717px rgba(255, 255, 255, 0.25555555) , 1352px 762px rgba(255, 255, 255, 0.25555555) , 771px 1694px rgba(255, 255, 255, 0.25555555) , 1529px 484px rgba(255, 255, 255, 0.25555555) , 1609px 798px rgba(255, 255, 255, 0.25555555) , 652px 627px rgba(255, 255, 255, 0.25555555) , 498px 20px rgba(255, 255, 255, 0.25555555) , 1308px 164px rgba(255, 255, 255, 0.25555555) , 245px 1239px rgba(255, 255, 255, 0.25555555) , 1131px 860px rgba(255, 255, 255, 0.25555555) , 1028px 333px rgba(255, 255, 255, 0.25555555) , 765px 1760px rgba(255, 255, 255, 0.25555555) , 1627px 684px rgba(255, 255, 255, 0.25555555) , 70px 1586px rgba(255, 255, 255, 0.25555555) , 63px 1230px rgba(255, 255, 255, 0.25555555) , 1727px 465px rgba(255, 255, 255, 0.25555555) , 1946px 1862px rgba(255, 255, 255, 0.25555555) , 169px 956px rgba(255, 255, 255, 0.25555555) , 121px 1826px rgba(255, 255, 255, 0.25555555) , 1615px 725px rgba(255, 255, 255, 0.25555555) , 1225px 1925px rgba(255, 255, 255, 0.25555555) , 1678px 323px rgba(255, 255, 255, 0.25555555) , 606px 371px rgba(255, 255, 255, 0.25555555) , 616px 985px rgba(255, 255, 255, 0.25555555) , 490px 1898px rgba(255, 255, 255, 0.25555555) , 516px 1019px rgba(255, 255, 255, 0.25555555) , 878px 1448px rgba(255, 255, 255, 0.25555555) , 1533px 98px rgba(255, 255, 255, 0.25555555) , 625px 1152px rgba(255, 255, 255, 0.25555555) , 224px 522px rgba(255, 255, 255, 0.25555555) , 215px 245px rgba(255, 255, 255, 0.25555555) , 153px 669px rgba(255, 255, 255, 0.25555555) , 1530px 1652px rgba(255, 255, 255, 0.25555555) , 1796px 1697px rgba(255, 255, 255, 0.25555555) , 908px 1456px rgba(255, 255, 255, 0.25555555) , 1326px 1947px rgba(255, 255, 255, 0.25555555) , 1294px 872px rgba(255, 255, 255, 0.25555555) , 806px 1296px rgba(255, 255, 255, 0.25555555) , 783px 556px rgba(255, 255, 255, 0.25555555) , 1075px 973px rgba(255, 255, 255, 0.25555555) , 613px 505px rgba(255, 255, 255, 0.25555555) , 1160px 833px rgba(255, 255, 255, 0.25555555) , 1053px 1793px rgba(255, 255, 255, 0.25555555) , 1343px 1990px rgba(255, 255, 255, 0.25555555) , 937px 254px rgba(255, 255, 255, 0.25555555) , 1084px 234px rgba(255, 255, 255, 0.25555555) , 575px 374px rgba(255, 255, 255, 0.25555555) , 367px 1656px rgba(255, 255, 255, 0.25555555) , 494px 510px rgba(255, 255, 255, 0.25555555) , 1403px 1242px rgba(255, 255, 255, 0.25555555) , 1827px 1741px rgba(255, 255, 255, 0.25555555) , 1239px 616px rgba(255, 255, 255, 0.25555555) , 579px 1670px rgba(255, 255, 255, 0.25555555) , 971px 836px rgba(255, 255, 255, 0.25555555) , 1025px 813px rgba(255, 255, 255, 0.25555555) , 707px 1407px rgba(255, 255, 255, 0.25555555) , 188px 1777px rgba(255, 255, 255, 0.25555555) , 1576px 18px rgba(255, 255, 255, 0.25555555) , 1px 533px rgba(255, 255, 255, 0.25555555) , 1123px 589px rgba(255, 255, 255, 0.25555555) , 88px 705px rgba(255, 255, 255, 0.25555555) , 1844px 679px rgba(255, 255, 255, 0.25555555) , 121px 350px rgba(255, 255, 255, 0.25555555) , 1853px 470px rgba(255, 255, 255, 0.25555555) , 1333px 263px rgba(255, 255, 255, 0.25555555) , 1702px 957px rgba(255, 255, 255, 0.25555555) , 475px 725px rgba(255, 255, 255, 0.25555555) , 1650px 75px rgba(255, 255, 255, 0.25555555) , 1372px 11px rgba(255, 255, 255, 0.25555555) , 714px 353px rgba(255, 255, 255, 0.25555555) , 968px 461px rgba(255, 255, 255, 0.25555555) , 1413px 1400px rgba(255, 255, 255, 0.25555555) , 1856px 1724px rgba(255, 255, 255, 0.25555555) , 793px 1524px rgba(255, 255, 255, 0.25555555) , 1717px 962px rgba(255, 255, 255, 0.25555555) , 1263px 1567px rgba(255, 255, 255, 0.25555555) , 1621px 1961px rgba(255, 255, 255, 0.25555555) , 537px 243px rgba(255, 255, 255, 0.25555555) , 912px 1140px rgba(255, 255, 255, 0.25555555) , 659px 1300px rgba(255, 255, 255, 0.25555555) , 113px 516px rgba(255, 255, 255, 0.25555555) , 1111px 1738px rgba(255, 255, 255, 0.25555555) , 336px 953px rgba(255, 255, 255, 0.25555555) , 1038px 248px rgba(255, 255, 255, 0.25555555) , 692px 935px rgba(255, 255, 255, 0.25555555) , 516px 1451px rgba(255, 255, 255, 0.25555555) , 1057px 401px rgba(255, 255, 255, 0.25555555) , 1014px 388px rgba(255, 255, 255, 0.25555555) , 1363px 1764px rgba(255, 255, 255, 0.25555555) , 855px 745px rgba(255, 255, 255, 0.25555555) , 57px 767px rgba(255, 255, 255, 0.25555555) , 779px 1263px rgba(255, 255, 255, 0.25555555) , 1746px 1797px rgba(255, 255, 255, 0.25555555) , 1975px 848px rgba(255, 255, 255, 0.25555555) , 1051px 941px rgba(255, 255, 255, 0.25555555) , 79px 1146px rgba(255, 255, 255, 0.25555555) , 1945px 1015px rgba(255, 255, 255, 0.25555555) , 1506px 1855px rgba(255, 255, 255, 0.25555555) , 955px 730px rgba(255, 255, 255, 0.25555555) , 27px 1865px rgba(255, 255, 255, 0.25555555) , 1378px 1691px rgba(255, 255, 255, 0.25555555) , 969px 1738px rgba(255, 255, 255, 0.25555555) , 206px 842px rgba(255, 255, 255, 0.25555555) , 1068px 91px rgba(255, 255, 255, 0.25555555) , 1466px 1725px rgba(255, 255, 255, 0.25555555) , 533px 1091px rgba(255, 255, 255, 0.25555555) , 1205px 748px rgba(255, 255, 255, 0.25555555) , 324px 398px rgba(255, 255, 255, 0.25555555) , 1417px 1048px rgba(255, 255, 255, 0.25555555) , 349px 1827px rgba(255, 255, 255, 0.25555555) , 730px 1048px rgba(255, 255, 255, 0.25555555) , 1671px 690px rgba(255, 255, 255, 0.25555555) , 1441px 1068px rgba(255, 255, 255, 0.25555555) , 251px 925px rgba(255, 255, 255, 0.25555555) , 144px 1631px rgba(255, 255, 255, 0.25555555) , 108px 1524px rgba(255, 255, 255, 0.25555555) , 187px 1172px rgba(255, 255, 255, 0.25555555) , 183px 403px rgba(255, 255, 255, 0.25555555) , 907px 1873px rgba(255, 255, 255, 0.25555555) , 973px 104px rgba(255, 255, 255, 0.25555555) , 65px 1390px rgba(255, 255, 255, 0.25555555) , 372px 1486px rgba(255, 255, 255, 0.25555555) , 424px 765px rgba(255, 255, 255, 0.25555555) , 1410px 350px rgba(255, 255, 255, 0.25555555) , 760px 827px rgba(255, 255, 255, 0.25555555) , 1179px 612px rgba(255, 255, 255, 0.25555555) , 251px 1106px rgba(255, 255, 255, 0.25555555) , 657px 851px rgba(255, 255, 255, 0.25555555) , 63px 925px rgba(255, 255, 255, 0.25555555) , 1272px 1791px rgba(255, 255, 255, 0.25555555) , 1361px 1189px rgba(255, 255, 255, 0.25555555) , 778px 1101px rgba(255, 255, 255, 0.25555555) , 817px 1436px rgba(255, 255, 255, 0.25555555) , 1884px 1440px rgba(255, 255, 255, 0.25555555) , 1662px 1781px rgba(255, 255, 255, 0.25555555) , 276px 990px rgba(255, 255, 255, 0.25555555) , 1835px 1617px rgba(255, 255, 255, 0.25555555) , 1516px 246px rgba(255, 255, 255, 0.25555555) , 544px 1792px rgba(255, 255, 255, 0.25555555) , 667px 1652px rgba(255, 255, 255, 0.25555555) , 1142px 1221px rgba(255, 255, 255, 0.25555555) , 1417px 38px rgba(255, 255, 255, 0.25555555) , 33px 1467px rgba(255, 255, 255, 0.25555555) , 1087px 1608px rgba(255, 255, 255, 0.25555555) , 1406px 1323px rgba(255, 255, 255, 0.25555555) , 440px 1564px rgba(255, 255, 255, 0.25555555) , 1697px 758px rgba(255, 255, 255, 0.25555555) , 743px 340px rgba(255, 255, 255, 0.25555555) , 1244px 218px rgba(255, 255, 255, 0.25555555) , 1382px 1783px rgba(255, 255, 255, 0.25555555) , 539px 1285px rgba(255, 255, 255, 0.25555555) , 273px 592px rgba(255, 255, 255, 0.25555555) , 1268px 444px rgba(255, 255, 255, 0.25555555) , 1302px 70px rgba(255, 255, 255, 0.25555555) , 989px 478px rgba(255, 255, 255, 0.25555555) , 1044px 1477px rgba(255, 255, 255, 0.25555555) , 395px 803px rgba(255, 255, 255, 0.25555555) , 1609px 1799px rgba(255, 255, 255, 0.25555555) , 999px 100px rgba(255, 255, 255, 0.25555555) , 1444px 2000px rgba(255, 255, 255, 0.25555555) , 1966px 1675px rgba(255, 255, 255, 0.25555555) , 51px 822px rgba(255, 255, 255, 0.25555555) , 1387px 825px rgba(255, 255, 255, 0.25555555) , 983px 440px rgba(255, 255, 255, 0.25555555) , 1269px 624px rgba(255, 255, 255, 0.25555555) , 1303px 1455px rgba(255, 255, 255, 0.25555555) , 666px 313px rgba(255, 255, 255, 0.25555555) , 1776px 132px rgba(255, 255, 255, 0.25555555) , 1041px 1523px rgba(255, 255, 255, 0.25555555) , 168px 1599px rgba(255, 255, 255, 0.25555555) , 1714px 604px rgba(255, 255, 255, 0.25555555) , 657px 594px rgba(255, 255, 255, 0.25555555) , 1301px 1318px rgba(255, 255, 255, 0.25555555) , 961px 541px rgba(255, 255, 255, 0.25555555) , 310px 422px rgba(255, 255, 255, 0.25555555) , 636px 1847px rgba(255, 255, 255, 0.25555555) , 814px 1005px rgba(255, 255, 255, 0.25555555) , 444px 1093px rgba(255, 255, 255, 0.25555555) , 583px 1551px rgba(255, 255, 255, 0.25555555) , 1746px 1807px rgba(255, 255, 255, 0.25555555) , 1550px 1359px rgba(255, 255, 255, 0.25555555) , 283px 1837px rgba(255, 255, 255, 0.25555555) , 1257px 1772px rgba(255, 255, 255, 0.25555555) , 1620px 1691px rgba(255, 255, 255, 0.25555555) , 727px 1180px rgba(255, 255, 255, 0.25555555) , 798px 1744px rgba(255, 255, 255, 0.25555555) , 754px 1707px rgba(255, 255, 255, 0.25555555) , 1871px 189px rgba(255, 255, 255, 0.25555555) , 1355px 1000px rgba(255, 255, 255, 0.25555555) , 1839px 599px rgba(255, 255, 255, 0.25555555) , 7px 1689px rgba(255, 255, 255, 0.25555555) , 775px 966px rgba(255, 255, 255, 0.25555555) , 231px 1980px rgba(255, 255, 255, 0.25555555) , 1231px 717px rgba(255, 255, 255, 0.25555555) , 1748px 1658px rgba(255, 255, 255, 0.25555555) , 385px 1352px rgba(255, 255, 255, 0.25555555) , 1168px 182px rgba(255, 255, 255, 0.25555555) , 576px 997px rgba(255, 255, 255, 0.25555555) , 1955px 279px rgba(255, 255, 255, 0.25555555) , 314px 1162px rgba(255, 255, 255, 0.25555555) , 626px 1525px rgba(255, 255, 255, 0.25555555) , 1372px 597px rgba(255, 255, 255, 0.25555555) , 168px 809px rgba(255, 255, 255, 0.25555555) , 1559px 1646px rgba(255, 255, 255, 0.25555555) , 1316px 600px rgba(255, 255, 255, 0.25555555) , 1903px 1615px rgba(255, 255, 255, 0.25555555) , 1899px 173px rgba(255, 255, 255, 0.25555555) , 1936px 1042px rgba(255, 255, 255, 0.25555555) , 977px 180px rgba(255, 255, 255, 0.25555555) , 80px 1132px rgba(255, 255, 255, 0.25555555) , 1258px 287px rgba(255, 255, 255, 0.25555555) , 1944px 1624px rgba(255, 255, 255, 0.25555555) , 1710px 1271px rgba(255, 255, 255, 0.25555555) , 859px 315px rgba(255, 255, 255, 0.25555555) , 658px 601px rgba(255, 255, 255, 0.25555555) , 444px 516px rgba(255, 255, 255, 0.25555555) , 1443px 70px rgba(255, 255, 255, 0.25555555) , 61px 1468px rgba(255, 255, 255, 0.25555555) , 67px 338px rgba(255, 255, 255, 0.25555555) , 1888px 711px rgba(255, 255, 255, 0.25555555) , 1838px 1848px rgba(255, 255, 255, 0.25555555) , 1252px 774px rgba(255, 255, 255, 0.25555555) , 1986px 1392px rgba(255, 255, 255, 0.25555555) , 1734px 213px rgba(255, 255, 255, 0.25555555) , 1904px 76px rgba(255, 255, 255, 0.25555555) , 1503px 1882px rgba(255, 255, 255, 0.25555555) , 268px 113px rgba(255, 255, 255, 0.25555555) , 1124px 387px rgba(255, 255, 255, 0.25555555) , 565px 1591px rgba(255, 255, 255, 0.25555555) , 446px 1116px rgba(255, 255, 255, 0.25555555) , 1861px 661px rgba(255, 255, 255, 0.25555555) , 55px 1090px rgba(255, 255, 255, 0.25555555) , 328px 837px rgba(255, 255, 255, 0.25555555) , 775px 85px rgba(255, 255, 255, 0.25555555) , 436px 632px rgba(255, 255, 255, 0.25555555) , 1704px 904px rgba(255, 255, 255, 0.25555555) , 406px 1068px rgba(255, 255, 255, 0.25555555) , 1077px 719px rgba(255, 255, 255, 0.25555555) , 125px 722px rgba(255, 255, 255, 0.25555555) , 1735px 174px rgba(255, 255, 255, 0.25555555) , 1541px 1590px rgba(255, 255, 255, 0.25555555) , 1883px 498px rgba(255, 255, 255, 0.25555555) , 733px 1195px rgba(255, 255, 255, 0.25555555) , 1178px 1793px rgba(255, 255, 255, 0.25555555) , 254px 719px rgba(255, 255, 255, 0.25555555) , 1790px 545px rgba(255, 255, 255, 0.25555555) , 799px 454px rgba(255, 255, 255, 0.25555555) , 1076px 1737px rgba(255, 255, 255, 0.25555555) , 360px 95px rgba(255, 255, 255, 0.25555555) , 516px 1367px rgba(255, 255, 255, 0.25555555) , 1016px 493px rgba(255, 255, 255, 0.25555555) , 1340px 15px rgba(255, 255, 255, 0.25555555) , 1843px 355px rgba(255, 255, 255, 0.25555555) , 416px 1857px rgba(255, 255, 255, 0.25555555) , 1745px 1967px rgba(255, 255, 255, 0.25555555) , 1768px 1266px rgba(255, 255, 255, 0.25555555) , 778px 1437px rgba(255, 255, 255, 0.25555555) , 1892px 1480px rgba(255, 255, 255, 0.25555555) , 1861px 1700px rgba(255, 255, 255, 0.25555555) , 1973px 832px rgba(255, 255, 255, 0.25555555) , 132px 1773px rgba(255, 255, 255, 0.25555555) , 1928px 1974px rgba(255, 255, 255, 0.25555555) , 470px 1852px rgba(255, 255, 255, 0.25555555) , 1855px 463px rgba(255, 255, 255, 0.25555555) , 892px 1018px rgba(255, 255, 255, 0.25555555) , 374px 1670px rgba(255, 255, 255, 0.25555555) , 140px 391px rgba(255, 255, 255, 0.25555555) , 1868px 1945px rgba(255, 255, 255, 0.25555555) , 505px 1988px rgba(255, 255, 255, 0.25555555) , 1798px 1514px rgba(255, 255, 255, 0.25555555) , 134px 873px rgba(255, 255, 255, 0.25555555) , 1319px 1278px rgba(255, 255, 255, 0.25555555) , 1796px 1403px rgba(255, 255, 255, 0.25555555) , 1400px 503px rgba(255, 255, 255, 0.25555555) , 480px 1004px rgba(255, 255, 255, 0.25555555) , 53px 434px rgba(255, 255, 255, 0.25555555) , 1075px 507px rgba(255, 255, 255, 0.25555555) , 1376px 13px rgba(255, 255, 255, 0.25555555) , 150px 623px rgba(255, 255, 255, 0.25555555) , 563px 1355px rgba(255, 255, 255, 0.25555555) , 1464px 858px rgba(255, 255, 255, 0.25555555) , 1123px 967px rgba(255, 255, 255, 0.25555555) , 1273px 1412px rgba(255, 255, 255, 0.25555555) , 1378px 1689px rgba(255, 255, 255, 0.25555555) , 1390px 1248px rgba(255, 255, 255, 0.25555555) , 273px 191px rgba(255, 255, 255, 0.25555555) , 471px 46px rgba(255, 255, 255, 0.25555555) , 1520px 780px rgba(255, 255, 255, 0.25555555) , 830px 530px rgba(255, 255, 255, 0.25555555) , 1369px 1915px rgba(255, 255, 255, 0.25555555) , 434px 1541px rgba(255, 255, 255, 0.25555555) , 1658px 753px rgba(255, 255, 255, 0.25555555) , 1955px 1908px rgba(255, 255, 255, 0.25555555) , 409px 1106px rgba(255, 255, 255, 0.25555555) , 1609px 597px rgba(255, 255, 255, 0.25555555) , 637px 1671px rgba(255, 255, 255, 0.25555555) , 1957px 475px rgba(255, 255, 255, 0.25555555) , 1595px 1496px rgba(255, 255, 255, 0.25555555) , 1979px 1958px rgba(255, 255, 255, 0.25555555) , 1364px 1658px rgba(255, 255, 255, 0.25555555) , 929px 425px rgba(255, 255, 255, 0.25555555) , 1197px 967px rgba(255, 255, 255, 0.25555555) , 82px 1164px rgba(255, 255, 255, 0.25555555) , 310px 176px rgba(255, 255, 255, 0.25555555) , 1242px 1822px rgba(255, 255, 255, 0.25555555) , 1081px 484px rgba(255, 255, 255, 0.25555555) , 1436px 1211px rgba(255, 255, 255, 0.25555555) , 992px 1826px rgba(255, 255, 255, 0.25555555) , 1801px 714px rgba(255, 255, 255, 0.25555555) , 1034px 16px rgba(255, 255, 255, 0.25555555) , 1241px 145px rgba(255, 255, 255, 0.25555555) , 1815px 811px rgba(255, 255, 255, 0.25555555) , 517px 111px rgba(255, 255, 255, 0.25555555) , 512px 1871px rgba(255, 255, 255, 0.25555555) , 185px 1024px rgba(255, 255, 255, 0.25555555) , 869px 1606px rgba(255, 255, 255, 0.25555555) , 904px 1418px rgba(255, 255, 255, 0.25555555) , 271px 807px rgba(255, 255, 255, 0.25555555) , 1627px 1971px rgba(255, 255, 255, 0.25555555) , 1048px 200px rgba(255, 255, 255, 0.25555555) , 1543px 152px rgba(255, 255, 255, 0.25555555) , 1559px 924px rgba(255, 255, 255, 0.25555555) , 1205px 1281px rgba(255, 255, 255, 0.25555555) , 1073px 697px rgba(255, 255, 255, 0.25555555) , 1614px 426px rgba(255, 255, 255, 0.25555555) , 1064px 1329px rgba(255, 255, 255, 0.25555555) , 1963px 1252px rgba(255, 255, 255, 0.25555555) , 444px 992px rgba(255, 255, 255, 0.25555555) , 553px 1688px rgba(255, 255, 255, 0.25555555) , 298px 578px rgba(255, 255, 255, 0.25555555) , 772px 636px rgba(255, 255, 255, 0.25555555) , 1755px 1446px rgba(255, 255, 255, 0.25555555) , 1503px 450px rgba(255, 255, 255, 0.25555555) , 504px 135px rgba(255, 255, 255, 0.25555555) , 1714px 314px rgba(255, 255, 255, 0.25555555) , 447px 1165px rgba(255, 255, 255, 0.25555555) , 1903px 1258px rgba(255, 255, 255, 0.25555555) , 1916px 434px rgba(255, 255, 255, 0.25555555) , 1468px 1851px rgba(255, 255, 255, 0.25555555) , 631px 244px rgba(255, 255, 255, 0.25555555) , 201px 1060px rgba(255, 255, 255, 0.25555555) , 88px 340px rgba(255, 255, 255, 0.25555555) , 342px 1039px rgba(255, 255, 255, 0.25555555) , 699px 488px rgba(255, 255, 255, 0.25555555) , 1284px 1794px rgba(255, 255, 255, 0.25555555) , 1458px 759px rgba(255, 255, 255, 0.25555555) , 1335px 1629px rgba(255, 255, 255, 0.25555555) , 1367px 1363px rgba(255, 255, 255, 0.25555555) , 185px 235px rgba(255, 255, 255, 0.25555555) , 76px 1315px rgba(255, 255, 255, 0.25555555) , 1528px 198px rgba(255, 255, 255, 0.25555555) , 471px 1165px rgba(255, 255, 255, 0.25555555) , 1160px 1077px rgba(255, 255, 255, 0.25555555) , 79px 473px rgba(255, 255, 255, 0.25555555) , 114px 654px rgba(255, 255, 255, 0.25555555) , 1400px 722px rgba(255, 255, 255, 0.25555555) , 829px 1532px rgba(255, 255, 255, 0.25555555) , 448px 941px rgba(255, 255, 255, 0.25555555) , 627px 1987px rgba(255, 255, 255, 0.25555555) , 820px 919px rgba(255, 255, 255, 0.25555555) , 1506px 217px rgba(255, 255, 255, 0.25555555) , 1946px 1562px rgba(255, 255, 255, 0.25555555) , 142px 1489px rgba(255, 255, 255, 0.25555555) , 793px 602px rgba(255, 255, 255, 0.25555555) , 441px 91px rgba(255, 255, 255, 0.25555555) , 259px 453px rgba(255, 255, 255, 0.25555555) , 1538px 1732px rgba(255, 255, 255, 0.25555555) , 1498px 1501px rgba(255, 255, 255, 0.25555555) , 656px 805px rgba(255, 255, 255, 0.25555555) , 1808px 1178px rgba(255, 255, 255, 0.25555555) , 1954px 890px rgba(255, 255, 255, 0.25555555) , 656px 1605px rgba(255, 255, 255, 0.25555555) , 1177px 350px rgba(255, 255, 255, 0.25555555) , 666px 992px rgba(255, 255, 255, 0.25555555) , 1486px 305px rgba(255, 255, 255, 0.25555555) , 661px 1647px rgba(255, 255, 255, 0.25555555) , 1209px 1168px rgba(255, 255, 255, 0.25555555) , 1499px 1450px rgba(255, 255, 255, 0.25555555) , 554px 98px rgba(255, 255, 255, 0.25555555) , 744px 1047px rgba(255, 255, 255, 0.25555555) , 2px 524px rgba(255, 255, 255, 0.25555555) , 383px 1086px rgba(255, 255, 255, 0.25555555) , 1822px 244px rgba(255, 255, 255, 0.25555555) , 1704px 1714px rgba(255, 255, 255, 0.25555555) , 797px 1527px rgba(255, 255, 255, 0.25555555) , 1916px 1610px rgba(255, 255, 255, 0.25555555) , 1865px 860px rgba(255, 255, 255, 0.25555555) , 1567px 1823px rgba(255, 255, 255, 0.25555555) , 1340px 273px rgba(255, 255, 255, 0.25555555) , 1133px 168px rgba(255, 255, 255, 0.25555555) , 557px 1978px rgba(255, 255, 255, 0.25555555) , 1419px 1724px rgba(255, 255, 255, 0.25555555) , 668px 538px rgba(255, 255, 255, 0.25555555) , 1411px 1026px rgba(255, 255, 255, 0.25555555) , 1194px 1431px rgba(255, 255, 255, 0.25555555) , 267px 1899px rgba(255, 255, 255, 0.25555555) , 556px 950px rgba(255, 255, 255, 0.25555555) , 1847px 1514px rgba(255, 255, 255, 0.25555555) , 255px 131px rgba(255, 255, 255, 0.25555555) , 442px 441px rgba(255, 255, 255, 0.25555555) , 1089px 1011px rgba(255, 255, 255, 0.25555555) , 1931px 1781px rgba(255, 255, 255, 0.25555555) , 187px 119px rgba(255, 255, 255, 0.25555555) , 1317px 1797px rgba(255, 255, 255, 0.25555555) , 15px 971px rgba(255, 255, 255, 0.25555555) , 1542px 618px rgba(255, 255, 255, 0.25555555) , 594px 1216px rgba(255, 255, 255, 0.25555555) , 523px 1980px rgba(255, 255, 255, 0.25555555) , 682px 1977px rgba(255, 255, 255, 0.25555555) , 1840px 1934px rgba(255, 255, 255, 0.25555555) , 73px 1975px rgba(255, 255, 255, 0.25555555) , 192px 37px rgba(255, 255, 255, 0.25555555) , 1796px 1491px rgba(255, 255, 255, 0.25555555) , 237px 418px rgba(255, 255, 255, 0.25555555) , 635px 1936px rgba(255, 255, 255, 0.25555555) , 735px 421px rgba(255, 255, 255, 0.25555555) , 1785px 1564px rgba(255, 255, 255, 0.25555555) , 85px 1401px rgba(255, 255, 255, 0.25555555) , 288px 1436px rgba(255, 255, 255, 0.25555555) , 972px 1682px rgba(255, 255, 255, 0.25555555) , 986px 206px rgba(255, 255, 255, 0.25555555) , 730px 1225px rgba(255, 255, 255, 0.25555555) , 569px 557px rgba(255, 255, 255, 0.25555555) , 1805px 1898px rgba(255, 255, 255, 0.25555555) , 488px 1963px rgba(255, 255, 255, 0.25555555) , 877px 997px rgba(255, 255, 255, 0.25555555) , 545px 1029px rgba(255, 255, 255, 0.25555555) , 1725px 1017px rgba(255, 255, 255, 0.25555555) , 1320px 1855px rgba(255, 255, 255, 0.25555555) , 1220px 409px rgba(255, 255, 255, 0.25555555) , 1911px 453px rgba(255, 255, 255, 0.25555555) , 784px 636px rgba(255, 255, 255, 0.25555555) , 570px 862px rgba(255, 255, 255, 0.25555555) , 1009px 7px rgba(255, 255, 255, 0.25555555) , 432px 1640px rgba(255, 255, 255, 0.25555555) , 1941px 1197px rgba(255, 255, 255, 0.25555555) , 422px 994px rgba(255, 255, 255, 0.25555555) , 465px 1879px rgba(255, 255, 255, 0.25555555) , 918px 200px rgba(255, 255, 255, 0.25555555) , 1978px 1313px rgba(255, 255, 255, 0.25555555) , 520px 954px rgba(255, 255, 255, 0.25555555) , 1270px 1594px rgba(255, 255, 255, 0.25555555) , 1087px 578px rgba(255, 255, 255, 0.25555555) , 1597px 58px rgba(255, 255, 255, 0.25555555) , 1782px 550px rgba(255, 255, 255, 0.25555555) , 274px 204px rgba(255, 255, 255, 0.25555555) , 1743px 1662px rgba(255, 255, 255, 0.25555555) , 441px 1338px rgba(255, 255, 255, 0.25555555) , 545px 1844px rgba(255, 255, 255, 0.25555555) , 1702px 894px rgba(255, 255, 255, 0.25555555) , 1760px 1426px rgba(255, 255, 255, 0.25555555) , 795px 1068px rgba(255, 255, 255, 0.25555555) , 1076px 373px rgba(255, 255, 255, 0.25555555) , 1666px 1594px rgba(255, 255, 255, 0.25555555) , 1490px 1257px rgba(255, 255, 255, 0.25555555) , 7px 1967px rgba(255, 255, 255, 0.25555555) , 357px 1354px rgba(255, 255, 255, 0.25555555) , 1740px 1071px rgba(255, 255, 255, 0.25555555) , 1876px 1981px rgba(255, 255, 255, 0.25555555) , 421px 1758px rgba(255, 255, 255, 0.25555555) , 750px 1071px rgba(255, 255, 255, 0.25555555) , 963px 266px rgba(255, 255, 255, 0.25555555) , 918px 1422px rgba(255, 255, 255, 0.25555555) , 811px 463px rgba(255, 255, 255, 0.25555555) , 1084px 1186px rgba(255, 255, 255, 0.25555555) , 950px 1852px rgba(255, 255, 255, 0.25555555) , 709px 916px rgba(255, 255, 255, 0.25555555) , 37px 1612px rgba(255, 255, 255, 0.25555555) , 777px 747px rgba(255, 255, 255, 0.25555555) , 749px 1663px rgba(255, 255, 255, 0.25555555) , 1036px 600px rgba(255, 255, 255, 0.25555555) , 1951px 1697px rgba(255, 255, 255, 0.25555555) , 1208px 1139px rgba(255, 255, 255, 0.25555555) , 549px 400px rgba(255, 255, 255, 0.25555555) , 1144px 584px rgba(255, 255, 255, 0.25555555) , 1466px 1315px rgba(255, 255, 255, 0.25555555) , 131px 826px rgba(255, 255, 255, 0.25555555) , 172px 1097px rgba(255, 255, 255, 0.25555555) , 253px 97px rgba(255, 255, 255, 0.25555555) , 197px 422px rgba(255, 255, 255, 0.25555555) , 792px 25px rgba(255, 255, 255, 0.25555555) , 957px 1632px rgba(255, 255, 255, 0.25555555) , 1209px 889px rgba(255, 255, 255, 0.25555555) , 826px 638px rgba(255, 255, 255, 0.25555555) , 1464px 1137px rgba(255, 255, 255, 0.25555555) , 1189px 2px rgba(255, 255, 255, 0.25555555) , 1737px 1514px rgba(255, 255, 255, 0.25555555) , 142px 954px rgba(255, 255, 255, 0.25555555) , 1831px 544px rgba(255, 255, 255, 0.25555555) , 1008px 779px rgba(255, 255, 255, 0.25555555) , 1889px 257px rgba(255, 255, 255, 0.25555555) , 1006px 1085px rgba(255, 255, 255, 0.25555555) , 428px 1043px rgba(255, 255, 255, 0.25555555) , 1915px 1585px rgba(255, 255, 255, 0.25555555) , 232px 1935px rgba(255, 255, 255, 0.25555555) , 767px 706px rgba(255, 255, 255, 0.25555555) , 431px 334px rgba(255, 255, 255, 0.25555555) , 897px 15px rgba(255, 255, 255, 0.25555555) , 705px 146px rgba(255, 255, 255, 0.25555555);
-  }
-  
-  #stars2 {
-    width: 2px;
-    height: 2px;
-    background: transparent;
-    box-shadow: 743px 879px rgba(255, 255, 255, 0.25555555) , 1145px 1260px rgba(255, 255, 255, 0.25555555) , 1412px 672px rgba(255, 255, 255, 0.25555555) , 507px 1211px rgba(255, 255, 255, 0.25555555) , 52px 89px rgba(255, 255, 255, 0.25555555) , 1045px 256px rgba(255, 255, 255, 0.25555555) , 1022px 859px rgba(255, 255, 255, 0.25555555) , 1520px 413px rgba(255, 255, 255, 0.25555555) , 1575px 604px rgba(255, 255, 255, 0.25555555) , 992px 877px rgba(255, 255, 255, 0.25555555) , 914px 960px rgba(255, 255, 255, 0.25555555) , 139px 685px rgba(255, 255, 255, 0.25555555) , 720px 707px rgba(255, 255, 255, 0.25555555) , 1235px 945px rgba(255, 255, 255, 0.25555555) , 1256px 1153px rgba(255, 255, 255, 0.25555555) , 1223px 641px rgba(255, 255, 255, 0.25555555) , 1810px 466px rgba(255, 255, 255, 0.25555555) , 1011px 1248px rgba(255, 255, 255, 0.25555555) , 799px 1160px rgba(255, 255, 255, 0.25555555) , 770px 1135px rgba(255, 255, 255, 0.25555555) , 1000px 1841px rgba(255, 255, 255, 0.25555555) , 1733px 385px rgba(255, 255, 255, 0.25555555) , 1142px 610px rgba(255, 255, 255, 0.25555555) , 1047px 487px rgba(255, 255, 255, 0.25555555) , 1268px 1604px rgba(255, 255, 255, 0.25555555) , 1877px 835px rgba(255, 255, 255, 0.25555555) , 1003px 698px rgba(255, 255, 255, 0.25555555) , 525px 714px rgba(255, 255, 255, 0.25555555) , 703px 960px rgba(255, 255, 255, 0.25555555) , 267px 1336px rgba(255, 255, 255, 0.25555555) , 1343px 133px rgba(255, 255, 255, 0.25555555) , 230px 731px rgba(255, 255, 255, 0.25555555) , 1613px 1782px rgba(255, 255, 255, 0.25555555) , 758px 1457px rgba(255, 255, 255, 0.25555555) , 1877px 1912px rgba(255, 255, 255, 0.25555555) , 1155px 1320px rgba(255, 255, 255, 0.25555555) , 719px 932px rgba(255, 255, 255, 0.25555555) , 746px 69px rgba(255, 255, 255, 0.25555555) , 1148px 186px rgba(255, 255, 255, 0.25555555) , 1642px 1323px rgba(255, 255, 255, 0.25555555) , 728px 1138px rgba(255, 255, 255, 0.25555555) , 815px 461px rgba(255, 255, 255, 0.25555555) , 1281px 137px rgba(255, 255, 255, 0.25555555) , 132px 1620px rgba(255, 255, 255, 0.25555555) , 685px 500px rgba(255, 255, 255, 0.25555555) , 1067px 1439px rgba(255, 255, 255, 0.25555555) , 101px 1941px rgba(255, 255, 255, 0.25555555) , 218px 857px rgba(255, 255, 255, 0.25555555) , 181px 1464px rgba(255, 255, 255, 0.25555555) , 1403px 769px rgba(255, 255, 255, 0.25555555) , 744px 815px rgba(255, 255, 255, 0.25555555) , 1052px 553px rgba(255, 255, 255, 0.25555555) , 1447px 1035px rgba(255, 255, 255, 0.25555555) , 814px 1090px rgba(255, 255, 255, 0.25555555) , 1127px 1883px rgba(255, 255, 255, 0.25555555) , 689px 83px rgba(255, 255, 255, 0.25555555) , 1067px 1753px rgba(255, 255, 255, 0.25555555) , 1948px 34px rgba(255, 255, 255, 0.25555555) , 676px 1749px rgba(255, 255, 255, 0.25555555) , 830px 1875px rgba(255, 255, 255, 0.25555555) , 836px 512px rgba(255, 255, 255, 0.25555555) , 1847px 800px rgba(255, 255, 255, 0.25555555) , 920px 1950px rgba(255, 255, 255, 0.25555555) , 368px 71px rgba(255, 255, 255, 0.25555555) , 1773px 818px rgba(255, 255, 255, 0.25555555) , 215px 1460px rgba(255, 255, 255, 0.25555555) , 1246px 1249px rgba(255, 255, 255, 0.25555555) , 1078px 470px rgba(255, 255, 255, 0.25555555) , 401px 437px rgba(255, 255, 255, 0.25555555) , 1711px 1570px rgba(255, 255, 255, 0.25555555) , 1345px 506px rgba(255, 255, 255, 0.25555555) , 397px 571px rgba(255, 255, 255, 0.25555555) , 1610px 1971px rgba(255, 255, 255, 0.25555555) , 1134px 1569px rgba(255, 255, 255, 0.25555555) , 163px 322px rgba(255, 255, 255, 0.25555555) , 1837px 371px rgba(255, 255, 255, 0.25555555) , 485px 424px rgba(255, 255, 255, 0.25555555) , 488px 1287px rgba(255, 255, 255, 0.25555555) , 747px 354px rgba(255, 255, 255, 0.25555555) , 944px 939px rgba(255, 255, 255, 0.25555555) , 505px 100px rgba(255, 255, 255, 0.25555555) , 470px 1438px rgba(255, 255, 255, 0.25555555) , 1222px 1874px rgba(255, 255, 255, 0.25555555) , 559px 316px rgba(255, 255, 255, 0.25555555) , 1188px 1154px rgba(255, 255, 255, 0.25555555) , 136px 11px rgba(255, 255, 255, 0.25555555) , 1213px 1280px rgba(255, 255, 255, 0.25555555) , 335px 422px rgba(255, 255, 255, 0.25555555) , 1849px 388px rgba(255, 255, 255, 0.25555555) , 181px 1449px rgba(255, 255, 255, 0.25555555) , 1945px 1622px rgba(255, 255, 255, 0.25555555) , 1609px 1373px rgba(255, 255, 255, 0.25555555) , 901px 922px rgba(255, 255, 255, 0.25555555) , 1413px 520px rgba(255, 255, 255, 0.25555555) , 1526px 1563px rgba(255, 255, 255, 0.25555555) , 1318px 1232px rgba(255, 255, 255, 0.25555555) , 1623px 518px rgba(255, 255, 255, 0.25555555) , 664px 76px rgba(255, 255, 255, 0.25555555) , 1692px 1963px rgba(255, 255, 255, 0.25555555) , 1752px 1104px rgba(255, 255, 255, 0.25555555) , 1291px 1249px rgba(255, 255, 255, 0.25555555) , 369px 1823px rgba(255, 255, 255, 0.25555555) , 552px 1779px rgba(255, 255, 255, 0.25555555) , 1007px 634px rgba(255, 255, 255, 0.25555555) , 391px 1101px rgba(255, 255, 255, 0.25555555) , 1480px 1260px rgba(255, 255, 255, 0.25555555) , 1375px 251px rgba(255, 255, 255, 0.25555555) , 594px 1939px rgba(255, 255, 255, 0.25555555) , 1832px 333px rgba(255, 255, 255, 0.25555555) , 1233px 1790px rgba(255, 255, 255, 0.25555555) , 1802px 648px rgba(255, 255, 255, 0.25555555) , 1934px 798px rgba(255, 255, 255, 0.25555555) , 1781px 1814px rgba(255, 255, 255, 0.25555555) , 1849px 1544px rgba(255, 255, 255, 0.25555555) , 568px 771px rgba(255, 255, 255, 0.25555555) , 527px 169px rgba(255, 255, 255, 0.25555555) , 1094px 62px rgba(255, 255, 255, 0.25555555) , 713px 1750px rgba(255, 255, 255, 0.25555555) , 290px 563px rgba(255, 255, 255, 0.25555555) , 1704px 935px rgba(255, 255, 255, 0.25555555) , 1207px 1612px rgba(255, 255, 255, 0.25555555) , 202px 1971px rgba(255, 255, 255, 0.25555555) , 1451px 355px rgba(255, 255, 255, 0.25555555) , 1749px 571px rgba(255, 255, 255, 0.25555555) , 1292px 1565px rgba(255, 255, 255, 0.25555555) , 1827px 1082px rgba(255, 255, 255, 0.25555555) , 22px 984px rgba(255, 255, 255, 0.25555555) , 1315px 1760px rgba(255, 255, 255, 0.25555555) , 1699px 1391px rgba(255, 255, 255, 0.25555555) , 1793px 1715px rgba(255, 255, 255, 0.25555555) , 1501px 49px rgba(255, 255, 255, 0.25555555) , 1480px 1502px rgba(255, 255, 255, 0.25555555) , 1455px 1964px rgba(255, 255, 255, 0.25555555) , 1787px 1539px rgba(255, 255, 255, 0.25555555) , 462px 883px rgba(255, 255, 255, 0.25555555) , 84px 1082px rgba(255, 255, 255, 0.25555555) , 1589px 1414px rgba(255, 255, 255, 0.25555555) , 121px 1323px rgba(255, 255, 255, 0.25555555) , 788px 494px rgba(255, 255, 255, 0.25555555) , 109px 109px rgba(255, 255, 255, 0.25555555) , 951px 1299px rgba(255, 255, 255, 0.25555555) , 872px 1535px rgba(255, 255, 255, 0.25555555) , 1171px 806px rgba(255, 255, 255, 0.25555555) , 671px 598px rgba(255, 255, 255, 0.25555555) , 1767px 1069px rgba(255, 255, 255, 0.25555555) , 192px 1881px rgba(255, 255, 255, 0.25555555) , 1263px 171px rgba(255, 255, 255, 0.25555555) , 1532px 224px rgba(255, 255, 255, 0.25555555) , 664px 1191px rgba(255, 255, 255, 0.25555555) , 145px 686px rgba(255, 255, 255, 0.25555555) , 638px 1744px rgba(255, 255, 255, 0.25555555) , 1099px 332px rgba(255, 255, 255, 0.25555555) , 1119px 802px rgba(255, 255, 255, 0.25555555) , 530px 1776px rgba(255, 255, 255, 0.25555555) , 765px 1011px rgba(255, 255, 255, 0.25555555) , 1528px 1117px rgba(255, 255, 255, 0.25555555) , 1375px 1170px rgba(255, 255, 255, 0.25555555) , 1454px 470px rgba(255, 255, 255, 0.25555555) , 299px 558px rgba(255, 255, 255, 0.25555555) , 960px 655px rgba(255, 255, 255, 0.25555555) , 1816px 1220px rgba(255, 255, 255, 0.25555555) , 1165px 1486px rgba(255, 255, 255, 0.25555555) , 260px 731px rgba(255, 255, 255, 0.25555555) , 548px 80px rgba(255, 255, 255, 0.25555555) , 1003px 1239px rgba(255, 255, 255, 0.25555555) , 1058px 230px rgba(255, 255, 255, 0.25555555) , 505px 1085px rgba(255, 255, 255, 0.25555555) , 140px 1772px rgba(255, 255, 255, 0.25555555) , 1439px 326px rgba(255, 255, 255, 0.25555555) , 1456px 778px rgba(255, 255, 255, 0.25555555) , 915px 1545px rgba(255, 255, 255, 0.25555555) , 430px 1368px rgba(255, 255, 255, 0.25555555) , 849px 587px rgba(255, 255, 255, 0.25555555) , 1231px 869px rgba(255, 255, 255, 0.25555555) , 1662px 928px rgba(255, 255, 255, 0.25555555) , 1903px 38px rgba(255, 255, 255, 0.25555555) , 1052px 1977px rgba(255, 255, 255, 0.25555555) , 1935px 1481px rgba(255, 255, 255, 0.25555555) , 538px 1271px rgba(255, 255, 255, 0.25555555) , 1511px 1304px rgba(255, 255, 255, 0.25555555) , 1617px 1015px rgba(255, 255, 255, 0.25555555) , 489px 1088px rgba(255, 255, 255, 0.25555555) , 996px 1039px rgba(255, 255, 255, 0.25555555) , 201px 1878px rgba(255, 255, 255, 0.25555555) , 466px 1689px rgba(255, 255, 255, 0.25555555) , 1363px 862px rgba(255, 255, 255, 0.25555555) , 1374px 1714px rgba(255, 255, 255, 0.25555555) , 549px 787px rgba(255, 255, 255, 0.25555555) , 1669px 1043px rgba(255, 255, 255, 0.25555555) , 697px 1874px rgba(255, 255, 255, 0.25555555) , 1915px 1724px rgba(255, 255, 255, 0.25555555) , 1488px 1629px rgba(255, 255, 255, 0.25555555) , 1545px 1875px rgba(255, 255, 255, 0.25555555) , 978px 1201px rgba(255, 255, 255, 0.25555555) , 1126px 1916px rgba(255, 255, 255, 0.25555555) , 412px 592px rgba(255, 255, 255, 0.25555555) , 852px 732px rgba(255, 255, 255, 0.25555555) , 1060px 444px rgba(255, 255, 255, 0.25555555) , 323px 1676px rgba(255, 255, 255, 0.25555555) , 1593px 1616px rgba(255, 255, 255, 0.25555555);
+}
+#stars:after {
+    content: " "; position: absolute; top: 2000px;
+    width: 1px; height: 1px; background: transparent;
+    box-shadow: 1602px 661px rgba(255,255,255,0.25) , 1779px 795px rgba(255,255,255,0.25) , 1154px 812px rgba(255,255,255,0.25) , 1328px 800px rgba(255,255,255,0.25) , 1262px 1251px rgba(255,255,255,0.25) , 1976px 432px rgba(255,255,255,0.25) , 1650px 1853px rgba(255,255,255,0.25) , 1001px 468px rgba(255,255,255,0.25) , 609px 405px rgba(255,255,255,0.25) , 1842px 1576px rgba(255,255,255,0.25) , 742px 1365px rgba(255,255,255,0.25) , 321px 1286px rgba(255,255,255,0.25) , 462px 926px rgba(255,255,255,0.25) , 481px 458px rgba(255,255,255,0.25) , 484px 1952px rgba(255,255,255,0.25) , 380px 1267px rgba(255,255,255,0.25) , 1122px 820px rgba(255,255,255,0.25) , 1626px 1217px rgba(255,255,255,0.25) , 1953px 1255px rgba(255,255,255,0.25) , 1728px 140px rgba(255,255,255,0.25);
+}
+
+#stars2 {
+    width: 2px; height: 2px; background: transparent;
+    box-shadow: 743px 879px rgba(255,255,255,0.25) , 1145px 1260px rgba(255,255,255,0.25) , 1412px 672px rgba(255,255,255,0.25) , 507px 1211px rgba(255,255,255,0.25) , 52px 89px rgba(255,255,255,0.25) , 1045px 256px rgba(255,255,255,0.25) , 1022px 859px rgba(255,255,255,0.25) , 1520px 413px rgba(255,255,255,0.25) , 1575px 604px rgba(255,255,255,0.25) , 992px 877px rgba(255,255,255,0.25) , 914px 960px rgba(255,255,255,0.25) , 139px 685px rgba(255,255,255,0.25) , 720px 707px rgba(255,255,255,0.25) , 1235px 945px rgba(255,255,255,0.25) , 1256px 1153px rgba(255,255,255,0.25) , 1223px 641px rgba(255,255,255,0.25) , 1810px 466px rgba(255,255,255,0.25) , 1011px 1248px rgba(255,255,255,0.25) , 799px 1160px rgba(255,255,255,0.25) , 770px 1135px rgba(255,255,255,0.25);
     animation: animStar 100s linear infinite;
-  }
-  #stars2:after {
-    content: " ";
-    position: absolute;
-    top: 2000px;
-    width: 2px;
-    height: 2px;
-    background: transparent;
-    box-shadow: 743px 879px rgba(255, 255, 255, 0.25555555) , 1145px 1260px rgba(255, 255, 255, 0.25555555) , 1412px 672px rgba(255, 255, 255, 0.25555555) , 507px 1211px rgba(255, 255, 255, 0.25555555) , 52px 89px rgba(255, 255, 255, 0.25555555) , 1045px 256px rgba(255, 255, 255, 0.25555555) , 1022px 859px rgba(255, 255, 255, 0.25555555) , 1520px 413px rgba(255, 255, 255, 0.25555555) , 1575px 604px rgba(255, 255, 255, 0.25555555) , 992px 877px rgba(255, 255, 255, 0.25555555) , 914px 960px rgba(255, 255, 255, 0.25555555) , 139px 685px rgba(255, 255, 255, 0.25555555) , 720px 707px rgba(255, 255, 255, 0.25555555) , 1235px 945px rgba(255, 255, 255, 0.25555555) , 1256px 1153px rgba(255, 255, 255, 0.25555555) , 1223px 641px rgba(255, 255, 255, 0.25555555) , 1810px 466px rgba(255, 255, 255, 0.25555555) , 1011px 1248px rgba(255, 255, 255, 0.25555555) , 799px 1160px rgba(255, 255, 255, 0.25555555) , 770px 1135px rgba(255, 255, 255, 0.25555555) , 1000px 1841px rgba(255, 255, 255, 0.25555555) , 1733px 385px rgba(255, 255, 255, 0.25555555) , 1142px 610px rgba(255, 255, 255, 0.25555555) , 1047px 487px rgba(255, 255, 255, 0.25555555) , 1268px 1604px rgba(255, 255, 255, 0.25555555) , 1877px 835px rgba(255, 255, 255, 0.25555555) , 1003px 698px rgba(255, 255, 255, 0.25555555) , 525px 714px rgba(255, 255, 255, 0.25555555) , 703px 960px rgba(255, 255, 255, 0.25555555) , 267px 1336px rgba(255, 255, 255, 0.25555555) , 1343px 133px rgba(255, 255, 255, 0.25555555) , 230px 731px rgba(255, 255, 255, 0.25555555) , 1613px 1782px rgba(255, 255, 255, 0.25555555) , 758px 1457px rgba(255, 255, 255, 0.25555555) , 1877px 1912px rgba(255, 255, 255, 0.25555555) , 1155px 1320px rgba(255, 255, 255, 0.25555555) , 719px 932px rgba(255, 255, 255, 0.25555555) , 746px 69px rgba(255, 255, 255, 0.25555555) , 1148px 186px rgba(255, 255, 255, 0.25555555) , 1642px 1323px rgba(255, 255, 255, 0.25555555) , 728px 1138px rgba(255, 255, 255, 0.25555555) , 815px 461px rgba(255, 255, 255, 0.25555555) , 1281px 137px rgba(255, 255, 255, 0.25555555) , 132px 1620px rgba(255, 255, 255, 0.25555555) , 685px 500px rgba(255, 255, 255, 0.25555555) , 1067px 1439px rgba(255, 255, 255, 0.25555555) , 101px 1941px rgba(255, 255, 255, 0.25555555) , 218px 857px rgba(255, 255, 255, 0.25555555) , 181px 1464px rgba(255, 255, 255, 0.25555555) , 1403px 769px rgba(255, 255, 255, 0.25555555) , 744px 815px rgba(255, 255, 255, 0.25555555) , 1052px 553px rgba(255, 255, 255, 0.25555555) , 1447px 1035px rgba(255, 255, 255, 0.25555555) , 814px 1090px rgba(255, 255, 255, 0.25555555) , 1127px 1883px rgba(255, 255, 255, 0.25555555) , 689px 83px rgba(255, 255, 255, 0.25555555) , 1067px 1753px rgba(255, 255, 255, 0.25555555) , 1948px 34px rgba(255, 255, 255, 0.25555555) , 676px 1749px rgba(255, 255, 255, 0.25555555) , 830px 1875px rgba(255, 255, 255, 0.25555555) , 836px 512px rgba(255, 255, 255, 0.25555555) , 1847px 800px rgba(255, 255, 255, 0.25555555) , 920px 1950px rgba(255, 255, 255, 0.25555555) , 368px 71px rgba(255, 255, 255, 0.25555555) , 1773px 818px rgba(255, 255, 255, 0.25555555) , 215px 1460px rgba(255, 255, 255, 0.25555555) , 1246px 1249px rgba(255, 255, 255, 0.25555555) , 1078px 470px rgba(255, 255, 255, 0.25555555) , 401px 437px rgba(255, 255, 255, 0.25555555) , 1711px 1570px rgba(255, 255, 255, 0.25555555) , 1345px 506px rgba(255, 255, 255, 0.25555555) , 397px 571px rgba(255, 255, 255, 0.25555555) , 1610px 1971px rgba(255, 255, 255, 0.25555555) , 1134px 1569px rgba(255, 255, 255, 0.25555555) , 163px 322px rgba(255, 255, 255, 0.25555555) , 1837px 371px rgba(255, 255, 255, 0.25555555) , 485px 424px rgba(255, 255, 255, 0.25555555) , 488px 1287px rgba(255, 255, 255, 0.25555555) , 747px 354px rgba(255, 255, 255, 0.25555555) , 944px 939px rgba(255, 255, 255, 0.25555555) , 505px 100px rgba(255, 255, 255, 0.25555555) , 470px 1438px rgba(255, 255, 255, 0.25555555) , 1222px 1874px rgba(255, 255, 255, 0.25555555) , 559px 316px rgba(255, 255, 255, 0.25555555) , 1188px 1154px rgba(255, 255, 255, 0.25555555) , 136px 11px rgba(255, 255, 255, 0.25555555) , 1213px 1280px rgba(255, 255, 255, 0.25555555) , 335px 422px rgba(255, 255, 255, 0.25555555) , 1849px 388px rgba(255, 255, 255, 0.25555555) , 181px 1449px rgba(255, 255, 255, 0.25555555) , 1945px 1622px rgba(255, 255, 255, 0.25555555) , 1609px 1373px rgba(255, 255, 255, 0.25555555) , 901px 922px rgba(255, 255, 255, 0.25555555) , 1413px 520px rgba(255, 255, 255, 0.25555555) , 1526px 1563px rgba(255, 255, 255, 0.25555555) , 1318px 1232px rgba(255, 255, 255, 0.25555555) , 1623px 518px rgba(255, 255, 255, 0.25555555) , 664px 76px rgba(255, 255, 255, 0.25555555) , 1692px 1963px rgba(255, 255, 255, 0.25555555) , 1752px 1104px rgba(255, 255, 255, 0.25555555) , 1291px 1249px rgba(255, 255, 255, 0.25555555) , 369px 1823px rgba(255, 255, 255, 0.25555555) , 552px 1779px rgba(255, 255, 255, 0.25555555) , 1007px 634px rgba(255, 255, 255, 0.25555555) , 391px 1101px rgba(255, 255, 255, 0.25555555) , 1480px 1260px rgba(255, 255, 255, 0.25555555) , 1375px 251px rgba(255, 255, 255, 0.25555555) , 594px 1939px rgba(255, 255, 255, 0.25555555) , 1832px 333px rgba(255, 255, 255, 0.25555555) , 1233px 1790px rgba(255, 255, 255, 0.25555555) , 1802px 648px rgba(255, 255, 255, 0.25555555) , 1934px 798px rgba(255, 255, 255, 0.25555555) , 1781px 1814px rgba(255, 255, 255, 0.25555555) , 1849px 1544px rgba(255, 255, 255, 0.25555555) , 568px 771px rgba(255, 255, 255, 0.25555555) , 527px 169px rgba(255, 255, 255, 0.25555555) , 1094px 62px rgba(255, 255, 255, 0.25555555) , 713px 1750px rgba(255, 255, 255, 0.25555555) , 290px 563px rgba(255, 255, 255, 0.25555555) , 1704px 935px rgba(255, 255, 255, 0.25555555) , 1207px 1612px rgba(255, 255, 255, 0.25555555) , 202px 1971px rgba(255, 255, 255, 0.25555555) , 1451px 355px rgba(255, 255, 255, 0.25555555) , 1749px 571px rgba(255, 255, 255, 0.25555555) , 1292px 1565px rgba(255, 255, 255, 0.25555555) , 1827px 1082px rgba(255, 255, 255, 0.25555555) , 22px 984px rgba(255, 255, 255, 0.25555555) , 1315px 1760px rgba(255, 255, 255, 0.25555555) , 1699px 1391px rgba(255, 255, 255, 0.25555555) , 1793px 1715px rgba(255, 255, 255, 0.25555555) , 1501px 49px rgba(255, 255, 255, 0.25555555) , 1480px 1502px rgba(255, 255, 255, 0.25555555) , 1455px 1964px rgba(255, 255, 255, 0.25555555) , 1787px 1539px rgba(255, 255, 255, 0.25555555) , 462px 883px rgba(255, 255, 255, 0.25555555) , 84px 1082px rgba(255, 255, 255, 0.25555555) , 1589px 1414px rgba(255, 255, 255, 0.25555555) , 121px 1323px rgba(255, 255, 255, 0.25555555) , 788px 494px rgba(255, 255, 255, 0.25555555) , 109px 109px rgba(255, 255, 255, 0.25555555) , 951px 1299px rgba(255, 255, 255, 0.25555555) , 872px 1535px rgba(255, 255, 255, 0.25555555) , 1171px 806px rgba(255, 255, 255, 0.25555555) , 671px 598px rgba(255, 255, 255, 0.25555555) , 1767px 1069px rgba(255, 255, 255, 0.25555555) , 192px 1881px rgba(255, 255, 255, 0.25555555) , 1263px 171px rgba(255, 255, 255, 0.25555555) , 1532px 224px rgba(255, 255, 255, 0.25555555) , 664px 1191px rgba(255, 255, 255, 0.25555555) , 145px 686px rgba(255, 255, 255, 0.25555555) , 638px 1744px rgba(255, 255, 255, 0.25555555) , 1099px 332px rgba(255, 255, 255, 0.25555555) , 1119px 802px rgba(255, 255, 255, 0.25555555) , 530px 1776px rgba(255, 255, 255, 0.25555555) , 765px 1011px rgba(255, 255, 255, 0.25555555) , 1528px 1117px rgba(255, 255, 255, 0.25555555) , 1375px 1170px rgba(255, 255, 255, 0.25555555) , 1454px 470px rgba(255, 255, 255, 0.25555555) , 299px 558px rgba(255, 255, 255, 0.25555555) , 960px 655px rgba(255, 255, 255, 0.25555555) , 1816px 1220px rgba(255, 255, 255, 0.25555555) , 1165px 1486px rgba(255, 255, 255, 0.25555555) , 260px 731px rgba(255, 255, 255, 0.25555555) , 548px 80px rgba(255, 255, 255, 0.25555555) , 1003px 1239px rgba(255, 255, 255, 0.25555555) , 1058px 230px rgba(255, 255, 255, 0.25555555) , 505px 1085px rgba(255, 255, 255, 0.25555555) , 140px 1772px rgba(255, 255, 255, 0.25555555) , 1439px 326px rgba(255, 255, 255, 0.25555555) , 1456px 778px rgba(255, 255, 255, 0.25555555) , 915px 1545px rgba(255, 255, 255, 0.25555555) , 430px 1368px rgba(255, 255, 255, 0.25555555) , 849px 587px rgba(255, 255, 255, 0.25555555) , 1231px 869px rgba(255, 255, 255, 0.25555555) , 1662px 928px rgba(255, 255, 255, 0.25555555) , 1903px 38px rgba(255, 255, 255, 0.25555555) , 1052px 1977px rgba(255, 255, 255, 0.25555555) , 1935px 1481px rgba(255, 255, 255, 0.25555555) , 538px 1271px rgba(255, 255, 255, 0.25555555) , 1511px 1304px rgba(255, 255, 255, 0.25555555) , 1617px 1015px rgba(255, 255, 255, 0.25555555) , 489px 1088px rgba(255, 255, 255, 0.25555555) , 996px 1039px rgba(255, 255, 255, 0.25555555) , 201px 1878px rgba(255, 255, 255, 0.25555555) , 466px 1689px rgba(255, 255, 255, 0.25555555) , 1363px 862px rgba(255, 255, 255, 0.25555555) , 1374px 1714px rgba(255, 255, 255, 0.25555555) , 549px 787px rgba(255, 255, 255, 0.25555555) , 1669px 1043px rgba(255, 255, 255, 0.25555555) , 697px 1874px rgba(255, 255, 255, 0.25555555) , 1915px 1724px rgba(255, 255, 255, 0.25555555) , 1488px 1629px rgba(255, 255, 255, 0.25555555) , 1545px 1875px rgba(255, 255, 255, 0.25555555) , 978px 1201px rgba(255, 255, 255, 0.25555555) , 1126px 1916px rgba(255, 255, 255, 0.25555555) , 412px 592px rgba(255, 255, 255, 0.25555555) , 852px 732px rgba(255, 255, 255, 0.25555555) , 1060px 444px rgba(255, 255, 255, 0.25555555) , 323px 1676px rgba(255, 255, 255, 0.25555555) , 1593px 1616px rgba(255, 255, 255, 0.25555555);
-  }
-  
-  #stars3 {
-    width: 3px;
-    height: 3px;
-    background: transparent;
-    box-shadow: 1703px 1208px rgba(255, 255, 255, 0.25555555) , 381px 207px rgba(255, 255, 255, 0.25555555) , 1516px 1990px rgba(255, 255, 255, 0.25555555) , 1960px 982px rgba(255, 255, 255, 0.25555555) , 922px 1278px rgba(255, 255, 255, 0.25555555) , 689px 1766px rgba(255, 255, 255, 0.25555555) , 538px 554px rgba(255, 255, 255, 0.25555555) , 802px 1529px rgba(255, 255, 255, 0.25555555) , 871px 1805px rgba(255, 255, 255, 0.25555555) , 228px 1830px rgba(255, 255, 255, 0.25555555) , 353px 186px rgba(255, 255, 255, 0.25555555) , 1873px 1154px rgba(255, 255, 255, 0.25555555) , 494px 1244px rgba(255, 255, 255, 0.25555555) , 1415px 261px rgba(255, 255, 255, 0.25555555) , 1020px 1990px rgba(255, 255, 255, 0.25555555) , 1924px 1169px rgba(255, 255, 255, 0.25555555) , 1205px 464px rgba(255, 255, 255, 0.25555555) , 596px 830px rgba(255, 255, 255, 0.25555555) , 1319px 504px rgba(255, 255, 255, 0.25555555) , 953px 1850px rgba(255, 255, 255, 0.25555555) , 408px 1360px rgba(255, 255, 255, 0.25555555) , 569px 1704px rgba(255, 255, 255, 0.25555555) , 1367px 729px rgba(255, 255, 255, 0.25555555) , 807px 1845px rgba(255, 255, 255, 0.25555555) , 572px 825px rgba(255, 255, 255, 0.25555555) , 523px 1089px rgba(255, 255, 255, 0.25555555) , 1405px 1622px rgba(255, 255, 255, 0.25555555) , 1352px 423px rgba(255, 255, 255, 0.25555555) , 1247px 1758px rgba(255, 255, 255, 0.25555555) , 1117px 920px rgba(255, 255, 255, 0.25555555) , 983px 352px rgba(255, 255, 255, 0.25555555) , 175px 1351px rgba(255, 255, 255, 0.25555555) , 962px 260px rgba(255, 255, 255, 0.25555555) , 918px 1530px rgba(255, 255, 255, 0.25555555) , 1184px 935px rgba(255, 255, 255, 0.25555555) , 201px 473px rgba(255, 255, 255, 0.25555555) , 90px 1759px rgba(255, 255, 255, 0.25555555) , 211px 933px rgba(255, 255, 255, 0.25555555) , 1887px 171px rgba(255, 255, 255, 0.25555555) , 177px 101px rgba(255, 255, 255, 0.25555555) , 844px 346px rgba(255, 255, 255, 0.25555555) , 283px 1821px rgba(255, 255, 255, 0.25555555) , 1236px 1225px rgba(255, 255, 255, 0.25555555) , 173px 1875px rgba(255, 255, 255, 0.25555555) , 24px 1776px rgba(255, 255, 255, 0.25555555) , 277px 804px rgba(255, 255, 255, 0.25555555) , 1714px 715px rgba(255, 255, 255, 0.25555555) , 937px 1882px rgba(255, 255, 255, 0.25555555) , 1708px 1405px rgba(255, 255, 255, 0.25555555) , 173px 1847px rgba(255, 255, 255, 0.25555555) , 1902px 1160px rgba(255, 255, 255, 0.25555555) , 1725px 1270px rgba(255, 255, 255, 0.25555555) , 36px 18px rgba(255, 255, 255, 0.25555555) , 1612px 1467px rgba(255, 255, 255, 0.25555555) , 1390px 1733px rgba(255, 255, 255, 0.25555555) , 927px 1315px rgba(255, 255, 255, 0.25555555) , 1907px 1337px rgba(255, 255, 255, 0.25555555) , 1855px 1454px rgba(255, 255, 255, 0.25555555) , 1033px 1425px rgba(255, 255, 255, 0.25555555) , 1450px 1359px rgba(255, 255, 255, 0.25555555) , 1422px 771px rgba(255, 255, 255, 0.25555555) , 256px 343px rgba(255, 255, 255, 0.25555555) , 1581px 340px rgba(255, 255, 255, 0.25555555) , 1180px 247px rgba(255, 255, 255, 0.25555555) , 191px 882px rgba(255, 255, 255, 0.25555555) , 372px 1171px rgba(255, 255, 255, 0.25555555) , 1509px 937px rgba(255, 255, 255, 0.25555555) , 1018px 1829px rgba(255, 255, 255, 0.25555555) , 121px 152px rgba(255, 255, 255, 0.25555555) , 327px 767px rgba(255, 255, 255, 0.25555555) , 1438px 1421px rgba(255, 255, 255, 0.25555555) , 321px 905px rgba(255, 255, 255, 0.25555555) , 616px 245px rgba(255, 255, 255, 0.25555555) , 1957px 1520px rgba(255, 255, 255, 0.25555555) , 1811px 1924px rgba(255, 255, 255, 0.25555555) , 1454px 1778px rgba(255, 255, 255, 0.25555555) , 1507px 822px rgba(255, 255, 255, 0.25555555) , 649px 218px rgba(255, 255, 255, 0.25555555) , 362px 1567px rgba(255, 255, 255, 0.25555555) , 1637px 145px rgba(255, 255, 255, 0.25555555) , 115px 466px rgba(255, 255, 255, 0.25555555) , 345px 935px rgba(255, 255, 255, 0.25555555) , 112px 1019px rgba(255, 255, 255, 0.25555555) , 1440px 1910px rgba(255, 255, 255, 0.25555555) , 1280px 1367px rgba(255, 255, 255, 0.25555555) , 1505px 890px rgba(255, 255, 255, 0.25555555) , 788px 927px rgba(255, 255, 255, 0.25555555) , 753px 1273px rgba(255, 255, 255, 0.25555555) , 1924px 1714px rgba(255, 255, 255, 0.25555555) , 495px 1149px rgba(255, 255, 255, 0.25555555) , 267px 1851px rgba(255, 255, 255, 0.25555555) , 1293px 1431px rgba(255, 255, 255, 0.25555555) , 1159px 433px rgba(255, 255, 255, 0.25555555) , 1725px 1170px rgba(255, 255, 255, 0.25555555) , 1067px 296px rgba(255, 255, 255, 0.25555555) , 746px 463px rgba(255, 255, 255, 0.25555555) , 412px 349px rgba(255, 255, 255, 0.25555555) , 1193px 1421px rgba(255, 255, 255, 0.25555555) , 564px 455px rgba(255, 255, 255, 0.25555555) , 1675px 589px rgba(255, 255, 255, 0.25555555);
+}
+#stars2:after {
+    content: " "; position: absolute; top: 2000px;
+    width: 2px; height: 2px; background: transparent;
+    box-shadow: 743px 879px rgba(255,255,255,0.25) , 1145px 1260px rgba(255,255,255,0.25) , 1412px 672px rgba(255,255,255,0.25) , 507px 1211px rgba(255,255,255,0.25) , 52px 89px rgba(255,255,255,0.25) , 1045px 256px rgba(255,255,255,0.25) , 1022px 859px rgba(255,255,255,0.25) , 1520px 413px rgba(255,255,255,0.25) , 1575px 604px rgba(255,255,255,0.25) , 992px 877px rgba(255,255,255,0.25) , 914px 960px rgba(255,255,255,0.25) , 139px 685px rgba(255,255,255,0.25) , 720px 707px rgba(255,255,255,0.25) , 1235px 945px rgba(255,255,255,0.25) , 1256px 1153px rgba(255,255,255,0.25) , 1223px 641px rgba(255,255,255,0.25) , 1810px 466px rgba(255,255,255,0.25) , 1011px 1248px rgba(255,255,255,0.25) , 799px 1160px rgba(255,255,255,0.25) , 770px 1135px rgba(255,255,255,0.25);
+}
+
+#stars3 {
+    width: 3px; height: 3px; background: transparent;
+    box-shadow: 1703px 1208px rgba(255,255,255,0.25) , 381px 207px rgba(255,255,255,0.25) , 1516px 1990px rgba(255,255,255,0.25) , 1960px 982px rgba(255,255,255,0.25) , 922px 1278px rgba(255,255,255,0.25) , 689px 1766px rgba(255,255,255,0.25) , 538px 554px rgba(255,255,255,0.25) , 802px 1529px rgba(255,255,255,0.25) , 871px 1805px rgba(255,255,255,0.25) , 228px 1830px rgba(255,255,255,0.25) , 353px 186px rgba(255,255,255,0.25) , 1873px 1154px rgba(255,255,255,0.25) , 494px 1244px rgba(255,255,255,0.25) , 1415px 261px rgba(255,255,255,0.25) , 1020px 1990px rgba(255,255,255,0.25) , 1924px 1169px rgba(255,255,255,0.25) , 1205px 464px rgba(255,255,255,0.25) , 596px 830px rgba(255,255,255,0.25) , 1319px 504px rgba(255,255,255,0.25) , 953px 1850px rgba(255,255,255,0.25);
     animation: animStar 150s linear infinite;
-  }
-  #stars3:after {
-    content: " ";
-    position: absolute;
-    top: 2000px;
-    width: 3px;
-    height: 3px;
-    background: transparent;
-    box-shadow: 1703px 1208px rgba(255, 255, 255, 0.25555555) , 381px 207px rgba(255, 255, 255, 0.25555555) , 1516px 1990px rgba(255, 255, 255, 0.25555555) , 1960px 982px rgba(255, 255, 255, 0.25555555) , 922px 1278px rgba(255, 255, 255, 0.25555555) , 689px 1766px rgba(255, 255, 255, 0.25555555) , 538px 554px rgba(255, 255, 255, 0.25555555) , 802px 1529px rgba(255, 255, 255, 0.25555555) , 871px 1805px rgba(255, 255, 255, 0.25555555) , 228px 1830px rgba(255, 255, 255, 0.25555555) , 353px 186px rgba(255, 255, 255, 0.25555555) , 1873px 1154px rgba(255, 255, 255, 0.25555555) , 494px 1244px rgba(255, 255, 255, 0.25555555) , 1415px 261px rgba(255, 255, 255, 0.25555555) , 1020px 1990px rgba(255, 255, 255, 0.25555555) , 1924px 1169px rgba(255, 255, 255, 0.25555555) , 1205px 464px rgba(255, 255, 255, 0.25555555) , 596px 830px rgba(255, 255, 255, 0.25555555) , 1319px 504px rgba(255, 255, 255, 0.25555555) , 953px 1850px rgba(255, 255, 255, 0.25555555) , 408px 1360px rgba(255, 255, 255, 0.25555555) , 569px 1704px rgba(255, 255, 255, 0.25555555) , 1367px 729px rgba(255, 255, 255, 0.25555555) , 807px 1845px rgba(255, 255, 255, 0.25555555) , 572px 825px rgba(255, 255, 255, 0.25555555) , 523px 1089px rgba(255, 255, 255, 0.25555555) , 1405px 1622px rgba(255, 255, 255, 0.25555555) , 1352px 423px rgba(255, 255, 255, 0.25555555) , 1247px 1758px rgba(255, 255, 255, 0.25555555) , 1117px 920px rgba(255, 255, 255, 0.25555555) , 983px 352px rgba(255, 255, 255, 0.25555555) , 175px 1351px rgba(255, 255, 255, 0.25555555) , 962px 260px rgba(255, 255, 255, 0.25555555) , 918px 1530px rgba(255, 255, 255, 0.25555555) , 1184px 935px rgba(255, 255, 255, 0.25555555) , 201px 473px rgba(255, 255, 255, 0.25555555) , 90px 1759px rgba(255, 255, 255, 0.25555555) , 211px 933px rgba(255, 255, 255, 0.25555555) , 1887px 171px rgba(255, 255, 255, 0.25555555) , 177px 101px rgba(255, 255, 255, 0.25555555) , 844px 346px rgba(255, 255, 255, 0.25555555) , 283px 1821px rgba(255, 255, 255, 0.25555555) , 1236px 1225px rgba(255, 255, 255, 0.25555555) , 173px 1875px rgba(255, 255, 255, 0.25555555) , 24px 1776px rgba(255, 255, 255, 0.25555555) , 277px 804px rgba(255, 255, 255, 0.25555555) , 1714px 715px rgba(255, 255, 255, 0.25555555) , 937px 1882px rgba(255, 255, 255, 0.25555555) , 1708px 1405px rgba(255, 255, 255, 0.25555555) , 173px 1847px rgba(255, 255, 255, 0.25555555) , 1902px 1160px rgba(255, 255, 255, 0.25555555) , 1725px 1270px rgba(255, 255, 255, 0.25555555) , 36px 18px rgba(255, 255, 255, 0.25555555) , 1612px 1467px rgba(255, 255, 255, 0.25555555) , 1390px 1733px rgba(255, 255, 255, 0.25555555) , 927px 1315px rgba(255, 255, 255, 0.25555555) , 1907px 1337px rgba(255, 255, 255, 0.25555555) , 1855px 1454px rgba(255, 255, 255, 0.25555555) , 1033px 1425px rgba(255, 255, 255, 0.25555555) , 1450px 1359px rgba(255, 255, 255, 0.25555555) , 1422px 771px rgba(255, 255, 255, 0.25555555) , 256px 343px rgba(255, 255, 255, 0.25555555) , 1581px 340px rgba(255, 255, 255, 0.25555555) , 1180px 247px rgba(255, 255, 255, 0.25555555) , 191px 882px rgba(255, 255, 255, 0.25555555) , 372px 1171px rgba(255, 255, 255, 0.25555555) , 1509px 937px rgba(255, 255, 255, 0.25555555) , 1018px 1829px rgba(255, 255, 255, 0.25555555) , 121px 152px rgba(255, 255, 255, 0.25555555) , 327px 767px rgba(255, 255, 255, 0.25555555) , 1438px 1421px rgba(255, 255, 255, 0.25555555) , 321px 905px rgba(255, 255, 255, 0.25555555) , 616px 245px rgba(255, 255, 255, 0.25555555) , 1957px 1520px rgba(255, 255, 255, 0.25555555) , 1811px 1924px rgba(255, 255, 255, 0.25555555) , 1454px 1778px rgba(255, 255, 255, 0.25555555) , 1507px 822px rgba(255, 255, 255, 0.25555555) , 649px 218px rgba(255, 255, 255, 0.25555555) , 362px 1567px rgba(255, 255, 255, 0.25555555) , 1637px 145px rgba(255, 255, 255, 0.25555555) , 115px 466px rgba(255, 255, 255, 0.25555555) , 345px 935px rgba(255, 255, 255, 0.25555555) , 112px 1019px rgba(255, 255, 255, 0.25555555) , 1440px 1910px rgba(255, 255, 255, 0.25555555) , 1280px 1367px rgba(255, 255, 255, 0.25555555) , 1505px 890px rgba(255, 255, 255, 0.25555555) , 788px 927px rgba(255, 255, 255, 0.25555555) , 753px 1273px rgba(255, 255, 255, 0.25555555) , 1924px 1714px rgba(255, 255, 255, 0.25555555) , 495px 1149px rgba(255, 255, 255, 0.25555555) , 267px 1851px rgba(255, 255, 255, 0.25555555) , 1293px 1431px rgba(255, 255, 255, 0.25555555) , 1159px 433px rgba(255, 255, 255, 0.25555555) , 1725px 1170px rgba(255, 255, 255, 0.25555555) , 1067px 296px rgba(255, 255, 255, 0.25555555) , 746px 463px rgba(255, 255, 255, 0.25555555) , 412px 349px rgba(255, 255, 255, 0.25555555) , 1193px 1421px rgba(255, 255, 255, 0.25555555) , 564px 455px rgba(255, 255, 255, 0.25555555) , 1675px 589px rgba(255, 255, 255, 0.25555555);
-  }
-  
-  @keyframes animStar {
-    from {
-      transform: translateY(0px);
-    }
-    to {
-      transform: translateY(-2000px);
-    }
-  }
+}
+#stars3:after {
+    content: " "; position: absolute; top: 2000px;
+    width: 3px; height: 3px; background: transparent;
+    box-shadow: 1703px 1208px rgba(255,255,255,0.25) , 381px 207px rgba(255,255,255,0.25) , 1516px 1990px rgba(255,255,255,0.25) , 1960px 982px rgba(255,255,255,0.25) , 922px 1278px rgba(255,255,255,0.25) , 689px 1766px rgba(255,255,255,0.25) , 538px 554px rgba(255,255,255,0.25) , 802px 1529px rgba(255,255,255,0.25) , 871px 1805px rgba(255,255,255,0.25) , 228px 1830px rgba(255,255,255,0.25) , 353px 186px rgba(255,255,255,0.25) , 1873px 1154px rgba(255,255,255,0.25) , 494px 1244px rgba(255,255,255,0.25) , 1415px 261px rgba(255,255,255,0.25) , 1020px 1990px rgba(255,255,255,0.25) , 1924px 1169px rgba(255,255,255,0.25) , 1205px 464px rgba(255,255,255,0.25) , 596px 830px rgba(255,255,255,0.25) , 1319px 504px rgba(255,255,255,0.25) , 953px 1850px rgba(255,255,255,0.25);
+}
+
+@keyframes animStar {
+    from { transform: translateY(0px); }
+    to   { transform: translateY(-2000px); }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 968px) {
+    .hero-container { flex-direction: column; text-align: center; }
+    .hero-tag, .hero-btns { justify-content: center; }
+    .hero-visual { order: -1; }
+    .floating-img { transform: none; }
+}
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .logo span { font-size: 0.65rem; }
+    .hero-title { font-size: 1rem; }
+    .hero { padding-top: 7rem; }
+    .feature-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .creator-card { flex-direction: column; text-align: center; padding: 1.5rem; }
+    .download-box h2 { font-size: 1rem; }
+    .section-title { font-size: 0.8rem; }
+}
+
+/* ============================================
+   EXTRA: Minecraft-style link hover (all <a>)
+   ============================================ */
+a { transition: color 0.1s; }
+a:not(.btn-primary):not(.btn-secondary):not(.btn-outline):not(.btn-red):hover {
+    color: #ffffa0;
+    text-shadow: 2px 2px 0 #7f7f00;
+}
