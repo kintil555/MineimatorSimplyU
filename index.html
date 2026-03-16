@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mine-imator Simply Upscaled | Enhance Your Animation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,7 +19,6 @@
     </script>
 </head>
 <body class="site-body">
-    <!-- MAINTENANCE TOGGLE: Change to 'true' to enable maintenance mode -->
     <script>
         window.MAINTENANCE_MODE = false;
     </script>
@@ -45,7 +41,6 @@
         if (window.MAINTENANCE_MODE) {
             document.getElementById('maintenance-screen').style.display = 'flex';
             document.querySelector('.site-body').style.overflow = 'hidden';
-            // Hide main content
             window.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('header, main, footer').forEach(el => el.style.display = 'none');
             });
@@ -64,23 +59,19 @@
                 <a href="/#features">Features</a>
                 <a href="/#showcase">Showcase</a>
                 <a href="https://www.mineimator.com/upgrade" target="_blank">Upgrade</a>
-                <!-- UPDATE AREA: Navigation Download Link -->
                 <a href="download.html" class="btn-primary">Download</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero">
             <div class="container hero-container">
                 <div class="hero-content">
-                    <!-- UPDATE AREA: Hero Version Tag -->
                     <div class="hero-tag"><span class="current-version-text">V1.0.12.0</span> <span class="tag-new">OFFICIAL</span></div>
                     <h1 class="hero-title">MINE-IMATOR SIMPLY UPSCALED</h1>
                     <p class="subtitle">A simple mod that enhance mine-imator rendering looks with exciting QOL features and a little better performance</p>
                     <div class="hero-btns">
-                        <!-- UPDATE AREA: Hero Download Button -->
                         <a href="download.html" class="btn-primary btn-large">DOWNLOAD</a>
                         <a href="#features" class="btn-secondary">LEARN MORE</a>
                     </div>
@@ -89,14 +80,13 @@
                     <img src="/MisuHeader.webp" alt="Mine-imator Simply Upscaled" class="floating-img">
                 </div>
             </div>
-		  <div class="wave">
-			<span></span>
-			<span></span>
-			<span></span>
-		  </div>
+            <div class="wave">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </section>
 
-        <!-- Features Section -->
         <section id="features" class="features">
             <div class="container">
                 <h2 class="section-title">Why Choose MISU?</h2>
@@ -134,7 +124,6 @@
             </div>
         </section>
 
-        <!-- Showcase Section -->
         <section id="showcase" class="showcase">
             <div class="container">
                 <h2 class="section-title">Community Showcase</h2>
@@ -146,12 +135,12 @@
                             <p>Art by: Aninextion Team</p>
                         </div>
                     </div>
-					<div class="image-wrapper">
+                    <div class="image-wrapper">
                         <img src="/underthebridge.webp" alt="Under The Bridge" class="showcase-img">
                         <div class="image-overlay">
                             <h3>Under The Bridge</h3>
                             <p>Art by: Dapry</p>
-                        </div>	
+                        </div>
                     </div>
                     <div class="image-wrapper">
                         <img src="/AVE-X.webp" alt="Ave-x" class="showcase-img">
@@ -165,7 +154,6 @@
             </div>
         </section>
 
-        <!-- Creator Section -->
         <section class="creator">
             <div class="container">
                 <div class="creator-card">
@@ -184,7 +172,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
