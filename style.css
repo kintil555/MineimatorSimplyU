@@ -1,885 +1,416 @@
-/* ============================================
-   MINECRAFT CSS FRAMEWORK IMPORT
-   https://unpkg.com/minecraft-framework-css
-   ============================================ */
-@import url("https://unpkg.com/minecraft-framework-css@1.1.9/css/main.css");
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+/* =====================================================
+   MINECRAFT CSS FRAMEWORK — Font & Button Variables
+   Dari: github.com/Jiyath5516F/Minecraft-CSS
+   Hanya font + tombol yang diubah, sisanya original
+   ===================================================== */
 
-/* ============================================
-   ROOT VARIABLES - Minecraft palette override
-   ============================================ */
+@font-face {
+    font-family: 'MinecraftRegular';
+    src: url('Minecraft-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MinecraftTen';
+    src: url('Minecraft-Ten.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Button color variables dari _colors.css framework */
 :root {
-    --bg-color: #1a1a1a;
-    --bg-wave-color: rgba(0, 0, 0, 0.4);
-    --card-bg: #2d2d2d;
-    --primary-color: #55ff55;
-    --primary-dark: #2d8c2d;
-    --secondary-color: #55ffff;
+    /* button-primary (hijau) */
+    --btn-primary-inner-color: #3C8527;
+    --btn-primary-inner-hover-color: #2A641C;
+    --btn-primary-inner-shadow-color: #1D4D13;
+    --btn-primary-border-color: #1E1E1F;
+    --btn-primary-inner-border-lt-color: #4F913Cbf;
+    --btn-primary-inner-border-br-color: #639D52;
+    --btn-primary-text-color: #FFFFFF;
+
+    /* button-secondary (ungu) */
+    --btn-secondary-inner-color: #7345E5;
+    --btn-secondary-inner-hover-color: #5D2CC6;
+    --btn-secondary-inner-shadow-color: #4A1CAC;
+    --btn-secondary-border-color: #1E1E1F;
+    --btn-secondary-inner-border-lt-color: #A264F2bf;
+    --btn-secondary-inner-border-br-color: #8E49EB;
+    --btn-secondary-text-color: #FFFFFF;
+
+    /* button-tertiary (abu) */
+    --btn-tertiary-inner-color: #D0D1D4;
+    --btn-tertiary-inner-hover-color: #B1B2B5;
+    --btn-tertiary-inner-shadow-color: #58585A;
+    --btn-tertiary-border-color: #1E1E1F;
+    --btn-tertiary-inner-border-lt-color: #ECEDEEbf;
+    --btn-tertiary-inner-border-br-color: #E3E3E5;
+    --btn-tertiary-text-color: #000000;
+
+    /* button-normal */
+    --btn-normal-inner-color: #C6C6C6;
+    --btn-normal-border-color: #131313;
+    --btn-normal-inner-border-lt-color: #f7f7f7bf;
+    --btn-normal-inner-border-br-color: #656465;
+    --btn-normal-text-color: #4C4C4C;
+    --btn-normal-inner-hover-color: #218306;
+    --btn-normal-border-hover-color: #FFFFFF;
+    --btn-normal-inner-border-lt-hover-color: #17CD07bf;
+    --btn-normal-inner-border-br-hover-color: #004E00;
+    --btn-normal-text-hover-color: #FFFFFF;
+}
+
+/* =====================================================
+   ORIGINAL style.css — tidak diubah sama sekali
+   ===================================================== */
+
+:root {
+    --bg-color: #060b18;
+    --bg-wave-color: rgba(6, 11 , 24, 0.2);
+    --card-bg: #0c1427;
+    --primary-color: #60a5fa;
+    --primary-dark: #2563eb;
+    --secondary-color: #22d3ee;
     --text-main: #ffffff;
-    --text-dim: #aaaaaa;
-    --accent-gradient: linear-gradient(135deg, #55ff55 0%, #2d8c2d 100%);
-    --font-main: 'Press Start 2P', monospace;
-
-    /* Minecraft framework colors */
-    --mc-stone: #7f7f7f;
-    --mc-grass: #5d8a2a;
-    --mc-dirt: #866043;
-    --mc-wood: #9c7a3c;
-    --mc-dark: #1a1a1a;
-    --mc-border-light: #ffffff;
-    --mc-border-dark: #555555;
-    --mc-btn-face: #8b8b8b;
-    --mc-btn-hover: #a0a0a0;
+    --text-dim: #a0a0a0;
+    --accent-gradient: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+    --font-main: 'MinecraftRegular', sans-serif;
 }
 
-/* ============================================
-   GLOBAL RESET & BASE
-   ============================================ */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    image-rendering: pixelated;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-/* Pixel scrollbar */
-::-webkit-scrollbar { width: 12px; }
-::-webkit-scrollbar-track { background: #1a1a1a; border-left: 2px solid #555; }
-::-webkit-scrollbar-thumb {
-    background: #55ff55;
-    border: 2px solid #2d8c2d;
-    border-radius: 0;
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #060b18; }
+::-webkit-scrollbar-thumb { background: #8bb6fa; border-radius: 10px; border: 2px solid #060b18; }
+::-webkit-scrollbar-thumb:hover { background: #bde1fd; }
+* { scrollbar-width: thin; scrollbar-color: #8bb6fa #060b18; }
+
+section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
 }
-::-webkit-scrollbar-thumb:hover { background: #88ff88; }
-* { scrollbar-width: thin; scrollbar-color: #55ff55 #1a1a1a; }
 
 body {
     background-color: var(--bg-color);
-    background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(0,0,0,0.15) 31px, rgba(0,0,0,0.15) 32px),
-        repeating-linear-gradient(90deg, transparent, transparent 31px, rgba(0,0,0,0.15) 31px, rgba(0,0,0,0.15) 32px);
     color: var(--text-main);
     font-family: var(--font-main);
-    font-size: 13px;
-    line-height: 1.8;
+    line-height: 1.6;
     overflow-x: hidden;
     width: 100%;
     position: relative;
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-/* ============================================
-   HEADER & NAV — Minecraft inventory bar style
-   ============================================ */
 header {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    background: #2d2d2d;
-    border-bottom: 4px solid #555555;
-    box-shadow: 0 4px 0 #000000, inset 0 -2px 0 #888888;
+    background: rgba(10, 10, 12, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 2rem;
+    padding: 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.logo {
-    font-weight: 400;
-    font-size: 0.85rem;
-    letter-spacing: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.logo span {
-    background: none;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: unset;
-    color: #55ff55;
-    text-shadow: 2px 2px 0px #2d8c2d;
-}
-
-.nav-logo-img {
-    height: 32px;
-    width: auto;
-    image-rendering: pixelated;
-    filter: none;
-}
-
-.nav-links {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.nav-links a:not(.btn-primary) {
-    text-decoration: none;
-    color: #aaaaaa;
-    font-size: 0.65rem;
-    font-weight: 400;
-    transition: color 0.1s;
-    text-shadow: 1px 1px 0 #000;
-    padding: 4px 8px;
-}
-
-.nav-links a:not(.btn-primary):hover {
-    color: #ffffff;
-    background: rgba(255,255,255,0.08);
-}
-
-/* ============================================
-   BUTTONS — Minecraft Java Edition style
-   Uses .button-java from minecraft-framework-css
-   ============================================ */
-.btn-primary {
-    /* Override with Minecraft button look */
-    background: #8b8b8b !important;
-    color: #ffffff !important;
-    padding: 0.5rem 1.25rem;
-    border-radius: 0 !important;
-    text-decoration: none;
-    font-family: 'Press Start 2P', monospace;
-    font-weight: 400;
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-shadow: 2px 2px 0 #3f3f3f;
-    /* Minecraft button border (inset) */
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-bottom: 2px solid #373737;
-    border-right: 2px solid #373737;
-    box-shadow: none;
-    transition: all 0.05s;
-    cursor: pointer;
-}
-
-.btn-primary:hover {
-    background: #a0a0a0 !important;
-    transform: none;
-    filter: none;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-bottom: 2px solid #373737;
-    border-right: 2px solid #373737;
-    box-shadow: none;
-    color: #ffffa0 !important;
-    text-shadow: 2px 2px 0 #3f3f00;
-}
-
-.btn-primary:active {
-    transform: none;
-    border-top: 2px solid #373737;
-    border-left: 2px solid #373737;
-    border-bottom: 2px solid #ffffff;
-    border-right: 2px solid #ffffff;
-    background: #737373 !important;
-    box-shadow: none;
-}
-
-.btn-secondary {
-    background: #555555;
-    color: #cccccc;
-    padding: 0.6rem 1.25rem;
-    border-radius: 0;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.6rem;
-    font-weight: 400;
-    border-top: 2px solid #888888;
-    border-left: 2px solid #888888;
-    border-bottom: 2px solid #222222;
-    border-right: 2px solid #222222;
-    transition: all 0.05s;
-    text-shadow: 1px 1px 0 #000;
-    cursor: pointer;
-}
-
-.btn-secondary:hover {
-    background: #666666;
-    color: #ffffa0;
-}
-
-.btn-outline {
-    border: 2px solid #666666;
-    color: var(--text-main);
-    padding: 0.4rem 0.9rem;
-    border-radius: 0;
-    text-decoration: none;
-    font-size: 0.6rem;
-    font-family: 'Press Start 2P', monospace;
-    display: inline-flex;
-    align-items: center;
-    transition: background 0.1s;
-    text-shadow: 1px 1px 0 #000;
-}
-
-.btn-outline:hover {
-    background: rgba(255,255,255,0.08);
-    color: #ffffa0;
-}
-
-.btn-large {
-    padding: 0.85rem 2rem;
-    font-size: 0.75rem;
-}
-
-.btn-giant {
-    padding: 1rem 2.5rem;
-    font-size: 0.85rem;
-    width: 100%;
-    max-width: 480px;
-    justify-content: center;
-}
-
-.btn-red {
-    background: #aa0000 !important;
-    color: white !important;
-    padding: 0.4rem 0.9rem;
-    border-radius: 0;
-    text-decoration: none;
-    font-family: 'Press Start 2P', monospace;
-    font-weight: 400;
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-top: 1.5rem;
-    border-top: 2px solid #ff5555;
-    border-left: 2px solid #ff5555;
-    border-bottom: 2px solid #550000;
-    border-right: 2px solid #550000;
-    cursor: pointer;
-    text-shadow: 1px 1px 0 #000;
-}
-
-.btn-red:hover {
-    background: #cc0000 !important;
-    color: #ffffa0 !important;
-    transform: none;
-    filter: none;
-}
-
-.btn-red:active {
-    border-top: 2px solid #550000;
-    border-left: 2px solid #550000;
-    border-bottom: 2px solid #ff5555;
-    border-right: 2px solid #ff5555;
-}
-
-/* ============================================
-   WAVE SECTION (keep original logic)
-   ============================================ */
-section {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-}
-
 section .wave {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0);
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
-    transition: 0.5s;
+  position: absolute; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0); box-shadow: inset 0 0 50px rgba(0,0,0,0.5); transition: 0.5s;
 }
-
 section .wave span {
-    content: "";
-    position: absolute;
-    width: 325vh;
-    height: 325vh;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -75%);
-    background: #000;
+  content: ""; position: absolute; width: 325vh; height: 325vh;
+  top: 0; left: 50%; transform: translate(-50%, -75%); background: #000;
 }
-
 section .wave span:nth-child(1) { border-radius: 45%; background: var(--bg-wave-color); animation: animate 5s linear infinite; }
 section .wave span:nth-child(2) { border-radius: 40%; background: var(--bg-wave-color); animation: animate 10s linear infinite; }
 section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wave-color); animation: animate 15s linear infinite; }
 
 @keyframes animate {
-    0% { transform: translate(-50%, -75%) rotate(0deg); }
-    100% { transform: translate(-50%, -75%) rotate(360deg); }
+  0% { transform: translate(-50%, -75%) rotate(0deg); }
+  100% { transform: translate(-50%, -75%) rotate(360deg); }
 }
 
-/* ============================================
-   HERO SECTION
-   ============================================ */
+.logo {
+    font-weight: 800; font-size: 1.25rem; letter-spacing: -0.025em;
+    display: flex; align-items: center; gap: 0.75rem;
+}
+.logo span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-logo-img { height: 32px; width: auto; filter: drop-shadow(0 0 8px rgba(63,172,250,0.3)); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a:not(.btn-primary) { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+.nav-links a:not(.btn-primary):hover { color: var(--text-main); }
+
+/* =====================================================
+   BUTTONS — diganti pakai Minecraft framework
+   ===================================================== */
+
+.btn-primary {
+    font-family: 'MinecraftTen', sans-serif;
+    box-shadow:
+        inset 0px -6px 0px 0px var(--btn-primary-inner-shadow-color),
+        inset 3px 3px 0 var(--btn-primary-inner-border-lt-color),
+        inset -3px -9px 0 var(--btn-primary-inner-border-br-color);
+    background-color: var(--btn-primary-inner-color);
+    border: 3px solid var(--btn-primary-border-color);
+    color: var(--btn-primary-text-color) !important;
+    padding: 0.6rem 1.5rem;
+    padding-bottom: calc(0.6rem + 8px);
+    border-radius: 0;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 2.5px 2.5px 0px rgba(0,0,0,0.35);
+    text-transform: uppercase;
+    transition: background-color 0s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+.btn-primary:hover {
+    background-color: var(--btn-primary-inner-hover-color);
+    transform: none; filter: none;
+    box-shadow:
+        inset 0px -6px 0px 0px var(--btn-primary-inner-shadow-color),
+        inset 3px 3px 0 var(--btn-primary-inner-border-lt-color),
+        inset -3px -9px 0 var(--btn-primary-inner-border-br-color);
+}
+.btn-primary:active {
+    position: relative; top: 2px; transform: none;
+    box-shadow:
+        inset 0px 0px 0px 0px var(--btn-primary-inner-shadow-color),
+        inset 3px 3px 0 var(--btn-primary-inner-border-lt-color),
+        inset -3px -3px 0 var(--btn-primary-inner-border-br-color);
+}
+
+.btn-secondary {
+    font-family: 'MinecraftRegular', sans-serif;
+    box-shadow:
+        inset 0px -6px 0px 0px var(--btn-tertiary-inner-shadow-color),
+        inset 3px 3px 0 var(--btn-tertiary-inner-border-lt-color),
+        inset -3px -9px 0 var(--btn-tertiary-inner-border-br-color);
+    background-color: var(--btn-tertiary-inner-color);
+    border: 3px solid var(--btn-tertiary-border-color);
+    color: var(--btn-tertiary-text-color);
+    padding: 0.75rem 1.5rem;
+    padding-bottom: calc(0.75rem + 8px);
+    border-radius: 0;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    transition: background-color 0s;
+    cursor: pointer;
+    user-select: none;
+}
+.btn-secondary:hover { background-color: var(--btn-tertiary-inner-hover-color); }
+.btn-secondary:active {
+    position: relative; top: 2px;
+    box-shadow:
+        inset 0px 0px 0px 0px var(--btn-tertiary-inner-shadow-color),
+        inset 3px 3px 0 var(--btn-tertiary-inner-border-lt-color),
+        inset -3px -3px 0 var(--btn-tertiary-inner-border-br-color);
+}
+
+.btn-outline {
+    font-family: 'MinecraftRegular', sans-serif;
+    box-shadow:
+        inset 1.5px 1.5px 0 var(--btn-normal-inner-border-lt-color),
+        inset -1.5px -1.5px 0 var(--btn-normal-inner-border-br-color);
+    background-color: var(--btn-normal-inner-color);
+    border: 1.5px solid var(--btn-normal-border-color);
+    color: var(--btn-normal-text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0;
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    transition: 0s;
+    cursor: pointer;
+    user-select: none;
+}
+.btn-outline:hover {
+    color: var(--btn-normal-text-hover-color);
+    box-shadow:
+        inset 1.5px 1.5px 0 var(--btn-normal-inner-border-lt-hover-color),
+        inset -1.5px -1.5px 0 var(--btn-normal-inner-border-br-hover-color);
+    background-color: var(--btn-normal-inner-hover-color);
+    border: 1.5px solid var(--btn-normal-border-hover-color);
+}
+
+.btn-large { padding: 1rem 2rem; padding-bottom: calc(1rem + 8px); font-size: 1.1rem; }
+.btn-giant { padding: 1.25rem 2.5rem; padding-bottom: calc(1.25rem + 8px); font-size: 1.1rem; }
+
+.btn-red {
+    font-family: 'MinecraftRegular', sans-serif;
+    --r-inner: #AA0000; --r-hover: #880000; --r-shadow: #550000;
+    --r-lt: #FF5555bf; --r-br: #CC2222;
+    box-shadow:
+        inset 0px -6px 0px 0px var(--r-shadow),
+        inset 3px 3px 0 var(--r-lt),
+        inset -3px -9px 0 var(--r-br);
+    background-color: var(--r-inner);
+    border: 3px solid #1E1E1F;
+    color: white !important;
+    padding: 0.4rem 1rem;
+    padding-bottom: calc(0.4rem + 8px);
+    border-radius: 0;
+    text-decoration: none;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background-color 0s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+}
+.btn-red:hover {
+    background-color: var(--r-hover);
+    transform: none; filter: none;
+    box-shadow:
+        inset 0px -6px 0px 0px var(--r-shadow),
+        inset 3px 3px 0 var(--r-lt),
+        inset -3px -9px 0 var(--r-br);
+}
+.btn-red:active {
+    position: relative; top: 2px;
+    box-shadow:
+        inset 0px 0px 0px 0px var(--r-shadow),
+        inset 3px 3px 0 var(--r-lt),
+        inset -3px -3px 0 var(--r-br);
+}
+
+/* =====================================================
+   SISA ORIGINAL — tidak diubah sama sekali
+   ===================================================== */
+
 .hero {
     padding: 12rem 2rem 8rem;
-    background:
-        linear-gradient(to bottom, rgba(0,100,0,0.15) 0%, transparent 30%),
-        repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(0,0,0,0.08) 31px, rgba(0,0,0,0.08) 32px),
-        repeating-linear-gradient(90deg, transparent, transparent 31px, rgba(0,0,0,0.08) 31px, rgba(0,0,0,0.08) 32px);
+    background: radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.15) 0%, transparent 50%);
 }
-
-.hero-container {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-    max-width: 1400px;
-    z-index: 1;
-}
-
+.hero-container { display: flex; align-items: center; gap: 4rem; max-width: 1400px; z-index: 1; }
 .hero-content { flex: 1; }
+.hero-tag { font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main); display: flex; align-items: center; gap: 1rem; }
+.tag-new { background: #8be1fa; color: #000; font-size: 0.8rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 900; }
+.hero-title { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; text-transform: uppercase; }
+.subtitle { font-size: 1.25rem; color: var(--text-dim); max-width: 600px; margin-bottom: 2.5rem; font-weight: 500; }
+.hero-btns { display: flex; gap: 1.5rem; }
+.hero-visual { flex: 1; display: flex; justify-content: center; perspective: 1000px; }
+.floating-img { width: 100%; max-width: 600px; border-radius: 12px; transform: rotateY(-15deg) rotateX(5deg); box-shadow: -20px 20px 60px rgba(0,0,0,0.5); transition: transform 0.5s ease; }
+.floating-img:hover { transform: rotateY(-5deg) rotateX(2deg); }
 
-.hero-tag {
-    font-size: 0.7rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
+.section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; text-align: center; }
 
-.current-version-text {
-    color: #55ff55;
-    text-shadow: 2px 2px 0 #2d8c2d;
-}
+.features { padding: 6rem 0; }
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.feature-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+.feature-img { width: 100%; height: auto; display: block; }
+.feature-info { padding: 2rem; }
+.feature-info h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+.badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+.badge { background: rgba(59,130,246,0.1); color: #60a5fa; padding: 0.4rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(59,130,246,0.2); }
+.description { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 2rem; }
+.specs-box { background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
+.specs-box h4 { font-size: 0.9rem; color: var(--primary-color); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.specs-box ul { list-style: none; font-size: 0.85rem; color: var(--text-dim); }
+.specs-box li { margin-bottom: 0.4rem; }
+.specs-box strong { color: var(--text-main); }
+.changelog-mini { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-dim); font-size: 0.85rem; }
+.changelog-mini h5 { color: var(--secondary-color); margin-bottom: 0.25rem; }
 
-.tag-new {
-    background: #55ffff;
-    color: #000000;
-    font-size: 0.55rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0;
-    font-family: 'Press Start 2P', monospace;
-    border-top: 2px solid #aaffff;
-    border-left: 2px solid #aaffff;
-    border-bottom: 2px solid #007f7f;
-    border-right: 2px solid #007f7f;
-    text-shadow: none;
-}
+.showcase { padding: 6rem 0; background: rgba(255,255,255,0.02); }
+.showcase-container { max-width: 1000px; margin: 0 auto; text-align: center; }
+.image-wrapper { position: relative; border-radius: 24px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+.showcase-img { width: 100%; display: block; transition: transform 0.5s; }
+.image-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); text-align: left; }
+.image-overlay h3 { font-size: 1.2rem; color: var(--secondary-color); }
+.showcase-text { font-size: 1.1rem; color: var(--text-dim); }
 
-.hero-title {
-    font-size: clamp(1.4rem, 3.5vw, 2.5rem);
-    font-weight: 400;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0;
-    text-transform: uppercase;
-    color: #ffffff;
-    text-shadow: 4px 4px 0px #000000, 3px 3px 0px #333333;
-}
-
-.subtitle {
-    font-size: 0.6rem;
-    color: var(--text-dim);
-    max-width: 600px;
-    margin-bottom: 2.5rem;
-    font-weight: 400;
-    line-height: 2;
-}
-
-.hero-btns {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.hero-visual {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-/* Minecraft inventory frame for hero image */
-.floating-img {
-    width: 100%;
-    max-width: 560px;
-    border-radius: 0;
-    transform: none;
-    /* Minecraft dialogue box border style */
-    border: 4px solid #aaaaaa;
-    outline: 4px solid #000000;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.8), inset 0 0 0 2px #555555;
-    transition: transform 0.3s ease;
-    image-rendering: auto;
-}
-
-.floating-img:hover {
-    transform: translateY(-4px);
-}
-
-/* ============================================
-   SECTION TITLE
-   ============================================ */
-.section-title {
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-bottom: 3rem;
-    text-align: center;
-    color: #ffffff;
-    text-shadow: 3px 3px 0 #000;
-    position: relative;
-}
-
-.section-title::before {
-    content: ">>> ";
-    color: #55ff55;
-}
-
-.section-title::after {
-    content: " <<<";
-    color: #55ff55;
-}
-
-/* ============================================
-   FEATURES SECTION
-   ============================================ */
-.features {
-    padding: 6rem 0;
-    background: rgba(0,0,0,0.2);
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-}
-
-/* Minecraft dialogue/inventory box */
-.feature-card {
-    background: #2d2d2d;
-    border-radius: 0;
-    overflow: hidden;
-    border: 4px solid #aaaaaa;
-    outline: 4px solid #000;
-    box-shadow: 6px 6px 0 #000;
-}
-
-.feature-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-bottom: 4px solid #555555;
-}
-
-.feature-info {
-    padding: 1.5rem;
-    background: #2d2d2d;
-}
-
-.feature-info h3 {
-    font-size: 0.75rem;
-    margin-bottom: 1rem;
-    color: #55ffff;
-    text-shadow: 2px 2px 0 #007f7f;
-}
-
-/* Badge — like Minecraft enchantment labels */
-.badge-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.badge {
-    background: #1a3a1a;
-    color: #55ff55;
-    padding: 0.25rem 0.6rem;
-    border-radius: 0;
-    font-size: 0.5rem;
-    font-family: 'Press Start 2P', monospace;
-    font-weight: 400;
-    border: 2px solid #2d8c2d;
-    text-shadow: 1px 1px 0 #000;
-}
-
-.description {
-    color: var(--text-dim);
-    font-size: 0.55rem;
-    margin-bottom: 1.5rem;
-    line-height: 2;
-}
-
-/* Minecraft specs box — like in-game item info */
-.specs-box {
-    background: #1a1a2d;
-    padding: 1rem 1.25rem;
-    border-radius: 0;
-    border: 3px solid #5555aa;
-    box-shadow: inset 0 0 0 1px #000;
-}
-
-.specs-box h4 {
-    font-size: 0.55rem;
-    color: #55ffff;
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 0 #007f7f;
-}
-
-.specs-box ul {
-    list-style: none;
-    font-size: 0.5rem;
-    color: var(--text-dim);
-}
-
-.specs-box li {
-    margin-bottom: 0.4rem;
-    padding-left: 0.75rem;
-    position: relative;
-}
-
-.specs-box li::before {
-    content: ">";
-    position: absolute;
-    left: 0;
-    color: #55ff55;
-}
-
-.specs-box strong { color: #ffffff; }
-
-/* Changelog — like Minecraft update notes */
-.changelog-mini {
-    margin-top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    color: var(--text-dim);
-    font-size: 0.5rem;
-    background: #1a1a1a;
-    padding: 1rem;
-    border: 2px solid #444;
-    box-shadow: inset 0 0 0 1px #000;
-}
-
-.changelog-mini h5 {
-    color: #55ffff;
-    margin-bottom: 0.5rem;
-    font-size: 0.6rem;
-    text-shadow: 1px 1px 0 #007f7f;
-}
-
-.changelog-mini span {
-    color: #aaaaaa;
-    padding-left: 0.5rem;
-}
-
-.changelog-mini span::before {
-    content: "+ ";
-    color: #55ff55;
-}
-
-/* ============================================
-   SHOWCASE SECTION
-   ============================================ */
-.showcase {
-    padding: 6rem 0;
-    background: #1a1a1a;
-}
-
-.showcase-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.image-wrapper {
-    position: relative;
-    border-radius: 0;
-    overflow: hidden;
-    margin-bottom: 2rem;
-    border: 4px solid #aaaaaa;
-    outline: 4px solid #000;
-    box-shadow: 8px 8px 0 #000;
-}
-
-.image-wrapper:hover .showcase-img {
-    transform: scale(1.02);
-}
-
-.showcase-img {
-    width: 100%;
-    display: block;
-    transition: transform 0.3s;
-}
-
-.image-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1.5rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    text-align: left;
-    border-top: 3px solid #555555;
-}
-
-.image-overlay h3 {
-    font-size: 0.65rem;
-    color: #55ffff;
-    text-shadow: 2px 2px 0 #000;
-}
-
-.image-overlay p {
-    font-size: 0.5rem;
-    color: #aaaaaa;
-    margin-top: 0.25rem;
-}
-
-.showcase-text {
-    font-size: 0.55rem;
-    color: var(--text-dim);
-    line-height: 2;
-    margin-top: 1rem;
-}
-
-/* ============================================
-   CREATOR SECTION
-   ============================================ */
 .creator { padding: 6rem 0; }
+.creator-card { background: var(--card-bg); border-radius: 24px; padding: 3rem; display: flex; gap: 3rem; align-items: center; border: 1px solid rgba(255,255,255,0.05); }
+.creator-avatar img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--primary-color); box-shadow: 0 0 20px rgba(59,130,246,0.3); }
+.creator-info .label { text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; color: var(--primary-color); }
+.creator-info h3 { font-size: 2rem; margin: 0.5rem 0 1rem; }
+.creator-info p { color: var(--text-dim); margin-bottom: 1.5rem; }
 
-/* Minecraft player card style */
-.creator-card {
-    background: #2d2d2d;
-    border-radius: 0;
-    padding: 2.5rem;
-    display: flex;
-    gap: 2.5rem;
-    align-items: center;
-    border: 4px solid #aaaaaa;
-    outline: 4px solid #000;
-    box-shadow: 8px 8px 0 #000;
-}
+.download-section { padding: 8rem 0; text-align: center; }
+.download-box { background: linear-gradient(135deg, #1e1e24ba 0%, #151518ba 100%); padding: 5rem 2rem; border-radius: 40px; border: 1px solid rgba(255,255,255,0.05); }
+.download-box h2 { font-size: 3rem; margin-bottom: 1rem; }
+.download-box p { color: var(--text-dim); margin-bottom: 2.5rem; }
+.disclaimer { margin-top: 1.5rem; font-size: 0.85rem; opacity: 0.5; }
+.checksum-container { margin: 1.5rem auto 0; background: rgba(0,0,0,0.2); padding: 0.6rem 1rem; border-radius: 8px; display: inline-flex; align-items: center; gap: 0.75rem; border: 1px solid rgba(255,255,255,0.05); max-width: 90%; }
+.checksum-label { font-size: 0.7rem; font-weight: 800; color: var(--secondary-color); letter-spacing: 0.05em; }
+.checksum-value { font-family: 'Courier New', Courier, monospace; font-size: 0.75rem; color: var(--text-dim); word-break: break-all; user-select: all; }
 
-.creator-avatar img {
-    width: 120px;
-    height: 120px;
-    border-radius: 0;
-    border: 4px solid #55ff55;
-    outline: 3px solid #000;
-    image-rendering: pixelated;
-    box-shadow: 4px 4px 0 #000;
-}
+footer { padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-dim); font-size: 0.9rem; }
 
-.creator-info .label {
-    text-transform: uppercase;
-    font-size: 0.5rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    color: #55ff55;
-    text-shadow: 1px 1px 0 #2d8c2d;
-}
-
-.creator-info h3 {
-    font-size: 1rem;
-    margin: 0.75rem 0 1rem;
-    color: #ffffff;
-    text-shadow: 3px 3px 0 #000;
-}
-
-.creator-info p {
-    color: var(--text-dim);
-    margin-bottom: 1.5rem;
-    font-size: 0.55rem;
-    line-height: 2;
-}
-
-.socials { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-/* ============================================
-   DOWNLOAD SECTION
-   ============================================ */
-.download-section {
-    padding: 8rem 0;
-    text-align: center;
-}
-
-/* Minecraft server screen / main menu style */
-.download-box {
-    background: linear-gradient(180deg, #3a3a3a 0%, #2d2d2d 100%);
-    padding: 4rem 2rem;
-    border-radius: 0;
-    border: 4px solid #aaaaaa;
-    outline: 4px solid #000;
-    box-shadow: 10px 10px 0 #000, inset 0 0 60px rgba(0,0,0,0.5);
-    position: relative;
-}
-
-/* Pixel corner decorations */
-.download-box::before {
-    content: "";
-    position: absolute;
-    top: 8px; left: 8px; right: 8px; bottom: 8px;
-    border: 2px solid rgba(255,255,255,0.06);
-    pointer-events: none;
-}
-
-.download-box h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-    color: #ffffff;
-    text-shadow: 4px 4px 0 #000, 3px 3px 0 #333;
-}
-
-.download-box p {
-    color: var(--text-dim);
-    margin-bottom: 2rem;
-    font-size: 0.55rem;
-    line-height: 2;
-}
-
-.disclaimer {
-    margin-top: 1.5rem;
-    font-size: 0.45rem;
-    opacity: 0.5;
-    line-height: 2;
-}
-
-/* ============================================
-   BADGE (download page)
-   ============================================ */
-.badge[style*="cyan"], .badge[style*="22d3ee"] {
-    background: #001a2d;
-    color: #55ffff;
-    border: 2px solid #007f7f;
-}
-
-/* ============================================
-   FOOTER
-   ============================================ */
-footer {
-    padding: 3rem 0;
-    border-top: 4px solid #555555;
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 0.5rem;
-    background: #1a1a1a;
-    line-height: 2.5;
-}
-
-footer a { color: #55ff55; text-decoration: none; text-shadow: 1px 1px 0 #2d8c2d; }
-footer a:hover { color: #88ff88; }
-
-/* ============================================
-   RGB EASTER EGG
-   ============================================ */
 @keyframes rgb-cycle {
-    0%   { --primary-color: #ff5555; }
-    25%  { --primary-color: #ffff55; }
-    50%  { --primary-color: #55ff55; }
-    75%  { --primary-color: #55ffff; }
-    100% { --primary-color: #ff5555; }
+    0%   { --primary-color: #ff0000; --primary-dark: #cc0000; --secondary-color: #ff8800; }
+    20%  { --primary-color: #ffff00; --primary-dark: #cccc00; --secondary-color: #00ff00; }
+    40%  { --primary-color: #00ff00; --primary-dark: #00cc00; --secondary-color: #00ffff; }
+    60%  { --primary-color: #00ffff; --primary-dark: #00cccc; --secondary-color: #0000ff; }
+    80%  { --primary-color: #0000ff; --primary-dark: #0000cc; --secondary-color: #ff00ff; }
+    100% { --primary-color: #ff0000; --primary-dark: #cc0000; --secondary-color: #ff8800; }
 }
-
 .rgb-mode { animation: rgb-cycle 5s linear infinite; }
-.rgb-mode .nav-logo-img { animation: logo-hue 5s linear infinite; }
-
+.rgb-mode .nav-logo-img { filter: drop-shadow(0 0 15px var(--primary-color)) hue-rotate(360deg); animation: logo-hue 5s linear infinite; }
 @keyframes logo-hue {
-    from { filter: hue-rotate(0deg); }
-    to   { filter: hue-rotate(360deg); }
+    from { filter: drop-shadow(0 0 15px var(--primary-color)) hue-rotate(0deg); }
+    to   { filter: drop-shadow(0 0 15px var(--primary-color)) hue-rotate(360deg); }
 }
 
-/* ============================================
-   STARS (keep original)
-   ============================================ */
-.stars-wrapper {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    z-index: -1;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-#stars {
-    width: 1px; height: 1px;
-    background: transparent;
-    box-shadow: 1602px 661px rgba(255,255,255,0.25) , 1779px 795px rgba(255,255,255,0.25) , 1154px 812px rgba(255,255,255,0.25) , 1328px 800px rgba(255,255,255,0.25) , 1262px 1251px rgba(255,255,255,0.25) , 1976px 432px rgba(255,255,255,0.25) , 1650px 1853px rgba(255,255,255,0.25) , 1001px 468px rgba(255,255,255,0.25) , 609px 405px rgba(255,255,255,0.25) , 1842px 1576px rgba(255,255,255,0.25) , 742px 1365px rgba(255,255,255,0.25) , 321px 1286px rgba(255,255,255,0.25) , 462px 926px rgba(255,255,255,0.25) , 481px 458px rgba(255,255,255,0.25) , 484px 1952px rgba(255,255,255,0.25) , 380px 1267px rgba(255,255,255,0.25) , 1122px 820px rgba(255,255,255,0.25) , 1626px 1217px rgba(255,255,255,0.25) , 1953px 1255px rgba(255,255,255,0.25) , 1728px 140px rgba(255,255,255,0.25);
-    animation: animStar 50s linear infinite;
-}
-#stars:after {
-    content: " "; position: absolute; top: 2000px;
-    width: 1px; height: 1px; background: transparent;
-    box-shadow: 1602px 661px rgba(255,255,255,0.25) , 1779px 795px rgba(255,255,255,0.25) , 1154px 812px rgba(255,255,255,0.25) , 1328px 800px rgba(255,255,255,0.25) , 1262px 1251px rgba(255,255,255,0.25) , 1976px 432px rgba(255,255,255,0.25) , 1650px 1853px rgba(255,255,255,0.25) , 1001px 468px rgba(255,255,255,0.25) , 609px 405px rgba(255,255,255,0.25) , 1842px 1576px rgba(255,255,255,0.25) , 742px 1365px rgba(255,255,255,0.25) , 321px 1286px rgba(255,255,255,0.25) , 462px 926px rgba(255,255,255,0.25) , 481px 458px rgba(255,255,255,0.25) , 484px 1952px rgba(255,255,255,0.25) , 380px 1267px rgba(255,255,255,0.25) , 1122px 820px rgba(255,255,255,0.25) , 1626px 1217px rgba(255,255,255,0.25) , 1953px 1255px rgba(255,255,255,0.25) , 1728px 140px rgba(255,255,255,0.25);
-}
-
-#stars2 {
-    width: 2px; height: 2px; background: transparent;
-    box-shadow: 743px 879px rgba(255,255,255,0.25) , 1145px 1260px rgba(255,255,255,0.25) , 1412px 672px rgba(255,255,255,0.25) , 507px 1211px rgba(255,255,255,0.25) , 52px 89px rgba(255,255,255,0.25) , 1045px 256px rgba(255,255,255,0.25) , 1022px 859px rgba(255,255,255,0.25) , 1520px 413px rgba(255,255,255,0.25) , 1575px 604px rgba(255,255,255,0.25) , 992px 877px rgba(255,255,255,0.25) , 914px 960px rgba(255,255,255,0.25) , 139px 685px rgba(255,255,255,0.25) , 720px 707px rgba(255,255,255,0.25) , 1235px 945px rgba(255,255,255,0.25) , 1256px 1153px rgba(255,255,255,0.25) , 1223px 641px rgba(255,255,255,0.25) , 1810px 466px rgba(255,255,255,0.25) , 1011px 1248px rgba(255,255,255,0.25) , 799px 1160px rgba(255,255,255,0.25) , 770px 1135px rgba(255,255,255,0.25);
-    animation: animStar 100s linear infinite;
-}
-#stars2:after {
-    content: " "; position: absolute; top: 2000px;
-    width: 2px; height: 2px; background: transparent;
-    box-shadow: 743px 879px rgba(255,255,255,0.25) , 1145px 1260px rgba(255,255,255,0.25) , 1412px 672px rgba(255,255,255,0.25) , 507px 1211px rgba(255,255,255,0.25) , 52px 89px rgba(255,255,255,0.25) , 1045px 256px rgba(255,255,255,0.25) , 1022px 859px rgba(255,255,255,0.25) , 1520px 413px rgba(255,255,255,0.25) , 1575px 604px rgba(255,255,255,0.25) , 992px 877px rgba(255,255,255,0.25) , 914px 960px rgba(255,255,255,0.25) , 139px 685px rgba(255,255,255,0.25) , 720px 707px rgba(255,255,255,0.25) , 1235px 945px rgba(255,255,255,0.25) , 1256px 1153px rgba(255,255,255,0.25) , 1223px 641px rgba(255,255,255,0.25) , 1810px 466px rgba(255,255,255,0.25) , 1011px 1248px rgba(255,255,255,0.25) , 799px 1160px rgba(255,255,255,0.25) , 770px 1135px rgba(255,255,255,0.25);
-}
-
-#stars3 {
-    width: 3px; height: 3px; background: transparent;
-    box-shadow: 1703px 1208px rgba(255,255,255,0.25) , 381px 207px rgba(255,255,255,0.25) , 1516px 1990px rgba(255,255,255,0.25) , 1960px 982px rgba(255,255,255,0.25) , 922px 1278px rgba(255,255,255,0.25) , 689px 1766px rgba(255,255,255,0.25) , 538px 554px rgba(255,255,255,0.25) , 802px 1529px rgba(255,255,255,0.25) , 871px 1805px rgba(255,255,255,0.25) , 228px 1830px rgba(255,255,255,0.25) , 353px 186px rgba(255,255,255,0.25) , 1873px 1154px rgba(255,255,255,0.25) , 494px 1244px rgba(255,255,255,0.25) , 1415px 261px rgba(255,255,255,0.25) , 1020px 1990px rgba(255,255,255,0.25) , 1924px 1169px rgba(255,255,255,0.25) , 1205px 464px rgba(255,255,255,0.25) , 596px 830px rgba(255,255,255,0.25) , 1319px 504px rgba(255,255,255,0.25) , 953px 1850px rgba(255,255,255,0.25);
-    animation: animStar 150s linear infinite;
-}
-#stars3:after {
-    content: " "; position: absolute; top: 2000px;
-    width: 3px; height: 3px; background: transparent;
-    box-shadow: 1703px 1208px rgba(255,255,255,0.25) , 381px 207px rgba(255,255,255,0.25) , 1516px 1990px rgba(255,255,255,0.25) , 1960px 982px rgba(255,255,255,0.25) , 922px 1278px rgba(255,255,255,0.25) , 689px 1766px rgba(255,255,255,0.25) , 538px 554px rgba(255,255,255,0.25) , 802px 1529px rgba(255,255,255,0.25) , 871px 1805px rgba(255,255,255,0.25) , 228px 1830px rgba(255,255,255,0.25) , 353px 186px rgba(255,255,255,0.25) , 1873px 1154px rgba(255,255,255,0.25) , 494px 1244px rgba(255,255,255,0.25) , 1415px 261px rgba(255,255,255,0.25) , 1020px 1990px rgba(255,255,255,0.25) , 1924px 1169px rgba(255,255,255,0.25) , 1205px 464px rgba(255,255,255,0.25) , 596px 830px rgba(255,255,255,0.25) , 1319px 504px rgba(255,255,255,0.25) , 953px 1850px rgba(255,255,255,0.25);
-}
-
-@keyframes animStar {
-    from { transform: translateY(0px); }
-    to   { transform: translateY(-2000px); }
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
 @media (max-width: 968px) {
     .hero-container { flex-direction: column; text-align: center; }
     .hero-tag, .hero-btns { justify-content: center; }
     .hero-visual { order: -1; }
     .floating-img { transform: none; }
 }
-
 @media (max-width: 768px) {
     .nav-links { display: none; }
-    .logo span { font-size: 0.65rem; }
-    .hero-title { font-size: 1rem; }
-    .hero { padding-top: 7rem; }
+    .logo span { font-size: 0.9rem; }
+    .hero-title { font-size: 2.2rem; word-break: break-word; }
+    .hero { padding-top: 8rem; }
     .feature-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .creator-card { flex-direction: column; text-align: center; padding: 1.5rem; }
-    .download-box h2 { font-size: 1rem; }
-    .section-title { font-size: 0.8rem; }
+    .creator-card { flex-direction: column; text-align: center; padding: 2rem; }
+    .download-box h2 { font-size: 2rem; }
 }
 
-/* ============================================
-   EXTRA: Minecraft-style link hover (all <a>)
-   ============================================ */
-a { transition: color 0.1s; }
-a:not(.btn-primary):not(.btn-secondary):not(.btn-outline):not(.btn-red):hover {
-    color: #ffffa0;
-    text-shadow: 2px 2px 0 #7f7f00;
+.stars-wrapper { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; pointer-events: none; }
+
+#stars { width: 1px; height: 1px; background: transparent; box-shadow: 1602px 661px rgba(255,255,255,0.25555555),1779px 795px rgba(255,255,255,0.25555555),1154px 812px rgba(255,255,255,0.25555555),1328px 800px rgba(255,255,255,0.25555555),1262px 1251px rgba(255,255,255,0.25555555),1976px 432px rgba(255,255,255,0.25555555),1650px 1853px rgba(255,255,255,0.25555555),1001px 468px rgba(255,255,255,0.25555555),609px 405px rgba(255,255,255,0.25555555),1842px 1576px rgba(255,255,255,0.25555555),742px 1365px rgba(255,255,255,0.25555555),321px 1286px rgba(255,255,255,0.25555555),462px 926px rgba(255,255,255,0.25555555),481px 458px rgba(255,255,255,0.25555555),484px 1952px rgba(255,255,255,0.25555555),380px 1267px rgba(255,255,255,0.25555555),1122px 820px rgba(255,255,255,0.25555555),1626px 1217px rgba(255,255,255,0.25555555),1953px 1255px rgba(255,255,255,0.25555555),1728px 140px rgba(255,255,255,0.25555555),1430px 1262px rgba(255,255,255,0.25555555),7px 463px rgba(255,255,255,0.25555555),1664px 338px rgba(255,255,255,0.25555555),63px 11px rgba(255,255,255,0.25555555),552px 438px rgba(255,255,255,0.25555555),3px 783px rgba(255,255,255,0.25555555),1247px 361px rgba(255,255,255,0.25555555),803px 121px rgba(255,255,255,0.25555555),755px 1435px rgba(255,255,255,0.25555555),659px 1572px rgba(255,255,255,0.25555555); animation: animStar 50s linear infinite; }
+#stars:after { content: " "; position: absolute; top: 2000px; width: 1px; height: 1px; background: transparent; box-shadow: 1602px 661px rgba(255,255,255,0.25555555),1779px 795px rgba(255,255,255,0.25555555),1154px 812px rgba(255,255,255,0.25555555),1328px 800px rgba(255,255,255,0.25555555),1262px 1251px rgba(255,255,255,0.25555555),1976px 432px rgba(255,255,255,0.25555555),1650px 1853px rgba(255,255,255,0.25555555),1001px 468px rgba(255,255,255,0.25555555),609px 405px rgba(255,255,255,0.25555555),1842px 1576px rgba(255,255,255,0.25555555),742px 1365px rgba(255,255,255,0.25555555),321px 1286px rgba(255,255,255,0.25555555),462px 926px rgba(255,255,255,0.25555555),481px 458px rgba(255,255,255,0.25555555),484px 1952px rgba(255,255,255,0.25555555),380px 1267px rgba(255,255,255,0.25555555),1122px 820px rgba(255,255,255,0.25555555),1626px 1217px rgba(255,255,255,0.25555555),1953px 1255px rgba(255,255,255,0.25555555),1728px 140px rgba(255,255,255,0.25555555),1430px 1262px rgba(255,255,255,0.25555555),7px 463px rgba(255,255,255,0.25555555),1664px 338px rgba(255,255,255,0.25555555),63px 11px rgba(255,255,255,0.25555555),552px 438px rgba(255,255,255,0.25555555),3px 783px rgba(255,255,255,0.25555555),1247px 361px rgba(255,255,255,0.25555555),803px 121px rgba(255,255,255,0.25555555),755px 1435px rgba(255,255,255,0.25555555),659px 1572px rgba(255,255,255,0.25555555); }
+
+#stars2 { width: 2px; height: 2px; background: transparent; box-shadow: 743px 879px rgba(255,255,255,0.25555555),1145px 1260px rgba(255,255,255,0.25555555),1412px 672px rgba(255,255,255,0.25555555),507px 1211px rgba(255,255,255,0.25555555),52px 89px rgba(255,255,255,0.25555555),1045px 256px rgba(255,255,255,0.25555555),1022px 859px rgba(255,255,255,0.25555555),1520px 413px rgba(255,255,255,0.25555555),1575px 604px rgba(255,255,255,0.25555555),992px 877px rgba(255,255,255,0.25555555),914px 960px rgba(255,255,255,0.25555555),139px 685px rgba(255,255,255,0.25555555),720px 707px rgba(255,255,255,0.25555555),1235px 945px rgba(255,255,255,0.25555555),1256px 1153px rgba(255,255,255,0.25555555),1223px 641px rgba(255,255,255,0.25555555),1810px 466px rgba(255,255,255,0.25555555),1011px 1248px rgba(255,255,255,0.25555555),799px 1160px rgba(255,255,255,0.25555555),770px 1135px rgba(255,255,255,0.25555555); animation: animStar 100s linear infinite; }
+#stars2:after { content: " "; position: absolute; top: 2000px; width: 2px; height: 2px; background: transparent; box-shadow: 743px 879px rgba(255,255,255,0.25555555),1145px 1260px rgba(255,255,255,0.25555555),1412px 672px rgba(255,255,255,0.25555555),507px 1211px rgba(255,255,255,0.25555555),52px 89px rgba(255,255,255,0.25555555),1045px 256px rgba(255,255,255,0.25555555),1022px 859px rgba(255,255,255,0.25555555),1520px 413px rgba(255,255,255,0.25555555),1575px 604px rgba(255,255,255,0.25555555),992px 877px rgba(255,255,255,0.25555555),914px 960px rgba(255,255,255,0.25555555),139px 685px rgba(255,255,255,0.25555555),720px 707px rgba(255,255,255,0.25555555),1235px 945px rgba(255,255,255,0.25555555),1256px 1153px rgba(255,255,255,0.25555555),1223px 641px rgba(255,255,255,0.25555555),1810px 466px rgba(255,255,255,0.25555555),1011px 1248px rgba(255,255,255,0.25555555),799px 1160px rgba(255,255,255,0.25555555),770px 1135px rgba(255,255,255,0.25555555); }
+
+#stars3 { width: 3px; height: 3px; background: transparent; box-shadow: 1703px 1208px rgba(255,255,255,0.25555555),381px 207px rgba(255,255,255,0.25555555),1516px 1990px rgba(255,255,255,0.25555555),1960px 982px rgba(255,255,255,0.25555555),922px 1278px rgba(255,255,255,0.25555555),689px 1766px rgba(255,255,255,0.25555555),538px 554px rgba(255,255,255,0.25555555),802px 1529px rgba(255,255,255,0.25555555),871px 1805px rgba(255,255,255,0.25555555),228px 1830px rgba(255,255,255,0.25555555),353px 186px rgba(255,255,255,0.25555555),1873px 1154px rgba(255,255,255,0.25555555),494px 1244px rgba(255,255,255,0.25555555),1415px 261px rgba(255,255,255,0.25555555),1020px 1990px rgba(255,255,255,0.25555555),1924px 1169px rgba(255,255,255,0.25555555),1205px 464px rgba(255,255,255,0.25555555),596px 830px rgba(255,255,255,0.25555555),1319px 504px rgba(255,255,255,0.25555555),953px 1850px rgba(255,255,255,0.25555555); animation: animStar 150s linear infinite; }
+#stars3:after { content: " "; position: absolute; top: 2000px; width: 3px; height: 3px; background: transparent; box-shadow: 1703px 1208px rgba(255,255,255,0.25555555),381px 207px rgba(255,255,255,0.25555555),1516px 1990px rgba(255,255,255,0.25555555),1960px 982px rgba(255,255,255,0.25555555),922px 1278px rgba(255,255,255,0.25555555),689px 1766px rgba(255,255,255,0.25555555),538px 554px rgba(255,255,255,0.25555555),802px 1529px rgba(255,255,255,0.25555555),871px 1805px rgba(255,255,255,0.25555555),228px 1830px rgba(255,255,255,0.25555555),353px 186px rgba(255,255,255,0.25555555),1873px 1154px rgba(255,255,255,0.25555555),494px 1244px rgba(255,255,255,0.25555555),1415px 261px rgba(255,255,255,0.25555555),1020px 1990px rgba(255,255,255,0.25555555),1924px 1169px rgba(255,255,255,0.25555555),1205px 464px rgba(255,255,255,0.25555555),596px 830px rgba(255,255,255,0.25555555),1319px 504px rgba(255,255,255,0.25555555),953px 1850px rgba(255,255,255,0.25555555); }
+
+@keyframes animStar {
+    from { transform: translateY(0px); }
+    to   { transform: translateY(-2000px); }
 }
