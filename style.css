@@ -154,7 +154,7 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 .logo span { font-family: 'Montserrat', sans-serif; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .nav-logo-img { height: 32px; width: auto; filter: drop-shadow(0 0 8px rgba(63,172,250,0.3)); }
 .nav-links { display: flex; gap: 2rem; align-items: center; }
-.nav-links a:not(.btn-primary) { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+.nav-links a:not(.btn-primary) { font-family: 'Montserrat', sans-serif; text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
 .nav-links a:not(.btn-primary):hover { color: var(--text-main); }
 
 /* =====================================================
@@ -314,10 +314,10 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 }
 .hero-container { display: flex; align-items: center; gap: 4rem; max-width: 1400px; z-index: 1; }
 .hero-content { flex: 1; }
-.hero-tag { font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main); display: flex; align-items: center; gap: 1rem; }
-.tag-new { background: #8be1fa; color: #000; font-size: 0.8rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 900; }
+.hero-tag { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main); display: flex; align-items: center; gap: 1rem; }
+.tag-new { font-family: 'Montserrat', sans-serif; background: #8be1fa; color: #000; font-size: 0.8rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 900; }
 .hero-title { font-family: 'MinecraftRegular', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; text-transform: uppercase; }
-.subtitle { font-size: 1.25rem; color: var(--text-dim); max-width: 600px; margin-bottom: 2.5rem; font-weight: 500; }
+.subtitle { font-family: 'Montserrat', sans-serif; font-size: 1.25rem; color: var(--text-dim); max-width: 600px; margin-bottom: 2.5rem; font-weight: 500; }
 .hero-btns { display: flex; gap: 1.5rem; }
 .hero-visual { flex: 1; display: flex; justify-content: center; perspective: 1000px; }
 .floating-img { width: 100%; max-width: 600px; border-radius: 12px; transform: rotateY(-15deg) rotateX(5deg); box-shadow: -20px 20px 60px rgba(0,0,0,0.5); transition: transform 0.5s ease; }
