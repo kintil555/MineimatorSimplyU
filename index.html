@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mine-imator Simply Upscaled | Enhance Your Animation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <!-- Montserrat khusus untuk logo nav -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
@@ -22,7 +21,6 @@
     </script>
 </head>
 <body class="site-body">
-    <!-- MAINTENANCE TOGGLE: Change to 'true' to enable maintenance mode -->
     <script>
         window.MAINTENANCE_MODE = false;
     </script>
@@ -45,7 +43,6 @@
         if (window.MAINTENANCE_MODE) {
             document.getElementById('maintenance-screen').style.display = 'flex';
             document.querySelector('.site-body').style.overflow = 'hidden';
-            // Hide main content
             window.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('header, main, footer').forEach(el => el.style.display = 'none');
             });
@@ -64,23 +61,19 @@
                 <a href="/#features">Features</a>
                 <a href="/#showcase">Showcase</a>
                 <a href="https://www.mineimator.com/upgrade" target="_blank">Upgrade</a>
-                <!-- UPDATE AREA: Navigation Download Link -->
                 <a href="download.html" class="btn-primary">Download</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero">
             <div class="container hero-container">
                 <div class="hero-content">
-                    <!-- UPDATE AREA: Hero Version Tag -->
                     <div class="hero-tag"><span class="current-version-text">V1.0.12.0</span> <span class="tag-new">OFFICIAL</span></div>
                     <h1 class="hero-title">MINE-IMATOR SIMPLY UPSCALED</h1>
                     <p class="subtitle">A simple mod that enhance mine-imator rendering looks with exciting QOL features and a little better performance</p>
                     <div class="hero-btns">
-                        <!-- UPDATE AREA: Hero Download Button -->
                         <a href="download.html" class="btn-primary btn-large">DOWNLOAD</a>
                         <a href="#features" class="btn-secondary">LEARN MORE</a>
                     </div>
@@ -89,14 +82,13 @@
                     <img src="/MisuHeader.webp" alt="Mine-imator Simply Upscaled" class="floating-img">
                 </div>
             </div>
-		  <div class="wave">
-			<span></span>
-			<span></span>
-			<span></span>
-		  </div>
+            <div class="wave">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </section>
 
-        <!-- Features Section -->
         <section id="features" class="features">
             <div class="container">
                 <h2 class="section-title">Why Choose MISU?</h2>
@@ -134,7 +126,6 @@
             </div>
         </section>
 
-        <!-- Showcase Section -->
         <section id="showcase" class="showcase">
             <div class="container">
                 <h2 class="section-title">Community Showcase</h2>
@@ -165,7 +156,6 @@
             </div>
         </section>
 
-        <!-- Creator Section -->
         <section class="creator">
             <div class="container">
                 <div class="creator-card">
@@ -184,7 +174,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
@@ -194,7 +183,7 @@
                 <span style="font-size: 0.7rem; color: #60a5fa; font-weight: 700; text-transform: uppercase;">Verified Official Website</span>
             </div>
             <p style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.6;">Official distribution platform.</p>
-            <p style="font-size: 1.0rem; margin-top: 1.5rem; opacity: 1.0;">Website by <a href="https://youtube.com/@itzyclion?si=SdbJYxqlsCl4mx5n" target="_blank" style="color: #60a5fa; text-decoration: none; font-weight: 700;">VoxelMC</a></p>
+            <p style="font-size: 1.0rem; margin-top: 1.5rem; opacity: 1.0; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">Website by <a href="https://youtube.com/@itzyclion?si=SdbJYxqlsCl4mx5n" target="_blank" style="color: #60a5fa; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 0.35rem;">VoxelMC <img src="/avatarHead3.png" alt="VoxelMC" style="width: 24px; height: 24px; image-rendering: pixelated; vertical-align: middle;"></a></p>
         </div>
     </footer>
 
