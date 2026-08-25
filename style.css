@@ -135,9 +135,10 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 }
 
 .logo {
-    display: flex; align-items: center;
+    display: flex; align-items: center; gap: 0.6rem;
 }
-.nav-title-img { height: 28px; width: auto; filter: drop-shadow(0 0 8px rgba(63,172,250,0.25)); }
+.nav-logo-img { height: 32px; width: auto; filter: drop-shadow(0 0 8px rgba(63,172,250,0.3)); }
+.nav-title-img { height: 26px; width: auto; filter: drop-shadow(0 0 8px rgba(63,172,250,0.25)); }
 .nav-links { display: flex; gap: 1.75rem; align-items: center; }
 .nav-links a:not(.btn-primary) { font-family: var(--font-main); text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease, opacity 0.2s ease; }
 .nav-links a:not(.btn-primary):hover { color: var(--text-main); opacity: 0.9; }
@@ -358,7 +359,7 @@ footer { padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.05); text-ali
 }
 @media (max-width: 768px) {
     .nav-links { display: none; }
-    .nav-title-img { height: 22px; }
+    .nav-title-img { height: 18px; }
     .hero-title-img { max-width: 90vw; }
     .hero { padding-top: 8rem; }
     .feature-grid { grid-template-columns: 1fr; gap: 2rem; }
