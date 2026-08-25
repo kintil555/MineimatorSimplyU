@@ -293,7 +293,15 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 
 .section-title { font-size: 2.25rem; font-weight: 800; margin-bottom: 2.5rem; text-align: center; letter-spacing: -0.01em; }
 
-.features { padding: 5rem 0; }
+.features { padding: 5rem 0 2.5rem; position: relative; }
+.features::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 6rem;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.02));
+    pointer-events: none;
+}
 .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
 .feature-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
 .feature-img { width: 100%; height: auto; display: block; }
