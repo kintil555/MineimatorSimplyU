@@ -305,11 +305,12 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
 .feature-details {
     position: relative;
-    background: #05070d;
+    background: #000000;
     padding: 2.25rem;
     border-radius: 24px;
-    border: 2px solid rgba(255,255,255,0.14);
+    border: 3px solid #0a0e1a;
     isolation: isolate;
+    z-index: 0;
     transform: perspective(900px) rotateX(0deg);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
     box-shadow: 0 20px 40px -20px rgba(0,0,0,0.7);
