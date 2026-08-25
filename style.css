@@ -302,9 +302,10 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
     background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.02));
     pointer-events: none;
 }
-.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
 .feature-details {
-    position: relative;
+    position: sticky;
+    top: 6rem;
     padding: 2.25rem;
     border-radius: 24px;
     isolation: isolate;
@@ -438,6 +439,7 @@ footer { padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.05); text-a
     .hero-title-img { max-width: 90vw; }
     .hero { padding-top: 8rem; }
     .feature-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .feature-details { position: static; }
     .creator-card { flex-direction: column; text-align: center; padding: 2rem; }
     .download-box h2 { font-size: 2rem; }
 }
