@@ -293,7 +293,7 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 
 .section-title { font-size: 2.25rem; font-weight: 800; margin-bottom: 2.5rem; text-align: center; letter-spacing: -0.01em; }
 
-.features { padding: 5rem 0 2.5rem; position: relative; }
+.features { padding: 5rem 0 2.5rem; position: relative; overflow: visible; }
 .features::after {
     content: "";
     position: absolute;
