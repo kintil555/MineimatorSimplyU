@@ -318,7 +318,7 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 .image-overlay h3 { font-size: 1.2rem; color: var(--secondary-color); }
 .showcase-text { font-size: 1.1rem; color: var(--text-dim); margin-top: 1.5rem; }
 
-.creator { padding: 3.5rem 0 4rem; }
+.creator { padding: 3.5rem 0 1.5rem; }
 .creator-card { background: var(--card-bg); border-radius: 24px; padding: 3rem; display: flex; gap: 3rem; align-items: center; border: 1px solid rgba(255,255,255,0.05); }
 .creator-avatar img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--primary-color); box-shadow: 0 0 20px rgba(59,130,246,0.3); }
 .creator-info .label { text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; color: var(--primary-color); }
@@ -334,7 +334,7 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 .checksum-label { font-size: 0.7rem; font-weight: 800; color: var(--secondary-color); letter-spacing: 0.05em; }
 .checksum-value { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); word-break: break-all; user-select: all; }
 
-footer { padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-dim); font-size: 0.9rem; }
+footer { padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-dim); font-size: 0.9rem; }
 
 @keyframes rgb-cycle {
     0%   { --primary-color: #ff0000; --primary-dark: #cc0000; --secondary-color: #ff8800; }
