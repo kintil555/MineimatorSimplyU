@@ -318,11 +318,10 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 .feature-details::before {
     content: "";
     position: absolute;
-    inset: -18px;
+    top: -60px; left: 10%; right: 10%; height: 140px;
     z-index: -1;
-    border-radius: 32px;
-    background: radial-gradient(ellipse at 50% 15%, rgba(79,130,220,0.55) 0%, rgba(94,74,180,0.4) 35%, rgba(30,20,60,0.15) 60%, transparent 78%);
-    filter: blur(18px);
+    background: radial-gradient(ellipse at center, rgba(79,130,220,0.55) 0%, rgba(94,74,180,0.35) 40%, transparent 72%);
+    filter: blur(28px);
     opacity: 0.85;
     transition: opacity 0.35s ease;
 }
