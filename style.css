@@ -316,9 +316,9 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
     content: "";
     position: absolute;
     inset: -20px;
-    z-index: -2;
+    z-index: -3;
     border-radius: 36px;
-    background: radial-gradient(ellipse 95% 60% at 50% 0%, rgba(99,102,241,0.65) 0%, transparent 60%),
+    background: radial-gradient(ellipse 95% 90% at 50% -10%, rgba(99,102,241,0.75) 0%, rgba(99,102,241,0.3) 35%, transparent 65%),
                 radial-gradient(ellipse 50% 100% at 0% 50%, rgba(79,130,220,0.5) 0%, transparent 55%),
                 radial-gradient(ellipse 50% 100% at 100% 50%, rgba(94,74,180,0.5) 0%, transparent 55%);
     filter: blur(16px);
@@ -334,6 +334,35 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
     border-radius: 24px;
     border: 3px solid #0a0e1a;
     box-shadow: 0 20px 40px -20px rgba(0,0,0,0.7);
+}
+.feature-details .glow-particles {
+    position: absolute;
+    left: 10%; right: 10%; bottom: 100%;
+    height: 120px;
+    z-index: -2;
+    pointer-events: none;
+    overflow: visible;
+}
+.feature-details .glow-particles span {
+    position: absolute;
+    bottom: 0;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: rgba(147, 180, 255, 0.85);
+    box-shadow: 0 0 6px 2px rgba(99,102,241,0.6);
+    animation: particle-rise 4.5s ease-in infinite;
+    opacity: 0;
+}
+.feature-details .glow-particles span:nth-child(1) { left: 8%; animation-delay: 0s; }
+.feature-details .glow-particles span:nth-child(2) { left: 24%; animation-delay: 1.1s; }
+.feature-details .glow-particles span:nth-child(3) { left: 45%; animation-delay: 2.3s; }
+.feature-details .glow-particles span:nth-child(4) { left: 63%; animation-delay: 0.6s; }
+.feature-details .glow-particles span:nth-child(5) { left: 80%; animation-delay: 3.1s; }
+.feature-details .glow-particles span:nth-child(6) { left: 92%; animation-delay: 1.8s; }
+@keyframes particle-rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    15% { opacity: 0.9; }
+    100% { transform: translateY(-110px) scale(0.4); opacity: 0; }
 }
 .feature-details:hover {
     transform: perspective(900px) rotateX(5deg);
