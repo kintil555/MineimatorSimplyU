@@ -116,16 +116,16 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(10, 10, 12, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(6, 11, 24, 0.65);
+    backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.9rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -153,32 +153,27 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 }
 .logo span { font-family: 'Montserrat', sans-serif; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .nav-logo-img { height: 32px; width: auto; filter: drop-shadow(0 0 8px rgba(63,172,250,0.3)); }
-.nav-links { display: flex; gap: 2rem; align-items: center; }
-.nav-links a:not(.btn-primary) { font-family: 'Montserrat', sans-serif; text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-.nav-links a:not(.btn-primary):hover { color: var(--text-main); }
+.nav-links { display: flex; gap: 1.75rem; align-items: center; }
+.nav-links a:not(.btn-primary) { font-family: 'Montserrat', sans-serif; text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease, opacity 0.2s ease; }
+.nav-links a:not(.btn-primary):hover { color: var(--text-main); opacity: 0.9; }
 
 /* =====================================================
    BUTTONS — diganti pakai Minecraft framework
    ===================================================== */
 
 .btn-primary {
-    font-family: 'MinecraftTen', sans-serif;
-    box-shadow:
-        inset 0px -6px 0px 0px var(--btn-primary-inner-shadow-color),
-        inset 3px 3px 0 var(--btn-primary-inner-border-lt-color),
-        inset -3px -9px 0 var(--btn-primary-inner-border-br-color);
-    background-color: var(--btn-primary-inner-color);
-    border: 3px solid var(--btn-primary-border-color);
-    color: var(--btn-primary-text-color) !important;
-    padding: 0.6rem 1.5rem;
-    padding-bottom: calc(0.6rem + 8px);
-    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--accent-gradient);
+    border: none;
+    color: #fff !important;
+    padding: 0.65rem 1.5rem;
+    border-radius: 10px;
     text-decoration: none;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-shadow: 2.5px 2.5px 0px rgba(0,0,0,0.35);
-    text-transform: uppercase;
-    transition: background-color 0s;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -186,75 +181,54 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
     user-select: none;
 }
 .btn-primary:hover {
-    background-color: var(--btn-primary-inner-hover-color);
-    transform: none; filter: none;
-    box-shadow:
-        inset 0px -6px 0px 0px var(--btn-primary-inner-shadow-color),
-        inset 3px 3px 0 var(--btn-primary-inner-border-lt-color),
-        inset -3px -9px 0 var(--btn-primary-inner-border-br-color);
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
 }
 .btn-primary:active {
-    position: relative; top: 2px; transform: none;
-    box-shadow:
-        inset 0px 0px 0px 0px var(--btn-primary-inner-shadow-color),
-        inset 3px 3px 0 var(--btn-primary-inner-border-lt-color),
-        inset -3px -3px 0 var(--btn-primary-inner-border-br-color);
+    transform: translateY(0);
+    filter: brightness(0.95);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
 }
 
 .btn-secondary {
-    font-family: 'MinecraftRegular', sans-serif;
-    box-shadow:
-        inset 0px -6px 0px 0px var(--btn-tertiary-inner-shadow-color),
-        inset 3px 3px 0 var(--btn-tertiary-inner-border-lt-color),
-        inset -3px -9px 0 var(--btn-tertiary-inner-border-br-color);
-    background-color: var(--btn-tertiary-inner-color);
-    border: 3px solid var(--btn-tertiary-border-color);
-    color: var(--btn-tertiary-text-color);
-    padding: 0.75rem 1.5rem;
-    padding-bottom: calc(0.75rem + 8px);
-    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 10px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     font-weight: 600;
-    transition: background-color 0s;
+    transition: background-color 0.18s ease, border-color 0.18s ease;
     cursor: pointer;
     user-select: none;
 }
-.btn-secondary:hover { background-color: var(--btn-tertiary-inner-hover-color); }
-.btn-secondary:active {
-    position: relative; top: 2px;
-    box-shadow:
-        inset 0px 0px 0px 0px var(--btn-tertiary-inner-shadow-color),
-        inset 3px 3px 0 var(--btn-tertiary-inner-border-lt-color),
-        inset -3px -3px 0 var(--btn-tertiary-inner-border-br-color);
-}
+.btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+.btn-secondary:active { background: rgba(255,255,255,0.03); }
 
 .btn-outline {
-    font-family: 'MinecraftRegular', sans-serif;
-    box-shadow:
-        inset 1.5px 1.5px 0 var(--btn-normal-inner-border-lt-color),
-        inset -1.5px -1.5px 0 var(--btn-normal-inner-border-br-color);
-    background-color: var(--btn-normal-inner-color);
-    border: 1.5px solid var(--btn-normal-border-color);
-    color: var(--btn-normal-text-color);
-    padding: 0.5rem 1rem;
-    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--text-dim);
+    padding: 0.5rem 1.1rem;
+    border-radius: 8px;
     text-decoration: none;
     font-size: 0.85rem;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
-    transition: 0s;
+    transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
     cursor: pointer;
     user-select: none;
 }
 .btn-outline:hover {
-    color: var(--btn-normal-text-hover-color);
-    box-shadow:
-        inset 1.5px 1.5px 0 var(--btn-normal-inner-border-lt-hover-color),
-        inset -1.5px -1.5px 0 var(--btn-normal-inner-border-br-hover-color);
-    background-color: var(--btn-normal-inner-hover-color);
-    border: 1.5px solid var(--btn-normal-border-hover-color);
+    color: var(--text-main);
+    border-color: var(--primary-color);
+    background-color: rgba(96,165,250,0.08);
 }
 
 .btn-large { padding: 1rem 2rem; padding-bottom: calc(1rem + 8px); font-size: 1.1rem; }
@@ -323,16 +297,16 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 .floating-img { width: 100%; max-width: 600px; border-radius: 12px; transform: rotateY(-15deg) rotateX(5deg); box-shadow: -20px 20px 60px rgba(0,0,0,0.5); transition: transform 0.5s ease; }
 .floating-img:hover { transform: rotateY(-5deg) rotateX(2deg); }
 
-.section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; text-align: center; }
+.section-title { font-size: 2.25rem; font-weight: 800; margin-bottom: 2.5rem; text-align: center; letter-spacing: -0.01em; }
 
-.features { padding: 6rem 0; }
+.features { padding: 5rem 0; }
 .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
 .feature-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
 .feature-img { width: 100%; height: auto; display: block; }
 .feature-info { padding: 2rem; }
 .feature-info h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-.badge-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
-.badge { background: rgba(59,130,246,0.1); color: #60a5fa; padding: 0.4rem 1rem; border-radius: 99px; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(59,130,246,0.2); }
+.badge-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
+.badge { background: rgba(59,130,246,0.08); color: #60a5fa; padding: 0.3rem 0.8rem; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid rgba(59,130,246,0.16); }
 .description { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 2rem; }
 .specs-box { background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
 .specs-box h4 { font-size: 0.9rem; color: var(--primary-color); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
