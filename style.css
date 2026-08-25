@@ -370,9 +370,9 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
     box-shadow: 0 30px 60px -20px rgba(0,0,0,0.8);
 }
 .feature-details:hover::before { opacity: 1; }
-.feature-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 2px solid rgba(255,255,255,0.14); }
+.feature-card { background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 2px solid rgba(255,255,255,0.14); min-height: 900px; display: flex; flex-direction: column; }
+.feature-info { padding: 2rem; flex: 1; display: flex; flex-direction: column; justify-content: center; }
 .feature-img { width: 100%; height: auto; display: block; }
-.feature-info { padding: 2rem; }
 .feature-info h3 { font-size: 1.5rem; margin-bottom: 1rem; }
 .badge-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
 .badge { background: rgba(59,130,246,0.08); color: #60a5fa; padding: 0.3rem 0.8rem; border-radius: 99px; font-size: 0.78rem; font-weight: 600; border: 1px solid rgba(59,130,246,0.16); }
