@@ -401,8 +401,44 @@ section .wave span:nth-child(3) { border-radius: 42.5%; background: var(--bg-wav
 .creator-info h3 { font-size: 2rem; margin: 0.5rem 0 1rem; }
 .creator-info p { color: var(--text-dim); margin-bottom: 1.5rem; }
 
-.download-section { padding: 8rem 0; text-align: center; }
-.download-box { background: linear-gradient(135deg, #1e1e24ba 0%, #151518ba 100%); padding: 5rem 2rem; border-radius: 40px; border: 1px solid rgba(255,255,255,0.05); }
+.download-section { padding: 8rem 0; text-align: center; overflow: visible; }
+.download-box {
+    position: relative;
+    padding: 5rem 2rem;
+    border-radius: 40px;
+    isolation: isolate;
+    z-index: 0;
+}
+.download-box::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    z-index: -3;
+    border-radius: 52px;
+    background: radial-gradient(ellipse 95% 90% at 50% -10%, rgba(99,102,241,0.75) 0%, rgba(99,102,241,0.3) 35%, transparent 65%),
+                radial-gradient(ellipse 50% 100% at 0% 50%, rgba(79,130,220,0.5) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 100% at 100% 50%, rgba(94,74,180,0.5) 0%, transparent 55%);
+    filter: blur(16px);
+    opacity: 0.9;
+}
+.download-box .glow-particles {
+    position: absolute;
+    left: 10%; right: 10%; bottom: 100%;
+    height: 120px;
+    z-index: -2;
+    pointer-events: none;
+    overflow: visible;
+}
+.download-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, #1e1e24 0%, #151518 100%);
+    border-radius: 40px;
+    border: 3px solid #0a0e1a;
+    box-shadow: 0 20px 40px -20px rgba(0,0,0,0.7);
+}
 .download-box h2 { font-size: 3rem; margin-bottom: 1rem; }
 .download-box p { color: var(--text-dim); margin-bottom: 2.5rem; }
 .disclaimer { margin-top: 1.5rem; font-size: 0.85rem; opacity: 0.5; }
